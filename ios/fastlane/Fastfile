@@ -1,0 +1,235 @@
+# Fastfile for KP-Flutter iOS deployment
+# This file contains the fastlane.tools configuration
+
+default_platform(:ios)
+
+platform :ios do
+  # Load configuration from Appfile
+  TEAM_ID = CredentialsManager::AppfileConfig.try_fetch_value(:team_id)
+  APP_IDENTIFIER = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
+
+  # Before all lanes
+  before_all do
+    # Ensure we're in the ios directory
+    ensure_git_status_clean unless ENV["SKIP_GIT_CHECK"]
+  end
+
+  # Description: Build and upload to TestFlight
+  # Usage: fastlane beta
+  desc "Build and upload to TestFlight"
+  lane :beta do
+    # Sync certificates and provisioning profiles
+    match(
+      type: "appstore",
+      readonly: true
+    )
+
+    # Update project settings for manual code signing
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      team_id: TEAM_ID,
+      code_sign_identity: "Apple Distribution",
+      profile_name: "match AppStore #{APP_IDENTIFIER}",
+      path: "Runner.xcodeproj"
+    )
+
+    # Increment build number
+    increment_build_number(
+      xcodeproj: "Runner.xcodeproj"
+    )
+
+    # Clean and prepare
+    sh("cd .. && cd .. && flutter clean")
+    sh("cd .. && cd .. && flutter pub get")
+
+    # Install pods
+    cocoapods(
+      podfile: "./Podfile"
+    )
+
+    # Build and sign the app
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      configuration: "Release",
+      export_method: "app-store",
+      output_directory: "./build",
+      output_name: "Runner.ipa",
+      clean: true,
+      export_team_id: TEAM_ID,
+      xcargs: "DEVELOPMENT_TEAM=#{TEAM_ID}",
+      export_options: {
+        method: "app-store",
+        teamID: TEAM_ID,
+        provisioningProfiles: {
+          APP_IDENTIFIER => "match AppStore #{APP_IDENTIFIER}"
+        }
+      }
+    )
+
+    # Upload to TestFlight (uses API key from Appfile)
+    upload_to_testflight(
+      skip_waiting_for_build_processing: true,
+      notify_external_testers: false
+    )
+
+    # Commit version bump
+    commit_version_bump(
+      message: "Version bump by fastlane [skip ci]",
+      xcodeproj: "Runner.xcodeproj",
+      force: true
+    )
+
+    # Add git tag
+    add_git_tag(
+      grouping: "builds",
+      prefix: "v",
+      build_number: get_build_number(xcodeproj: "Runner.xcodeproj")
+    )
+
+    # Push to git
+    push_to_git_remote
+  end
+
+  # Description: Build and upload to App Store
+  # Usage: fastlane release
+  desc "Build and upload to App Store"
+  lane :release do
+    # Increment build number
+    increment_build_number(
+      xcodeproj: "Runner.xcodeproj"
+    )
+
+    # Clean and prepare
+    sh("cd .. && cd .. && flutter clean")
+    sh("cd .. && cd .. && flutter pub get")
+
+    # Skip build - pods are already installed, go directly to archive
+
+    # Build and sign the app
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      configuration: "Release",
+      export_method: "app-store",
+      output_directory: "./build",
+      output_name: "Runner.ipa",
+      clean: true,
+      export_team_id: TEAM_ID,
+      xcargs: "DEVELOPMENT_TEAM=#{TEAM_ID} CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER='match AppStore #{APP_IDENTIFIER}'",
+      export_options: {
+        method: "app-store",
+        teamID: TEAM_ID,
+        signingStyle: "manual",
+        signingCertificate: "Apple Distribution",
+        provisioningProfiles: {
+          APP_IDENTIFIER => "match AppStore #{APP_IDENTIFIER}"
+        }
+      }
+    )
+
+    # Upload to App Store Connect (uses API key from Appfile)
+    upload_to_app_store(
+      skip_metadata: false,
+      skip_screenshots: true,
+      force: true,
+      submit_for_review: false
+    )
+
+    # Commit version bump
+    commit_version_bump(
+      message: "Version bump by fastlane [skip ci]",
+      xcodeproj: "Runner.xcodeproj",
+      force: true
+    )
+
+    # Add git tag
+    add_git_tag(
+      grouping: "releases",
+      prefix: "v",
+      build_number: get_build_number(xcodeproj: "Runner.xcodeproj")
+    )
+
+    # Push to git
+    push_to_git_remote
+  end
+
+  # Description: Setup certificates and provisioning profiles using match
+  # Usage: fastlane certificates
+  desc "Setup certificates and provisioning profiles"
+  lane :certificates do
+    match(
+      type: "appstore",
+      readonly: false
+    )
+
+    match(
+      type: "development",
+      readonly: false
+    )
+  end
+
+  # Description: Just build the app without uploading
+  # Usage: fastlane build_only
+  desc "Build iOS app"
+  lane :build_only do
+    # Clean and prepare
+    sh("cd .. && cd .. && flutter clean")
+    sh("cd .. && cd .. && flutter pub get")
+
+    # Build and sign the app
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      configuration: "Release",
+      export_method: "app-store",
+      output_directory: "./build",
+      output_name: "Runner.ipa",
+      clean: true,
+      export_team_id: TEAM_ID,
+      xcargs: "DEVELOPMENT_TEAM=#{TEAM_ID} CODE_SIGN_STYLE=Manual PROVISIONING_PROFILE_SPECIFIER='match AppStore #{APP_IDENTIFIER}'",
+      export_options: {
+        method: "app-store",
+        teamID: TEAM_ID,
+        signingStyle: "manual",
+        signingCertificate: "Apple Distribution",
+        provisioningProfiles: {
+          APP_IDENTIFIER => "match AppStore #{APP_IDENTIFIER}"
+        }
+      }
+    )
+  end
+
+  # Description: Increment version number
+  # Usage: fastlane bump_version version:1.2.3
+  desc "Increment version number"
+  lane :bump_version do |options|
+    if options[:version]
+      increment_version_number(
+        version_number: options[:version],
+        xcodeproj: "Runner.xcodeproj"
+      )
+
+      # Also update pubspec.yaml
+      sh("cd .. && cd .. && sed -i '' 's/version: .*/version: #{options[:version]}+#{get_build_number(xcodeproj: 'Runner.xcodeproj')}/' pubspec.yaml")
+    else
+      UI.user_error!("Please specify version: fastlane bump_version version:1.2.3")
+    end
+  end
+
+  # After all lanes
+  after_all do |lane|
+    notification(
+      title: "Fastlane",
+      message: "Successfully completed '#{lane}' lane"
+    )
+  end
+
+  # Error handler
+  error do |lane, exception|
+    notification(
+      title: "Fastlane Error",
+      message: "Failed in '#{lane}' lane: #{exception.message}"
+    )
+  end
+end
