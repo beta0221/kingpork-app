@@ -20,17 +20,5 @@ apple_id("beta0221@gmail.com")
 # This is usually needed when you have multiple teams
 # itc_team_id("YOUR_APP_STORE_CONNECT_TEAM_ID")
 
-# If you want to use App Store Connect API Key instead of Apple ID:
-# This is the recommended approach for CI/CD
+# Note: App Store Connect API Key configuration has been moved to Fastfile
 # See: https://docs.fastlane.tools/app-store-connect-api/
-
-app_store_connect_api_key(
-  key_id: "ZJ8A9T6W98",
-  issuer_id: "facdcb47-8941-4e86-84f7-26b50472377f",
-  key_filepath: "./AuthKey_ZJ8A9T6W98.p8",
-  duration: 1200, # optional (maximum 1200)
-  in_house: false # optional but may be required if using match/sigh
-)
-
-# For more information about all available options, run:
-# fastlane action app_store_connect_api_key
