@@ -12,6 +12,10 @@ platform :ios do
   before_all do
     # Ensure we're in the ios directory
     ensure_git_status_clean unless ENV["SKIP_GIT_CHECK"]
+
+    # Validate required configuration
+    UI.user_error!("TEAM_ID is not set in Appfile") if TEAM_ID.nil? || TEAM_ID.empty?
+    UI.user_error!("APP_IDENTIFIER is not set in Appfile") if APP_IDENTIFIER.nil? || APP_IDENTIFIER.empty?
   end
 
   # Description: Build and upload to TestFlight
@@ -63,7 +67,7 @@ platform :ios do
         method: "app-store",
         teamID: TEAM_ID,
         provisioningProfiles: {
-          APP_IDENTIFIER => "match AppStore #{APP_IDENTIFIER}"
+          "#{APP_IDENTIFIER}" => "match AppStore #{APP_IDENTIFIER}"
         }
       }
     )
@@ -125,7 +129,7 @@ platform :ios do
         signingStyle: "manual",
         signingCertificate: "Apple Distribution",
         provisioningProfiles: {
-          APP_IDENTIFIER => "match AppStore #{APP_IDENTIFIER}"
+          "#{APP_IDENTIFIER}" => "match AppStore #{APP_IDENTIFIER}"
         }
       }
     )
@@ -196,7 +200,7 @@ platform :ios do
         signingStyle: "manual",
         signingCertificate: "Apple Distribution",
         provisioningProfiles: {
-          APP_IDENTIFIER => "match AppStore #{APP_IDENTIFIER}"
+          "#{APP_IDENTIFIER}" => "match AppStore #{APP_IDENTIFIER}"
         }
       }
     )
