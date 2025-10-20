@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:shop/components/order_process.dart';
-import 'package:shop/components/order_status_card.dart';
-import 'package:shop/components/product/secondary_product_card.dart';
-import 'package:shop/constants.dart';
-import 'package:shop/models/product_model.dart';
-import 'package:shop/route/screen_export.dart';
+import 'package:tklab_ec_v2/components/order_process.dart';
+import 'package:tklab_ec_v2/components/order_status_card.dart';
+import 'package:tklab_ec_v2/components/product/secondary_product_card.dart';
+import 'package:tklab_ec_v2/constants.dart';
+import 'package:tklab_ec_v2/models/product_model.dart';
+import 'package:tklab_ec_v2/route/screen_export.dart';
 
 class OrderProcessingScreen extends StatelessWidget {
   const OrderProcessingScreen({super.key});

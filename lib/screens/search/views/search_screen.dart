@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shop/components/custom_modal_bottom_sheet.dart';
-import 'package:shop/constants.dart';
-import 'package:shop/screens/search/views/components/search_form.dart';
+import 'package:tklab_ec_v2/components/custom_modal_bottom_sheet.dart';
+import 'package:tklab_ec_v2/constants.dart';
+import 'package:tklab_ec_v2/screens/search/views/components/search_form.dart';
 
 import 'components/recent_searches.dart';
 import 'components/search_filter.dart';

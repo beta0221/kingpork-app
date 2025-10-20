@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop/screens/order/views/components/order_summary_card.dart';
+import 'package:tklab_ec_v2/screens/order/views/components/order_summary_card.dart';
 
 import '../../../../constants.dart';
 

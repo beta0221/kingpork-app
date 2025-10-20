@@ -1,6 +1,6 @@
-import 'package:shop/models/cart_models.dart';
-import 'package:shop/services/api/api_client.dart';
-import 'package:shop/services/api/api_endpoints.dart';
+import 'package:tklab_ec_v2/models/cart_models.dart';
+import 'package:tklab_ec_v2/services/api/api_client.dart';
+import 'package:tklab_ec_v2/services/api/api_endpoints.dart';
 
 /// Cart (Kart) service
 class CartService {

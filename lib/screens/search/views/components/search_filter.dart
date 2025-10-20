@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:shop/components/custom_modal_bottom_sheet.dart';
-import 'package:shop/components/list_tile/divider_list_tile.dart';
-import 'package:shop/components/outlined_active_button.dart';
-import 'package:shop/screens/search/views/components/brand_filter.dart';
-import 'package:shop/screens/search/views/components/color_filter.dart';
-import 'package:shop/screens/search/views/components/price_filter.dart';
-import 'package:shop/screens/search/views/components/product_sort_filter.dart';
+import 'package:tklab_ec_v2/components/custom_modal_bottom_sheet.dart';
+import 'package:tklab_ec_v2/components/list_tile/divider_list_tile.dart';
+import 'package:tklab_ec_v2/components/outlined_active_button.dart';
+import 'package:tklab_ec_v2/screens/search/views/components/brand_filter.dart';
+import 'package:tklab_ec_v2/screens/search/views/components/color_filter.dart';
+import 'package:tklab_ec_v2/screens/search/views/components/price_filter.dart';
+import 'package:tklab_ec_v2/screens/search/views/components/product_sort_filter.dart';
 
 import '../../../../constants.dart';
 import 'size_fiter.dart';

@@ -1,8 +1,8 @@
-import 'package:shop/models/api_category_model.dart';
-import 'package:shop/models/banner_model.dart';
-import 'package:shop/services/landing_service.dart';
-import 'package:shop/services/shop_service.dart';
-import 'package:shop/viewmodels/base_view_model.dart';
+import 'package:tklab_ec_v2/models/api_category_model.dart';
+import 'package:tklab_ec_v2/models/banner_model.dart';
+import 'package:tklab_ec_v2/services/landing_service.dart';
+import 'package:tklab_ec_v2/services/shop_service.dart';
+import 'package:tklab_ec_v2/viewmodels/base_view_model.dart';
 
 /// HomeViewModel manages data and state for HomeScreen
 class HomeViewModel extends BaseViewModel {

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:shop/components/Banner/L/banner_l_style_1.dart';
-import 'package:shop/components/Banner/S/banner_s_style_1.dart';
-import 'package:shop/components/Banner/S/banner_s_style_4.dart';
-import 'package:shop/components/shopping_bag.dart';
-import 'package:shop/constants.dart';
-import 'package:shop/screens/home/views/components/best_sellers.dart';
-import 'package:shop/screens/home/views/components/flash_sale.dart';
-import 'package:shop/screens/home/views/components/most_popular.dart';
-import 'package:shop/screens/home/views/components/popular_products.dart';
+import 'package:tklab_ec_v2/components/Banner/L/banner_l_style_1.dart';
+import 'package:tklab_ec_v2/components/Banner/S/banner_s_style_1.dart';
+import 'package:tklab_ec_v2/components/Banner/S/banner_s_style_4.dart';
+import 'package:tklab_ec_v2/components/shopping_bag.dart';
+import 'package:tklab_ec_v2/constants.dart';
+import 'package:tklab_ec_v2/screens/home/views/components/best_sellers.dart';
+import 'package:tklab_ec_v2/screens/home/views/components/flash_sale.dart';
+import 'package:tklab_ec_v2/screens/home/views/components/most_popular.dart';
+import 'package:tklab_ec_v2/screens/home/views/components/popular_products.dart';
 
 class OnSaleScreen extends StatelessWidget {
   const OnSaleScreen({super.key});

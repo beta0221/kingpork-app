@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:shop/constants.dart';
+import 'package:tklab_ec_v2/constants.dart';
 
 import 'components/use_current_location_card.dart';
 

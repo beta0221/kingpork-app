@@ -1,8 +1,8 @@
-import 'package:shop/models/address_model.dart';
-import 'package:shop/models/auth_models.dart';
-import 'package:shop/services/api/api_client.dart';
-import 'package:shop/services/api/api_endpoints.dart';
-import 'package:shop/utils/token_manager.dart';
+import 'package:tklab_ec_v2/models/address_model.dart';
+import 'package:tklab_ec_v2/models/auth_models.dart';
+import 'package:tklab_ec_v2/services/api/api_client.dart';
+import 'package:tklab_ec_v2/services/api/api_endpoints.dart';
+import 'package:tklab_ec_v2/utils/token_manager.dart';
 
 /// Authentication service
 class AuthService {

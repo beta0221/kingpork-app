@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop/constants.dart';
+import 'package:tklab_ec_v2/constants.dart';
 
 import 'components/cupertino_switch_divided_list_tile.dart';
 

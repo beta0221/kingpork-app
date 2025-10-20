@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shop/entry_point.dart';
-import 'package:shop/screens/checkout/views/thanks_for_order_screen.dart';
-import 'package:shop/screens/language/view/select_language_screen.dart';
-import 'package:shop/screens/payment/views/add_new_card_screen.dart';
+import 'package:tklab_ec_v2/entry_point.dart';
+import 'package:tklab_ec_v2/screens/checkout/views/thanks_for_order_screen.dart';
+import 'package:tklab_ec_v2/screens/language/view/select_language_screen.dart';
+import 'package:tklab_ec_v2/screens/payment/views/add_new_card_screen.dart';
 
 import 'screen_export.dart';
 

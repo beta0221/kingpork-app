@@ -1,5 +1,5 @@
 // For demo only
-import 'package:shop/constants.dart';
+import 'package:tklab_ec_v2/constants.dart';
 
 class ProductModel {
   final String image, brandName, title;

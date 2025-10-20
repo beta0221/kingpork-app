@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:shop/services/api/api_endpoints.dart';
-import 'package:shop/services/api/api_exception.dart';
-import 'package:shop/utils/token_manager.dart';
+import 'package:tklab_ec_v2/services/api/api_endpoints.dart';
+import 'package:tklab_ec_v2/services/api/api_exception.dart';
+import 'package:tklab_ec_v2/utils/token_manager.dart';
 
 /// HTTP Client for API requests
 class ApiClient {

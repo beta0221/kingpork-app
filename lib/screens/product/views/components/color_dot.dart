@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop/components/check_mark.dart';
+import 'package:tklab_ec_v2/components/check_mark.dart';
 
 import '../../../../constants.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shop/constants.dart';
+import 'package:tklab_ec_v2/constants.dart';
 
 import 'components/express_shipping_method_card.dart';
 import 'components/shipping_method_card.dart';

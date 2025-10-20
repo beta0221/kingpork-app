@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shop/constants.dart';
-import 'package:shop/route/screen_export.dart';
+import 'package:tklab_ec_v2/constants.dart';
+import 'package:tklab_ec_v2/route/screen_export.dart';
 
 class EnableNotificationScreen extends StatelessWidget {
   const EnableNotificationScreen({super.key});

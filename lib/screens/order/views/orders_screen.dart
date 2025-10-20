@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shop/constants.dart';
-import 'package:shop/route/screen_export.dart';
+import 'package:tklab_ec_v2/constants.dart';
+import 'package:tklab_ec_v2/route/screen_export.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});

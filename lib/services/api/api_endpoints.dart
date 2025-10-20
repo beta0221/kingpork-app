@@ -1,8 +1,10 @@
+import 'package:tklab_ec_v2/config/flavor_config.dart';
+
 /// API Endpoints Configuration
 class ApiEndpoints {
-  // Base URL - 請根據環境修改
-  static const String baseUrl = 'https://stageapi.kingpork.com.tw'; // TODO: 修改為實際的 domain
-  static const String apiPrefix = '/api';
+  // Base URL - 自動根據 Flavor 環境決定
+  static String get baseUrl => FlavorConfig.instance.baseUrl;
+  static const String apiPrefix = '/api/next';
 
   static String get apiBaseUrl => '$baseUrl$apiPrefix';
 

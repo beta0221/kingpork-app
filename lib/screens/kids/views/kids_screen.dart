@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:shop/components/Banner/L/banner_l_style_1.dart';
-import 'package:shop/components/Banner/S/banner_s_style_1.dart';
-import 'package:shop/components/Banner/S/banner_s_style_4.dart';
-import 'package:shop/components/product/product_card.dart';
-import 'package:shop/components/shopping_bag.dart';
-import 'package:shop/constants.dart';
-import 'package:shop/models/product_model.dart';
-import 'package:shop/route/route_constants.dart';
-import 'package:shop/screens/search/views/components/search_form.dart';
+import 'package:tklab_ec_v2/components/Banner/L/banner_l_style_1.dart';
+import 'package:tklab_ec_v2/components/Banner/S/banner_s_style_1.dart';
+import 'package:tklab_ec_v2/components/Banner/S/banner_s_style_4.dart';
+import 'package:tklab_ec_v2/components/product/product_card.dart';
+import 'package:tklab_ec_v2/components/shopping_bag.dart';
+import 'package:tklab_ec_v2/constants.dart';
+import 'package:tklab_ec_v2/models/product_model.dart';
+import 'package:tklab_ec_v2/route/route_constants.dart';
+import 'package:tklab_ec_v2/screens/search/views/components/search_form.dart';
 
 class KidsScreen extends StatelessWidget {
   const KidsScreen({super.key});

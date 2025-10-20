@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shop/components/shopping_bag.dart';
-import 'package:shop/constants.dart';
-import 'package:shop/screens/search/views/components/search_form.dart';
+import 'package:tklab_ec_v2/components/shopping_bag.dart';
+import 'package:tklab_ec_v2/constants.dart';
+import 'package:tklab_ec_v2/screens/search/views/components/search_form.dart';
 
 class SubDiscoverScreen extends StatelessWidget {
   const SubDiscoverScreen({super.key});

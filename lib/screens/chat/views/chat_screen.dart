@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shop/constants.dart';
-import 'package:shop/theme/input_decoration_theme.dart';
+import 'package:tklab_ec_v2/constants.dart';
+import 'package:tklab_ec_v2/theme/input_decoration_theme.dart';
 
 import 'components/support_person_info.dart';
 import 'components/text_message.dart';

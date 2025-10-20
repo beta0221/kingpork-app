@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shop/components/chat_active_dot.dart';
-import 'package:shop/constants.dart';
-import 'package:shop/route/screen_export.dart';
+import 'package:tklab_ec_v2/components/chat_active_dot.dart';
+import 'package:tklab_ec_v2/constants.dart';
+import 'package:tklab_ec_v2/route/screen_export.dart';
 
 import 'components/help_list_tile.dart';
 

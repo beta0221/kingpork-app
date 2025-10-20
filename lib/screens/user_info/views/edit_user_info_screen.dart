@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:shop/components/network_image_with_loader.dart';
-import 'package:shop/constants.dart';
+import 'package:tklab_ec_v2/components/network_image_with_loader.dart';
+import 'package:tklab_ec_v2/constants.dart';
 
 import 'components/user_info_form.dart';
 

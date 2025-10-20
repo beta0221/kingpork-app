@@ -1,6 +1,6 @@
-import 'package:shop/models/contact_model.dart';
-import 'package:shop/services/api/api_client.dart';
-import 'package:shop/services/api/api_endpoints.dart';
+import 'package:tklab_ec_v2/models/contact_model.dart';
+import 'package:tklab_ec_v2/services/api/api_client.dart';
+import 'package:tklab_ec_v2/services/api/api_endpoints.dart';
 
 /// Contact service
 class ContactService {

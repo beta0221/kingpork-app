@@ -1,7 +1,7 @@
-import 'package:shop/models/api_category_model.dart';
-import 'package:shop/models/banner_model.dart';
-import 'package:shop/services/api/api_client.dart';
-import 'package:shop/services/api/api_endpoints.dart';
+import 'package:tklab_ec_v2/models/api_category_model.dart';
+import 'package:tklab_ec_v2/models/banner_model.dart';
+import 'package:tklab_ec_v2/services/api/api_client.dart';
+import 'package:tklab_ec_v2/services/api/api_endpoints.dart';
 
 /// Landing page service
 class LandingService {

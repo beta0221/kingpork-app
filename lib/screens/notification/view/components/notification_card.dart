@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shop/components/chat_active_dot.dart';
+import 'package:tklab_ec_v2/components/chat_active_dot.dart';
 
 class NotificationCard extends StatelessWidget {
   const NotificationCard({

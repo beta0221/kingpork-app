@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop/route/screen_export.dart';
+import 'package:tklab_ec_v2/route/screen_export.dart';
 
 import '../../../../constants.dart';
 import 'search_suggestion_text.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shop/components/review_card.dart';
-import 'package:shop/constants.dart';
-import 'package:shop/screens/product/views/components/product_list_tile.dart';
-import 'package:shop/route/screen_export.dart';
+import 'package:tklab_ec_v2/components/review_card.dart';
+import 'package:tklab_ec_v2/constants.dart';
+import 'package:tklab_ec_v2/screens/product/views/components/product_list_tile.dart';
+import 'package:tklab_ec_v2/route/screen_export.dart';
 
 import 'components/sort_user_review.dart';
 import 'components/user_review_card.dart';

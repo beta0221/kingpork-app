@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shop/constants.dart';
+import 'package:tklab_ec_v2/constants.dart';
 
-import 'package:shop/screens/language/view/components/language_card.dart';
-import 'package:shop/theme/input_decoration_theme.dart';
+import 'package:tklab_ec_v2/screens/language/view/components/language_card.dart';
+import 'package:tklab_ec_v2/theme/input_decoration_theme.dart';
 
 class SelectLanguageScreen extends StatelessWidget {
   const SelectLanguageScreen({super.key});

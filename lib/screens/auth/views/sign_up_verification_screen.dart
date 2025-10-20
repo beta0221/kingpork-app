@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shop/components/custom_modal_bottom_sheet.dart';
-import 'package:shop/constants.dart';
-import 'package:shop/route/screen_export.dart';
-import 'package:shop/screens/auth/views/components/sign_up_verification_otp_form.dart';
+import 'package:tklab_ec_v2/components/custom_modal_bottom_sheet.dart';
+import 'package:tklab_ec_v2/constants.dart';
+import 'package:tklab_ec_v2/route/screen_export.dart';
+import 'package:tklab_ec_v2/screens/auth/views/components/sign_up_verification_otp_form.dart';
 
 class SignUpVerificationScreen extends StatelessWidget {
   const SignUpVerificationScreen({super.key});

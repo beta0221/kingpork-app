@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shop/components/network_image_with_loader.dart';
+import 'package:tklab_ec_v2/components/network_image_with_loader.dart';
 
 import '../../../../constants.dart';
 

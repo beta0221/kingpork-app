@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:shop/constants.dart';
-import 'package:shop/screens/payment/views/components/card_input_formatters.dart';
+import 'package:tklab_ec_v2/constants.dart';
+import 'package:tklab_ec_v2/screens/payment/views/components/card_input_formatters.dart';
 
 import 'components/payment_card.dart';
 

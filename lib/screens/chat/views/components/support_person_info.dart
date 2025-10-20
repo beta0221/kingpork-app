@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop/components/chat_active_dot.dart';
-import 'package:shop/components/network_image_with_loader.dart';
+import 'package:tklab_ec_v2/components/chat_active_dot.dart';
+import 'package:tklab_ec_v2/components/network_image_with_loader.dart';
 
 class SupportPersonInfo extends StatelessWidget {
   const SupportPersonInfo({
