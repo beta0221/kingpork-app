@@ -38,6 +38,27 @@ class ApiEndpoints {
   static String billToken(int billId) => '/bill/token/$billId';
   static String billPay(int billId) => '/bill/pay/$billId';
 
+  // Community Endpoints
+  static const String communityPosts = '/community/posts';
+  static const String communityPost = '/community/post';
+  static String communityPostDetail(int postId) => '/community/post/$postId';
+  static String communityPostLike(int postId) => '/community/post/$postId/like';
+  static String communityPostComments(int postId) => '/community/post/$postId/comments';
+  static String communityPostDelete(int postId) => '/community/post/$postId';
+
+  // Chat Endpoints
+  static const String chatMessages = '/chat/messages';
+  static const String chatSend = '/chat/send';
+  static const String chatRooms = '/chat/rooms';
+  static String chatRoom(int roomId) => '/chat/room/$roomId';
+  static String chatRoomMessages(int roomId) => '/chat/room/$roomId/messages';
+
+  // Message/Notification Endpoints
+  static const String messages = '/messages';
+  static const String messageUnreadCount = '/messages/unread-count';
+  static String messageRead(int messageId) => '/messages/$messageId/read';
+  static String messageDelete(int messageId) => '/messages/$messageId';
+
   // Helper method to build full URL
   static String buildUrl(String endpoint) => '$apiBaseUrl$endpoint';
 }

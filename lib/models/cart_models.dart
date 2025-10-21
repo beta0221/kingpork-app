@@ -41,6 +41,27 @@ class CartItem {
       'image': image,
     };
   }
+
+  /// Create a copy with optional new values
+  CartItem copyWith({
+    int? id,
+    int? productId,
+    String? productName,
+    double? price,
+    int? quantity,
+    double? subtotal,
+    String? image,
+  }) {
+    return CartItem(
+      id: id ?? this.id,
+      productId: productId ?? this.productId,
+      productName: productName ?? this.productName,
+      price: price ?? this.price,
+      quantity: quantity ?? this.quantity,
+      subtotal: subtotal ?? this.subtotal,
+      image: image ?? this.image,
+    );
+  }
 }
 
 /// Cart response model
@@ -68,6 +89,17 @@ class CartResponse {
   /// Get total quantity
   int get totalQuantity =>
       items.fold(0, (sum, item) => sum + item.quantity);
+
+  /// Create a copy with optional new values
+  CartResponse copyWith({
+    List<CartItem>? items,
+    double? total,
+  }) {
+    return CartResponse(
+      items: items ?? this.items,
+      total: total ?? this.total,
+    );
+  }
 }
 
 /// Add to cart request model

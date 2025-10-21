@@ -247,6 +247,17 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const ThanksForOrderScreen(),
       );
+    case webViewScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) {
+          final args = settings.arguments as Map<String, dynamic>?;
+          return WebViewScreen(
+            url: args?['url'] ?? '/',
+            title: args?['title'],
+            showAppBar: args?['showAppBar'] ?? true,
+          );
+        },
+      );
     default:
       return MaterialPageRoute(
         // Make a screen for undefine
