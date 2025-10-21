@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tklab_ec_v2/route/route_constants.dart';
 import 'package:tklab_ec_v2/route/router.dart' as router;
 import 'package:tklab_ec_v2/theme/app_theme.dart';
 import 'package:tklab_ec_v2/config/flavor_config.dart';
+import 'package:tklab_ec_v2/viewmodels/home_view_model.dart';
+import 'package:tklab_ec_v2/viewmodels/member_view_model.dart';
 
 /// 預設入口點（用於開發時快速測試）
 /// 正式使用時應該使用 main_dev.dart, main_uat.dart, main_prod.dart
@@ -17,7 +20,15 @@ void main() {
 /// 主應用程式啟動函式
 /// 由各個 Flavor 入口點呼叫
 void runMainApp() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => HomeViewModel()),
+        ChangeNotifierProvider(create: (_) => MemberViewModel()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
