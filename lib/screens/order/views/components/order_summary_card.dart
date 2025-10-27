@@ -27,34 +27,34 @@ class OrderSummaryCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Order Summary",
+            "訂單摘要",
             style: Theme.of(context).textTheme.titleSmall,
           ),
           const SizedBox(height: defaultPadding / 2),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
             child: OrderSummaryText(
-              leadingText: "Subtotal",
+              leadingText: "小計",
               trilingText: "\$$subTotal",
             ),
           ),
           OrderSummaryText(
-            leadingText: "Shipping Fee",
-            trilingText: shippingFee == 0 ? "Free" : "\$$shippingFee",
+            leadingText: "運費",
+            trilingText: shippingFee == 0 ? "免運費" : "\$$shippingFee",
             trilingTextColor: shippingFee == 0 ? successColor : null,
           ),
           if (discount != null) const SizedBox(height: defaultPadding / 2),
           if (discount != null)
             OrderSummaryText(
-                leadingText: "Discount", trilingText: "\$$discount"),
+                leadingText: "折扣", trilingText: "\$$discount"),
           const Divider(height: defaultPadding * 2),
           OrderSummaryText(
-            leadingText: "Total (Include of VAT)",
+            leadingText: "總計 (含稅)",
             trilingText: "\$$totalWithVat",
           ),
           const SizedBox(height: defaultPadding / 2),
           OrderSummaryText(
-            leadingText: "Estimated VAT",
+            leadingText: "預估稅額",
             trilingText: "\$$vat",
           ),
         ],

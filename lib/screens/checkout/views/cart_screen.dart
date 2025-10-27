@@ -19,7 +19,7 @@ class CartScreen extends StatelessWidget {
           slivers: [
             SliverToBoxAdapter(
               child: Text(
-                "Review your order",
+                "確認您的訂單",
                 style: Theme.of(context).textTheme.titleSmall,
               ),
             ),
@@ -70,7 +70,7 @@ class CartScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(context, paymentMethodScreenRoute);
                   },
-                  child: const Text("Continue"),
+                  child: const Text("繼續"),
                 ),
               ),
             ),

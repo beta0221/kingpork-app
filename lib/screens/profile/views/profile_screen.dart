@@ -32,14 +32,14 @@ class ProfileScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(context, userInfoScreenRoute);
                     },
-                    child: const Text("View Profile"),
+                    child: const Text("查看個人資料"),
                   );
                 }
                 return OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, logInScreenRoute);
                   },
-                  child: const Text("Log In"),
+                  child: const Text("登入"),
                 );
               },
             ),
@@ -60,44 +60,44 @@ class ProfileScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
             child: Text(
-              "Account",
+              "帳戶",
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
           const SizedBox(height: defaultPadding / 2),
           ProfileMenuListTile(
-            text: "Orders",
+            text: "訂單",
             svgSrc: "assets/icons/Order.svg",
             press: () {
               Navigator.pushNamed(context, ordersScreenRoute);
             },
           ),
           ProfileMenuListTile(
-            text: "Returns",
+            text: "退貨",
             svgSrc: "assets/icons/Return.svg",
             press: () {},
           ),
           ProfileMenuListTile(
-            text: "Wishlist",
+            text: "願望清單",
             svgSrc: "assets/icons/Wishlist.svg",
             press: () {},
           ),
           ProfileMenuListTile(
-            text: "Addresses",
+            text: "地址",
             svgSrc: "assets/icons/Address.svg",
             press: () {
               Navigator.pushNamed(context, addressesScreenRoute);
             },
           ),
           ProfileMenuListTile(
-            text: "Payment",
+            text: "付款方式",
             svgSrc: "assets/icons/card.svg",
             press: () {
               Navigator.pushNamed(context, emptyPaymentScreenRoute);
             },
           ),
           ProfileMenuListTile(
-            text: "Wallet",
+            text: "錢包",
             svgSrc: "assets/icons/Wallet.svg",
             press: () {
               Navigator.pushNamed(context, walletScreenRoute);
@@ -108,20 +108,20 @@ class ProfileScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
                 horizontal: defaultPadding, vertical: defaultPadding / 2),
             child: Text(
-              "Personalization",
+              "個人化設定",
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
           DividerListTileWithTrilingText(
             svgSrc: "assets/icons/Notification.svg",
-            title: "Notification",
-            trilingText: "Off",
+            title: "通知",
+            trilingText: "關閉",
             press: () {
               Navigator.pushNamed(context, enableNotificationScreenRoute);
             },
           ),
           ProfileMenuListTile(
-            text: "Preferences",
+            text: "偏好設定",
             svgSrc: "assets/icons/Preferences.svg",
             press: () {
               Navigator.pushNamed(context, preferencesScreenRoute);
@@ -132,19 +132,19 @@ class ProfileScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
                 horizontal: defaultPadding, vertical: defaultPadding / 2),
             child: Text(
-              "Settings",
+              "設定",
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
           ProfileMenuListTile(
-            text: "Language",
+            text: "語言",
             svgSrc: "assets/icons/Language.svg",
             press: () {
               Navigator.pushNamed(context, selectLanguageScreenRoute);
             },
           ),
           ProfileMenuListTile(
-            text: "Location",
+            text: "位置",
             svgSrc: "assets/icons/Location.svg",
             press: () {},
           ),
@@ -153,19 +153,19 @@ class ProfileScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
                 horizontal: defaultPadding, vertical: defaultPadding / 2),
             child: Text(
-              "Help & Support",
+              "幫助與支援",
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
           ProfileMenuListTile(
-            text: "Get Help",
+            text: "取得幫助",
             svgSrc: "assets/icons/Help.svg",
             press: () {
               Navigator.pushNamed(context, getHelpScreenRoute);
             },
           ),
           ProfileMenuListTile(
-            text: "FAQ",
+            text: "常見問題",
             svgSrc: "assets/icons/FAQ.svg",
             press: () {},
             isShowDivider: false,
@@ -192,7 +192,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 title: const Text(
-                  "Log Out",
+                  "登出",
                   style: TextStyle(color: errorColor, fontSize: 14, height: 1),
                 ),
               );
@@ -209,17 +209,17 @@ class ProfileScreen extends StatelessWidget {
     final shouldLogout = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Log Out"),
-        content: const Text("Are you sure you want to log out?"),
+        title: const Text("登出"),
+        content: const Text("您確定要登出嗎？"),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text("Cancel"),
+            child: const Text("取消"),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, true),
             style: TextButton.styleFrom(foregroundColor: errorColor),
-            child: const Text("Log Out"),
+            child: const Text("登出"),
           ),
         ],
       ),
@@ -233,7 +233,7 @@ class ProfileScreen extends StatelessWidget {
         // 顯示成功訊息
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text("You have been logged out successfully"),
+            content: Text("登出成功"),
             duration: Duration(seconds: 2),
           ),
         );

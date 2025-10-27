@@ -20,7 +20,7 @@ class _CouponCodeState extends State<CouponCode> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Your Coupon code",
+          "優惠券代碼",
           style: Theme.of(context).textTheme.titleSmall,
         ),
         const SizedBox(height: defaultPadding),
@@ -39,7 +39,7 @@ class _CouponCodeState extends State<CouponCode> {
               }
             },
             decoration: InputDecoration(
-              hintText: "Type coupon code",
+              hintText: "請輸入優惠券代碼",
               prefixIcon: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: defaultPadding * 0.75),
@@ -60,7 +60,7 @@ class _CouponCodeState extends State<CouponCode> {
           child: OutlinedButton(
             onPressed: () {},
             child: Text(
-              "Apply coupon code",
+              "套用優惠券",
               style: TextStyle(
                   color: Theme.of(context).textTheme.bodyLarge!.color!),
             ),

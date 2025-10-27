@@ -37,12 +37,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Welcome back!",
+                    "歡迎回來！",
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   const SizedBox(height: defaultPadding / 2),
                   const Text(
-                    "Log in with your data that you entered during your registration.",
+                    "使用您註冊時輸入的資料登入。",
                   ),
                   const SizedBox(height: defaultPadding),
                   LogInForm(
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Align(
                     child: TextButton(
-                      child: const Text("Forgot password"),
+                      child: const Text("忘記密碼"),
                       onPressed: () {
                         Navigator.pushNamed(
                             context, passwordRecoveryScreenRoute);
@@ -80,19 +80,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                       Colors.white),
                                 ),
                               )
-                            : const Text("Log in"),
+                            : const Text("登入"),
                       );
                     },
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text("Don't have an account?"),
+                      const Text("還沒有帳號？"),
                       TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, signUpScreenRoute);
                         },
-                        child: const Text("Sign up"),
+                        child: const Text("註冊"),
                       )
                     ],
                   ),
