@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tklab_ec_v2/constants.dart';
 import 'package:tklab_ec_v2/route/screen_export.dart';
+import 'package:tklab_ec_v2/screens/product/views/product_list_screen.dart';
 
 class EntryPoint extends StatefulWidget {
   const EntryPoint({super.key});
@@ -13,7 +14,8 @@ class EntryPoint extends StatefulWidget {
 
 class _EntryPointState extends State<EntryPoint> {
   final List _pages = const [
-    HomeScreen(),
+    ProductListScreen(),
+    // HomeScreen(),
     DiscoverScreen(),
     BookmarkScreen(),
     // EmptyCartScreen(), // if Cart is empty
@@ -45,12 +47,10 @@ class _EntryPointState extends State<EntryPoint> {
         leading: const SizedBox(),
         leadingWidth: 0,
         centerTitle: false,
-        title: SvgPicture.asset(
-          "assets/logo/Shoplon.svg",
-          colorFilter: ColorFilter.mode(
-              Theme.of(context).iconTheme.color!, BlendMode.srcIn),
-          height: 20,
-          width: 100,
+        title: Image.asset(
+          "assets/logo/tklab_logo.png",
+          height: 32,
+          fit: BoxFit.contain,
         ),
         actions: [
           IconButton(
@@ -112,7 +112,7 @@ class _EntryPointState extends State<EntryPoint> {
           // selectedLabelStyle: TextStyle(color: primaryColor),
           selectedFontSize: 12,
           selectedItemColor: primaryColor,
-          unselectedItemColor: Colors.transparent,
+          unselectedItemColor: Colors.grey,
           items: [
             BottomNavigationBarItem(
               icon: svgIcon("assets/icons/Shop.svg"),

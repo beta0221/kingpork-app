@@ -55,7 +55,7 @@ class ReviewCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text("Based on $numOfReviews Reviews"),
+                Text("$numOfReviews 則評論"),
                 const SizedBox(height: defaultPadding),
                 RatingBar.builder(
                   initialRating: rating,

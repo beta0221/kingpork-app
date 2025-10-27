@@ -141,7 +141,7 @@ class _SearchFilterState extends State<SearchFilter> {
                               });
                             },
                             value: _isShowAvailableProducOnly,
-                            title: const Text("Available in stock"),
+                            title: const Text("現貨供應"),
                             controlAffinity: ListTileControlAffinity.leading,
                             contentPadding: const EdgeInsets.symmetric(
                                 horizontal: defaultPadding / 2),
