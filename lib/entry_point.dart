@@ -117,30 +117,30 @@ class _EntryPointState extends State<EntryPoint> {
             BottomNavigationBarItem(
               icon: svgIcon("assets/icons/Shop.svg"),
               activeIcon: svgIcon("assets/icons/Shop.svg", color: primaryColor),
-              label: "Shop",
+              label: "首頁",
             ),
             BottomNavigationBarItem(
               icon: svgIcon("assets/icons/Category.svg"),
               activeIcon:
                   svgIcon("assets/icons/Category.svg", color: primaryColor),
-              label: "Discover",
+              label: "分類",
             ),
             BottomNavigationBarItem(
               icon: svgIcon("assets/icons/Bookmark.svg"),
               activeIcon:
                   svgIcon("assets/icons/Bookmark.svg", color: primaryColor),
-              label: "Bookmark",
+              label: "收藏",
             ),
             BottomNavigationBarItem(
               icon: svgIcon("assets/icons/Bag.svg"),
               activeIcon: svgIcon("assets/icons/Bag.svg", color: primaryColor),
-              label: "Cart",
+              label: "購物車",
             ),
             BottomNavigationBarItem(
               icon: svgIcon("assets/icons/Profile.svg"),
               activeIcon:
                   svgIcon("assets/icons/Profile.svg", color: primaryColor),
-              label: "Profile",
+              label: "我的",
             ),
           ],
         ),

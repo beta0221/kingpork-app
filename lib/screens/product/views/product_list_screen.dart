@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tklab_ec_v2/components/Banner/L/banner_l_style_1.dart';
+import 'package:tklab_ec_v2/components/webview/tk_webview.dart';
 import 'package:tklab_ec_v2/models/product_model.dart';
 import 'package:tklab_ec_v2/route/route_constants.dart';
 import 'package:tklab_ec_v2/screens/product/views/components/product_grid_card.dart';
@@ -17,6 +19,15 @@ class ProductListScreen extends StatefulWidget {
 class _ProductListScreenState extends State<ProductListScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+
+  // 分類到 URL 的映射（保養使用 WebView，其他使用網格視圖）
+  final Map<String, String> _categoryUrls = {
+    '優惠': '', // 使用網格視圖
+    '保養': '', // 使用 WebView（占位 URL）
+    '保健': '', // 使用網格視圖
+    '彩妝': '', // 使用網格視圖
+    '面膜': '', // 使用網格視圖
+  };
 
   @override
   void initState() {
@@ -83,10 +94,10 @@ class _ProductListScreenState extends State<ProductListScreen>
             controller: _tabController,
             children: [
               _buildTabContent("優惠"),
-              _buildTabContent("保養"),
-              _buildTabContent("保健"),
-              _buildTabContent("彩妝"),
-              _buildTabContent("面膜"),
+              _buildTestWebViewContent(),
+              _buildTabContent("保健"), // 使用 WebView
+              _buildTestWebViewContent(),
+              _buildTabContent("面膜")
             ],
           ),
         ),
@@ -168,6 +179,49 @@ class _ProductListScreenState extends State<ProductListScreen>
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildWebViewContent(String categoryName) {
+    final url = _categoryUrls[categoryName] ?? '';
+
+    return TkWebView(
+      url: url,
+      showLoading: true,
+      loadingMessage: '載入中...',
+      enableJavaScript: true,
+    );
+  }
+
+  Widget _buildTestWebViewContent() {
+    return FutureBuilder<String>(
+      future: rootBundle.loadString('assets/html/example_webview.html'),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        if (snapshot.hasError) {
+          return Center(
+            child: Text(
+              '載入 HTML 時發生錯誤: ${snapshot.error}',
+              style: const TextStyle(color: errorColor),
+            ),
+          );
+        }
+
+        final htmlContent = snapshot.data ?? '';
+
+        return TkWebView(
+          htmlContent: htmlContent,
+          htmlBaseUrl: 'https://www.tklab.com.tw',
+          showLoading: true,
+          loadingMessage: '載入中...',
+          enableJavaScript: true,
+        );
+      },
     );
   }
 }

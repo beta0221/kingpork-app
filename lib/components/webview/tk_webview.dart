@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '/utils/webview_config.dart';
@@ -8,8 +10,16 @@ import '/screens/webview/components/webview_loading.dart';
 /// TKLab 可重用 WebView 元件
 /// 提供統一的 WebView 介面，整合 JS Bridge 和標準配置
 class TkWebView extends StatefulWidget {
-  /// 要載入的 URL 路徑（相對路徑，會自動加上 baseUrl 和 token）
-  final String url;
+  /// 要載入的 URL 路徑
+  /// - 相對路徑（如 /category/skincare）：會自動加上 baseUrl 和 token
+  /// - 絕對路徑（如 https://www.apple.com）：直接載入，不添加 token
+  final String? url;
+
+  /// 要載入的 HTML 字串內容（與 url 互斥，優先使用）
+  final String? htmlContent;
+
+  /// 載入 HTML 時的 baseUrl（用於解析相對資源）
+  final String? htmlBaseUrl;
 
   /// 是否顯示載入中指示器
   final bool showLoading;
@@ -42,9 +52,15 @@ class TkWebView extends StatefulWidget {
   /// 自訂 JsBridgeHandler 回調
   final JsBridgeHandler Function(BuildContext context)? bridgeHandlerBuilder;
 
+  /// 自定義手勢識別器
+  /// 如果不提供，將使用默認手勢配置（支持垂直/水平滾動、點擊、長按、縮放）
+  final Set<Factory<OneSequenceGestureRecognizer>>? gestureRecognizers;
+
   const TkWebView({
     super.key,
-    required this.url,
+    this.url,
+    this.htmlContent,
+    this.htmlBaseUrl,
     this.showLoading = true,
     this.loadingMessage,
     this.onJsMessage,
@@ -55,7 +71,11 @@ class TkWebView extends StatefulWidget {
     this.backgroundColor,
     this.enableJavaScript = true,
     this.bridgeHandlerBuilder,
-  });
+    this.gestureRecognizers,
+  }) : assert(
+          url != null || htmlContent != null,
+          'Either url or htmlContent must be provided',
+        );
 
   @override
   State<TkWebView> createState() => _TkWebViewState();
@@ -102,6 +122,8 @@ class _TkWebViewState extends State<TkWebView> {
   Future<void> _initController() async {
     _controller = await WebViewConfig.createController(
       url: widget.url,
+      htmlContent: widget.htmlContent,
+      htmlBaseUrl: widget.htmlBaseUrl,
       onJsMessage: _handleJavaScriptMessage,
       backgroundColor: widget.backgroundColor ?? const Color(0xFFFFFFFF),
       enableJavaScript: widget.enableJavaScript,
@@ -175,6 +197,28 @@ class _TkWebViewState extends State<TkWebView> {
     }
   }
 
+  /// 默認手勢識別器配置
+  /// 支持垂直滾動、水平滾動、點擊、長按、縮放
+  Set<Factory<OneSequenceGestureRecognizer>> _defaultGestureRecognizers() {
+    return {
+      Factory<VerticalDragGestureRecognizer>(
+        () => VerticalDragGestureRecognizer(),
+      ),
+      Factory<HorizontalDragGestureRecognizer>(
+        () => HorizontalDragGestureRecognizer(),
+      ),
+      Factory<TapGestureRecognizer>(
+        () => TapGestureRecognizer(),
+      ),
+      Factory<LongPressGestureRecognizer>(
+        () => LongPressGestureRecognizer(),
+      ),
+      Factory<ScaleGestureRecognizer>(
+        () => ScaleGestureRecognizer(),
+      ),
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_isLoading && widget.showLoading) {
@@ -184,7 +228,10 @@ class _TkWebViewState extends State<TkWebView> {
       );
     }
 
-    return WebViewWidget(controller: _controller);
+    return WebViewWidget(
+      controller: _controller,
+      gestureRecognizers: widget.gestureRecognizers ?? _defaultGestureRecognizers(),
+    );
   }
 
   @override

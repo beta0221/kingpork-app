@@ -13,8 +13,18 @@ class WebViewConfig {
   /// ```dart
   /// final url = await WebViewConfig.buildAuthenticatedUrl('/products');
   /// // Returns: https://rd.tklab.com.tw/products?app=true&token=xxx
+  ///
+  /// final absoluteUrl = await WebViewConfig.buildAuthenticatedUrl('https://www.apple.com');
+  /// // Returns: https://www.apple.com (no baseUrl or token added)
   /// ```
   static Future<String> buildAuthenticatedUrl(String path) async {
+    // 檢測是否為絕對 URL
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      debugPrint('WebView: Using absolute URL: $path');
+      return path; // 直接返回絕對 URL，不添加 baseUrl 和 token
+    }
+
+    // 相對路徑：添加 baseUrl 和 token
     final tokenManager = TokenManager();
     final token = await tokenManager.getAccessToken() ?? '';
     final baseUrl = FlavorConfig.instance.baseUrl;
@@ -32,19 +42,27 @@ class WebViewConfig {
   ///
   /// Example:
   /// ```dart
+  /// // Load URL
   /// final controller = await WebViewConfig.createController(
   ///   url: '/products',
   ///   onJsMessage: (message) => print(message),
   /// );
+  ///
+  /// // Load HTML string
+  /// final controller = await WebViewConfig.createController(
+  ///   htmlContent: '<html><body><h1>Hello</h1></body></html>',
+  ///   htmlBaseUrl: 'https://www.tklab.com.tw',
+  ///   onJsMessage: (message) => print(message),
+  /// );
   /// ```
   static Future<WebViewController> createController({
-    required String url,
+    String? url,
+    String? htmlContent,
+    String? htmlBaseUrl,
     required Function(String) onJsMessage,
     Color backgroundColor = const Color(0xFFFFFFFF),
     bool enableJavaScript = true,
   }) async {
-    final fullUrl = await buildAuthenticatedUrl(url);
-
     final controller = WebViewController()
       ..setBackgroundColor(backgroundColor)
       ..setJavaScriptMode(
@@ -73,7 +91,23 @@ class WebViewConfig {
         },
       );
 
-    await controller.loadRequest(Uri.parse(fullUrl));
+    // 根據參數選擇加載方式
+    if (htmlContent != null) {
+      // 加載 HTML 字符串
+      await controller.loadHtmlString(
+        htmlContent,
+        baseUrl: htmlBaseUrl,
+      );
+      debugPrint('WebView: Loaded HTML string');
+    } else if (url != null) {
+      // 加載 URL（支持絕對和相對路徑）
+      final fullUrl = await buildAuthenticatedUrl(url);
+      await controller.loadRequest(Uri.parse(fullUrl));
+      debugPrint('WebView: Loaded URL: $fullUrl');
+    } else {
+      throw ArgumentError('Either url or htmlContent must be provided');
+    }
+
     return controller;
   }
 

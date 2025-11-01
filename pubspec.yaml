@@ -144,6 +144,7 @@ flutter:
     - assets/flags/
     - assets/logo/
     - assets/image/
+    - assets/html/
 
   fonts:
     # FlutterShop 原有字體（保留作為備選）
