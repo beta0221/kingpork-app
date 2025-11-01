@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tklab_ec_v2/components/network_image_with_loader.dart';
 import 'package:tklab_ec_v2/constants.dart';
 import 'package:tklab_ec_v2/route/route_constants.dart';
 import 'package:tklab_ec_v2/viewmodels/member_view_model.dart';
@@ -24,82 +25,86 @@ class _LoginScreenState extends State<LoginScreen> {
     final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Image.asset(
-              "assets/images/login_dark.png",
-              fit: BoxFit.cover,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(defaultPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "歡迎回來！",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  const SizedBox(height: defaultPadding / 2),
-                  const Text(
-                    "使用您註冊時輸入的資料登入。",
-                  ),
-                  const SizedBox(height: defaultPadding),
-                  LogInForm(
-                    formKey: _formKey,
-                    onEmailChanged: (value) => _email = value,
-                    onPasswordChanged: (value) => _password = value,
-                  ),
-                  Align(
-                    child: TextButton(
-                      child: const Text("忘記密碼"),
-                      onPressed: () {
-                        Navigator.pushNamed(
-                            context, passwordRecoveryScreenRoute);
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              AspectRatio(
+                aspectRatio: 3,
+                child: NetworkImageWithLoader(
+                    "https://img.tklab.com.tw/uploads/mobile_index/6/3/61a6e8e8e1a2e482c7ed5f05bd87449e94ea6ff3_m.webp",
+                    radius: 0),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(defaultPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "歡迎回來！",
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                    const SizedBox(height: defaultPadding / 2),
+                    const Text(
+                      "使用您註冊時輸入的資料登入。",
+                    ),
+                    const SizedBox(height: defaultPadding),
+                    LogInForm(
+                      formKey: _formKey,
+                      onEmailChanged: (value) => _email = value,
+                      onPasswordChanged: (value) => _password = value,
+                    ),
+                    Align(
+                      child: TextButton(
+                        child: const Text("忘記密碼"),
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, passwordRecoveryScreenRoute);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height > 700
+                          ? size.height * 0.1
+                          : defaultPadding,
+                    ),
+                    Consumer<MemberViewModel>(
+                      builder: (context, viewModel, child) {
+                        return ElevatedButton(
+                          onPressed: viewModel.isLoading
+                              ? null
+                              : () => _handleLogin(viewModel),
+                          child: viewModel.isLoading
+                              ? const SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.white),
+                                  ),
+                                )
+                              : const Text("登入"),
+                        );
                       },
                     ),
-                  ),
-                  SizedBox(
-                    height: size.height > 700
-                        ? size.height * 0.1
-                        : defaultPadding,
-                  ),
-                  Consumer<MemberViewModel>(
-                    builder: (context, viewModel, child) {
-                      return ElevatedButton(
-                        onPressed: viewModel.isLoading
-                            ? null
-                            : () => _handleLogin(viewModel),
-                        child: viewModel.isLoading
-                            ? const SizedBox(
-                                height: 20,
-                                width: 20,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white),
-                                ),
-                              )
-                            : const Text("登入"),
-                      );
-                    },
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text("還沒有帳號？"),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, signUpScreenRoute);
-                        },
-                        child: const Text("註冊"),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("還沒有帳號？"),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, signUpScreenRoute);
+                          },
+                          child: const Text("註冊"),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tklab_ec_v2/components/network_image_with_loader.dart';
 import 'package:tklab_ec_v2/screens/auth/views/components/sign_up_form.dart';
 import 'package:tklab_ec_v2/route/route_constants.dart';
 import 'package:tklab_ec_v2/viewmodels/member_view_model.dart';
@@ -26,111 +27,113 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Image.asset(
-              "assets/images/signUp_dark.png",
-              height: MediaQuery.of(context).size.height * 0.35,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(defaultPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "開始使用！",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  const SizedBox(height: defaultPadding / 2),
-                  const Text(
-                    "請輸入您的有效資料以建立帳號。",
-                  ),
-                  const SizedBox(height: defaultPadding),
-                  SignUpForm(
-                    formKey: _formKey,
-                    onNameChanged: (value) => _name = value,
-                    onEmailChanged: (value) => _email = value,
-                    onPasswordChanged: (value) => _password = value,
-                    onPasswordConfirmationChanged: (value) =>
-                        _passwordConfirmation = value,
-                  ),
-                  const SizedBox(height: defaultPadding),
-                  Row(
-                    children: [
-                      Checkbox(
-                        onChanged: (value) {
-                          setState(() {
-                            _agreedToTerms = value ?? false;
-                          });
-                        },
-                        value: _agreedToTerms,
-                      ),
-                      Expanded(
-                        child: Text.rich(
-                          TextSpan(
-                            text: "我同意",
-                            children: [
-                              TextSpan(
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    Navigator.pushNamed(
-                                        context, termsOfServicesScreenRoute);
-                                  },
-                                text: "服務條款",
-                                style: const TextStyle(
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              const TextSpan(
-                                text: "與隱私政策。",
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: defaultPadding * 2),
-                  Consumer<MemberViewModel>(
-                    builder: (context, viewModel, child) {
-                      return ElevatedButton(
-                        onPressed: viewModel.isLoading
-                            ? null
-                            : () => _handleSignup(viewModel),
-                        child: viewModel.isLoading
-                            ? const SizedBox(
-                                height: 20,
-                                width: 20,
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white),
-                                ),
-                              )
-                            : const Text("繼續"),
-                      );
-                    },
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text("已經有帳號了？"),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, logInScreenRoute);
-                        },
-                        child: const Text("登入"),
-                      )
-                    ],
-                  ),
-                ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              AspectRatio(
+                aspectRatio: 3,
+                child: NetworkImageWithLoader(
+                    "https://img.tklab.com.tw/uploads/mobile_index/6/3/61a6e8e8e1a2e482c7ed5f05bd87449e94ea6ff3_m.webp",
+                    radius: 0),
               ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.all(defaultPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "開始使用！",
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                    const SizedBox(height: defaultPadding / 2),
+                    const Text(
+                      "請輸入您的有效資料以建立帳號。",
+                    ),
+                    const SizedBox(height: defaultPadding),
+                    SignUpForm(
+                      formKey: _formKey,
+                      onNameChanged: (value) => _name = value,
+                      onEmailChanged: (value) => _email = value,
+                      onPasswordChanged: (value) => _password = value,
+                      onPasswordConfirmationChanged: (value) =>
+                          _passwordConfirmation = value,
+                    ),
+                    const SizedBox(height: defaultPadding),
+                    Row(
+                      children: [
+                        Checkbox(
+                          onChanged: (value) {
+                            setState(() {
+                              _agreedToTerms = value ?? false;
+                            });
+                          },
+                          value: _agreedToTerms,
+                        ),
+                        Expanded(
+                          child: Text.rich(
+                            TextSpan(
+                              text: "我同意",
+                              children: [
+                                TextSpan(
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      Navigator.pushNamed(
+                                          context, termsOfServicesScreenRoute);
+                                    },
+                                  text: "服務條款",
+                                  style: const TextStyle(
+                                    color: primaryColor,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const TextSpan(
+                                  text: "與隱私政策。",
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: defaultPadding * 2),
+                    Consumer<MemberViewModel>(
+                      builder: (context, viewModel, child) {
+                        return ElevatedButton(
+                          onPressed: viewModel.isLoading
+                              ? null
+                              : () => _handleSignup(viewModel),
+                          child: viewModel.isLoading
+                              ? const SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.white),
+                                  ),
+                                )
+                              : const Text("繼續"),
+                        );
+                      },
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("已經有帳號了？"),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushNamed(context, logInScreenRoute);
+                          },
+                          child: const Text("登入"),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
