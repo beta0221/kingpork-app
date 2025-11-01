@@ -68,7 +68,7 @@ class CartScreen extends StatelessWidget {
               sliver: SliverToBoxAdapter(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, paymentMethodScreenRoute);
+                    // Navigator.pushNamed(context, paymentMethodScreenRoute);
                   },
                   child: const Text("繼續"),
                 ),

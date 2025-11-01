@@ -31,7 +31,7 @@ class NotificationsScreen extends StatelessWidget {
         child: ListView.builder(
           itemCount: 10,
           itemBuilder: (context, index) => NotificationCard(
-            title: "Molestie libero neque sem cras enim, amet.",
+            title: "您有新訊息.",
             svgSrc: index.isEven
                 ? "assets/icons/Discount.svg"
                 : "assets/icons/diamond.svg",

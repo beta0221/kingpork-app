@@ -35,22 +35,20 @@ class ProductInfoScreen extends StatelessWidget {
                     children: [
                       HtmlWidget(
                         '''
-                          <strong>Story</strong>
+                          <strong>商品</strong>
 
-                          <p>A cool gray cap in soft corduroy. Watch me.' By buying cotton products from Lindex, you’re supporting more responsibly...</p>
-                          <strong>Details</strong>
+                          <p>保養品是用於清潔、滋潤、保護和改善皮膚狀態的產品，旨在維持或提升皮膚的光澤和健康。它們通常包含化妝水、乳液、面霜、精華液和面膜等種類，作用涵蓋保濕、營養補充、防曬及針對特定問題（如美白、控油、抗皺等）的護理。</p>
+                          <strong>功用</strong>
                           <ul>
-                            <li>Materials: 100% cotton, and lining Structured</li>
-                            <li>Adjustable cotton strap closure</li>
-                            <li>High-quality embroidery stitching</li>
-                            <li>Head circumference: 21” - 24” / 54-62 cm</li>
-                            <li>Embroidery stitching</li>
-                            <li>One size fits most</li>
+                            <li>保濕與滋潤</li>
+                            <li>修護與調理</li>
+                            <li>保護</li>
+                            <li>特殊護理</li>
                           </ul>
-                          <strong>Style Notes</strong>
-                          <p>Style: Summer Hat</p>
-                          <p>Design: Plain</p>
-                          <p>Fabric: Jersey</p>
+                          <strong>款式說明</strong>
+                          <p>透過提供水分和油分來維持皮膚油水平衡，如乳液、面霜、身體乳等。</p>
+                          <p>精華液含有高濃度成分，能針對特定肌膚問題（如美白、抗皺、抗痘）進行密集修護。</p>
+                          <p>包含針對眼部、頸部等部位的專用產品，或具有美白、控油等特殊功效的機能型產品。 </p>
                         ''',
                       ),
                     ],

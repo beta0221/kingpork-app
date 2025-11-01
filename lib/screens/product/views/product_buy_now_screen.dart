@@ -47,7 +47,7 @@ class ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
               children: [
                 const BackButton(),
                 Text(
-                  "Sleeveless Ruffle",
+                  "{商品名稱}",
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 IconButton(
@@ -68,7 +68,7 @@ class ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                     padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                     child: AspectRatio(
                       aspectRatio: 1.05,
-                      child: NetworkImageWithLoader(productDemoImg1),
+                      child: NetworkImageWithLoader("https://img.tklab.com.tw/uploads/product/202509/1562_fe6fc98f84144cb1854a3c76278febb8ea4a22e8_m.webp"),
                     ),
                   ),
                 ),

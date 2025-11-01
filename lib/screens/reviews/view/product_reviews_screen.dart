@@ -65,7 +65,7 @@ class ProductReviewsScreen extends StatelessWidget {
                         index.isEven ? null : "https://i.imgur.com/4h34UKX.png",
                     time: "36s",
                     review:
-                        "“A cool gray cap in soft cssorduroy. Watch me.' By bussying cottoaaan products from Lindex, you’re  more responsibly.”",
+                        "保養品是用於清潔、滋潤、保護和改善皮膚狀態的產品，旨在維持或提升皮膚的光澤和健康。它們通常包含化妝水、乳液、面霜、精華液和面膜等種類，作用涵蓋保濕、營養補充、防曬及針對特定問題（如美白、控油、抗皺等）的護理。",
                   ),
                 ),
                 childCount: 7,
