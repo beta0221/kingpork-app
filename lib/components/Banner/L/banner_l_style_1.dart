@@ -30,13 +30,13 @@ class BannerLStyle1 extends StatelessWidget {
           padding: const EdgeInsets.all(defaultPadding),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              const Spacer(),
               DefaultTextStyle(
                 style: const TextStyle(
                   fontFamily: grandisExtendedFont,
                   fontSize: 60,
-                  height: 1.2,
+                  height: 1.0,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -77,6 +77,7 @@ class BannerLStyle1 extends StatelessWidget {
               ),
               if (subtitle != null)
                 Container(
+                  margin: const EdgeInsets.only(top: 4),
                   padding: const EdgeInsets.symmetric(
                       horizontal: defaultPadding / 2,
                       vertical: defaultPadding / 8),
@@ -90,7 +91,7 @@ class BannerLStyle1 extends StatelessWidget {
                     ),
                   ),
                 ),
-              const SizedBox(height: defaultPadding),
+              const SizedBox(height: 8),
               Text(
                 title.toUpperCase(),
                 textAlign: TextAlign.center,
@@ -102,7 +103,7 @@ class BannerLStyle1 extends StatelessWidget {
                   height: 1,
                 ),
               ),
-              const Spacer(),
+              const SizedBox(height: 12),
               const Text(
                 "Shop now  >",
                 style: TextStyle(
@@ -112,7 +113,6 @@ class BannerLStyle1 extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              const Spacer(),
             ],
           ),
         ),

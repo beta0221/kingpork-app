@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.tklab.ec.v2"
+    namespace = "com.example.shop"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.tklab.ec.v2"
+        applicationId = "com.example.shop"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
