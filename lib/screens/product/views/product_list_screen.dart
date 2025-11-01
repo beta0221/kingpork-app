@@ -20,15 +20,6 @@ class _ProductListScreenState extends State<ProductListScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
-  // 分類到 URL 的映射（保養使用 WebView，其他使用網格視圖）
-  final Map<String, String> _categoryUrls = {
-    '優惠': '', // 使用網格視圖
-    '保養': '', // 使用 WebView（占位 URL）
-    '保健': '', // 使用網格視圖
-    '彩妝': '', // 使用網格視圖
-    '面膜': '', // 使用網格視圖
-  };
-
   @override
   void initState() {
     super.initState();
@@ -179,17 +170,6 @@ class _ProductListScreenState extends State<ProductListScreen>
           ),
         ),
       ],
-    );
-  }
-
-  Widget _buildWebViewContent(String categoryName) {
-    final url = _categoryUrls[categoryName] ?? '';
-
-    return TkWebView(
-      url: url,
-      showLoading: true,
-      loadingMessage: '載入中...',
-      enableJavaScript: true,
     );
   }
 

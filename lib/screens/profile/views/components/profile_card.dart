@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:tklab_ec_v2/components/network_image_with_loader.dart';
 import 'package:tklab_ec_v2/viewmodels/member_view_model.dart';
 
 import '../../../../constants.dart';
@@ -31,10 +30,9 @@ class ProfileCard extends StatelessWidget {
     if (useViewModel) {
       return Consumer<MemberViewModel>(
         builder: (context, viewModel, child) {
-          final displayName = viewModel.userName ?? name ?? "Guest";
+          final displayName = viewModel.userName ?? name ?? "王小明";
           final displayEmail = viewModel.userEmail ?? email ?? "";
-          final displayImage =
-              imageSrc ?? "https://i.imgur.com/IXnwbLk.png";
+          final displayImage = imageSrc ?? "assets/icons/user-circle-svgrepo-com.svg";
 
           return _buildCard(
             context: context,
@@ -50,7 +48,7 @@ class ProfileCard extends StatelessWidget {
       context: context,
       name: name ?? "Guest",
       email: email ?? "",
-      imageSrc: imageSrc ?? "https://i.imgur.com/IXnwbLk.png",
+      imageSrc: imageSrc ?? "assets/icons/user-circle-svgrepo-com.svg",
     );
   }
 
@@ -63,12 +61,16 @@ class ProfileCard extends StatelessWidget {
     return ListTile(
       onTap: press,
       leading: CircleAvatar(
-        radius: 28,
-        child: NetworkImageWithLoader(
-          imageSrc,
-          radius: 100,
-        ),
-      ),
+          radius: 28,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          child: ClipOval(
+            child: SvgPicture.asset(
+              imageSrc,
+              width: 56,
+              height: 56,
+              fit: BoxFit.cover,
+            ),
+          )),
       title: Row(
         children: [
           Text(
