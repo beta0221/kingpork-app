@@ -196,7 +196,7 @@ class _ProductListScreenState extends State<ProductListScreen>
 
         return TkWebView(
           htmlContent: htmlContent,
-          htmlBaseUrl: 'https://www.tklab.com.tw',
+          htmlBaseUrl: null,
           showLoading: true,
           loadingMessage: '載入中...',
           enableJavaScript: true,

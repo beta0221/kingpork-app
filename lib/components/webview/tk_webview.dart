@@ -201,6 +201,9 @@ class _TkWebViewState extends State<TkWebView> {
   /// 支持垂直滾動、水平滾動、點擊、長按、縮放
   Set<Factory<OneSequenceGestureRecognizer>> _defaultGestureRecognizers() {
     return {
+      Factory<EagerGestureRecognizer>(
+        () => EagerGestureRecognizer()
+      ),
       Factory<VerticalDragGestureRecognizer>(
         () => VerticalDragGestureRecognizer(),
       ),
