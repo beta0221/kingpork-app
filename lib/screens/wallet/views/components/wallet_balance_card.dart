@@ -33,7 +33,7 @@ class WalletBalanceCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Your current balance",
+                    "目前餘額",
                     style: TextStyle(
                         color: whileColor80,
                         fontWeight: FontWeight.w500,
@@ -62,7 +62,7 @@ class WalletBalanceCard extends StatelessWidget {
                 ),
               ),
             ),
-            child: const Text("+ Charge Balance"),
+            child: const Text("+ 儲值"),
           )
         ],
       ),

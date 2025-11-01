@@ -13,7 +13,7 @@ class OrderProcessingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Processing"),
+        title: const Text("處理中"),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(defaultPadding),

@@ -20,7 +20,7 @@ class OnSaleScreen extends StatelessWidget {
           slivers: [
             const SliverAppBar(
               floating: true,
-              title: Text("On Sale"),
+              title: Text("特價中"),
               actions: [
                 ShoppingBag(
                   numOfItem: 3,
@@ -30,8 +30,8 @@ class OnSaleScreen extends StatelessWidget {
             SliverToBoxAdapter(
               child: BannerLStyle1(
                 image: "https://i.imgur.com/5hofImS.png",
-                title: "SUMMER \nSALE",
-                subtitle: "SPECIAL OFFER",
+                title: "夏季\n特賣",
+                subtitle: "特別優惠",
                 discountPercent: 50,
                 press: () {},
               ),
@@ -52,24 +52,24 @@ class OnSaleScreen extends StatelessWidget {
                   children: [
                     BannerSStyle1(
                       image: "https://i.imgur.com/JLTfORi.png",
-                      title: "New \narrival",
-                      subtitle: "SPECIAL OFFER",
+                      title: "新品\n上市",
+                      subtitle: "特別優惠",
                       discountParcent: 50,
                       press: () {},
                     ),
                     const SizedBox(height: defaultPadding / 4),
                     BannerSStyle4(
-                      title: "SUMMER \nSALE",
-                      subtitle: "SPECIAL OFFER",
-                      bottomText: "UP TO 80% OFF",
+                      title: "夏季\n特賣",
+                      subtitle: "特別優惠",
+                      bottomText: "最高 8 折優惠",
                       press: () {},
                     ),
                     const SizedBox(height: defaultPadding / 4),
                     BannerSStyle4(
                       image: "https://i.imgur.com/g2cQFBs.png",
-                      title: "Black \nfriday",
-                      subtitle: "50% off",
-                      bottomText: "Collection".toUpperCase(),
+                      title: "黑色\n星期五",
+                      subtitle: "5 折優惠",
+                      bottomText: "系列".toUpperCase(),
                       press: () {},
                     ),
                   ],
@@ -87,8 +87,8 @@ class OnSaleScreen extends StatelessWidget {
               sliver: SliverToBoxAdapter(
                 child: BannerLStyle1(
                   image: "https://i.imgur.com/u01Opt8.png",
-                  title: "SUMMER \nSALE",
-                  subtitle: "SPECIAL OFFER",
+                  title: "夏季\n特賣",
+                  subtitle: "特別優惠",
                   discountPercent: 50,
                   press: () {},
                 ),

@@ -18,11 +18,11 @@ class SignUpVerificationScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Verification code",
+                "驗證碼",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: defaultPadding / 2),
-              const Text("We have sent the code verification to "),
+              const Text("我們已將驗證碼發送至 "),
               Row(
                 children: [
                   Text(
@@ -31,7 +31,7 @@ class SignUpVerificationScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: const Text("Change your email?"),
+                    child: const Text("更改您的電子郵件？"),
                   )
                 ],
               ),
@@ -40,7 +40,7 @@ class SignUpVerificationScreen extends StatelessWidget {
               const Center(
                 child: Text.rich(
                   TextSpan(
-                    text: "Resend code after ",
+                    text: "重新發送驗證碼倒數 ",
                     children: [
                       TextSpan(
                         text: "1:36",
@@ -57,7 +57,7 @@ class SignUpVerificationScreen extends StatelessWidget {
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () {},
-                      child: const Text("Resend"),
+                      child: const Text("重新發送"),
                     ),
                   ),
                   const SizedBox(width: defaultPadding),
@@ -83,13 +83,13 @@ class SignUpVerificationScreen extends StatelessWidget {
                                   ),
                                   const Spacer(),
                                   Text(
-                                    "Whoohooo!",
+                                    "太棒了！",
                                     style:
                                         Theme.of(context).textTheme.titleLarge,
                                   ),
                                   const SizedBox(height: defaultPadding / 2),
                                   const Text(
-                                      "Your email has been verified succesfully."),
+                                      "您的電子郵件已成功驗證。"),
                                   const Spacer(),
                                   ElevatedButton(
                                     onPressed: () {
@@ -99,7 +99,7 @@ class SignUpVerificationScreen extends StatelessWidget {
                                           ModalRoute.withName(
                                               signUpVerificationScreenRoute));
                                     },
-                                    child: const Text("Go to shopping"),
+                                    child: const Text("前往購物"),
                                   )
                                 ],
                               ),
@@ -107,7 +107,7 @@ class SignUpVerificationScreen extends StatelessWidget {
                           ),
                         );
                       },
-                      child: const Text("Confirm"),
+                      child: const Text("確認"),
                     ),
                   )
                 ],

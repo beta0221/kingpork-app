@@ -21,14 +21,14 @@ class NoInternetScreen extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "No internet \nplease try again later!",
+                "無網路連線\n請稍後再試！",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const Spacer(),
               ElevatedButton(
                 onPressed: () {},
-                child: const Text("Retry"),
+                child: const Text("重試"),
               )
             ],
           ),

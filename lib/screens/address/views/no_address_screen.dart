@@ -9,7 +9,7 @@ class NoAddressScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Address"),
+        title: const Text("地址"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -32,14 +32,14 @@ class NoAddressScreen extends StatelessWidget {
           ),
           const Spacer(),
           Text(
-            "No Address found",
+            "沒有地址",
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: defaultPadding),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: defaultPadding * 1.5),
             child: Text(
-              "Enabling push notifications allows us to send you info about our new products, sales, events and more!",
+              "啟用推播通知可讓我們向您傳送有關新產品、促銷活動等資訊！",
               textAlign: TextAlign.center,
             ),
           ),
@@ -48,7 +48,7 @@ class NoAddressScreen extends StatelessWidget {
             padding: const EdgeInsets.all(defaultPadding),
             child: ElevatedButton(
               onPressed: () {},
-              child: const Text("Add address"),
+              child: const Text("新增地址"),
             ),
           ),
           const Spacer(),

@@ -17,12 +17,12 @@ class SetupFaceIdScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "How to set up Face ID",
+                "如何設定 Face ID",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: defaultPadding),
               const Text(
-                "First, positiion your face in the camera frame. The move your head in a circle to show all the angles of your face.",
+                "首先，將您的臉部對準相機框架。然後以圓圈方式移動您的頭部，以顯示臉部的所有角度。",
               ),
               const Spacer(),
               Center(
@@ -43,7 +43,7 @@ class SetupFaceIdScreen extends StatelessWidget {
                     BlendMode.srcIn,
                   ),
                 ),
-                label: const Text("Set up Faceid"),
+                label: const Text("設定 Face ID"),
               )
             ],
           ),

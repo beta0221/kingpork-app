@@ -8,7 +8,7 @@ class EmptyPaymentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Payment"),
+        title: const Text("付款"),
       ),
       body: SafeArea(
         child: Column(
@@ -22,14 +22,14 @@ class EmptyPaymentScreen extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              "Empty payment",
+              "沒有付款方式",
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: defaultPadding * 1.5, vertical: defaultPadding),
               child: Text(
-                "Customer network effects freemium. Advisor android paradigm shift product management. Customer disruptive crowdsource",
+                "您目前還沒有任何付款方式。請新增一個付款方式以便快速結帳。",
                 textAlign: TextAlign.center,
               ),
             ),

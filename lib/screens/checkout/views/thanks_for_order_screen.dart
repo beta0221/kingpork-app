@@ -11,7 +11,7 @@ class ThanksForOrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Order"),
+        title: const Text("訂單"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -42,14 +42,14 @@ class ThanksForOrderScreen extends StatelessWidget {
               ),
               const SizedBox(height: defaultPadding * 2),
               Text(
-                "Thanks for your order",
+                "謝謝您的訂購",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: defaultPadding),
                 child: Text.rich(
                   TextSpan(
-                    text: "You’ll receive an email at  ",
+                    text: "您將會在  ",
                     children: [
                       TextSpan(
                         text: "your.mail@gmail.com",
@@ -57,7 +57,7 @@ class ThanksForOrderScreen extends StatelessWidget {
                             color: Theme.of(context).textTheme.bodyLarge!.color,
                             fontWeight: FontWeight.w500),
                       ),
-                      const TextSpan(text: "  once your order is confirmed.")
+                      const TextSpan(text: "  收到訂單確認的電子郵件。")
                     ],
                   ),
                 ),
@@ -79,7 +79,7 @@ class ThanksForOrderScreen extends StatelessWidget {
                     BlendMode.srcIn,
                   ),
                 ),
-                label: const Text("Track order"),
+                label: const Text("追蹤訂單"),
               )
             ],
           ),

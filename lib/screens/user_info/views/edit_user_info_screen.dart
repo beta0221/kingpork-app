@@ -13,7 +13,7 @@ class EditUserInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: const Text("個人資料"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -70,7 +70,7 @@ class EditUserInfoScreen extends StatelessWidget {
                     const SizedBox(height: defaultPadding / 2),
                     TextButton(
                       onPressed: () {},
-                      child: const Text("Edit photo"),
+                      child: const Text("編輯照片"),
                     ),
                     const SizedBox(height: defaultPadding),
                     const UserInfoForm()
@@ -85,7 +85,7 @@ class EditUserInfoScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text("Done"),
+                child: const Text("完成"),
               ),
             )
           ],

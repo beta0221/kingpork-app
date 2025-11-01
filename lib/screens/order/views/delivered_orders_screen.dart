@@ -13,7 +13,7 @@ class DelivereOrdersdScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Delivered"),
+        title: const Text("已送達"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),

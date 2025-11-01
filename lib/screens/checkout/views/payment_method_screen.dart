@@ -20,7 +20,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Payment method"),
+        title: const Text("付款方式"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -46,7 +46,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                       const EdgeInsets.symmetric(horizontal: defaultPadding),
                   child: PayentMethodButton(
                     svgSrc: "assets/icons/card.svg",
-                    title: "Pay with card",
+                    title: "信用卡付款",
                     isActive: _selectedMethodIndex == 0,
                     press: () {
                       setState(() {
@@ -57,7 +57,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                 ),
                 PayentMethodButton(
                   svgSrc: "assets/icons/Cash.svg",
-                  title: "Pay with cash",
+                  title: "貨到付款",
                   isActive: _selectedMethodIndex == 1,
                   press: () {
                     setState(() {
@@ -70,7 +70,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                       const EdgeInsets.symmetric(horizontal: defaultPadding),
                   child: PayentMethodButton(
                     svgSrc: "assets/icons/card.svg",
-                    title: "Use Credit",
+                    title: "使用餘額",
                     isActive: _selectedMethodIndex == 2,
                     press: () {
                       setState(() {

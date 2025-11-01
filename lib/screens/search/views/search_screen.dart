@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:tklab_ec_v2/components/custom_modal_bottom_sheet.dart';
 import 'package:tklab_ec_v2/constants.dart';
 import 'package:tklab_ec_v2/screens/search/views/components/search_form.dart';
@@ -110,11 +109,11 @@ class _SearchScreenState extends State<SearchScreen> {
                 sliver: SliverToBoxAdapter(
                   child: Text.rich(
                     TextSpan(
-                      text: "Search result ",
+                      text: "搜尋結果 ",
                       style: Theme.of(context).textTheme.titleSmall,
                       children: [
                         TextSpan(
-                          text: "(3 items)",
+                          text: "(3 項)",
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],

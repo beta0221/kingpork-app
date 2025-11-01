@@ -49,7 +49,7 @@ class ProductInfo extends StatelessWidget {
                   "$rating ",
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                Text("($numOfReviews Reviews)")
+                Text("($numOfReviews 則評價)")
               ],
             ),
             const SizedBox(height: defaultPadding),

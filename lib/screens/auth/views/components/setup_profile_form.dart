@@ -15,7 +15,7 @@ class SetupProfileForm extends StatelessWidget {
         children: [
           TextFormField(
             decoration: InputDecoration(
-              hintText: "Full name",
+              hintText: "全名",
               prefixIcon: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: defaultPadding * 0.75),
@@ -38,7 +38,7 @@ class SetupProfileForm extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             child: TextFormField(
               decoration: InputDecoration(
-                hintText: "Date of birth",
+                hintText: "出生日期",
                 prefixIcon: Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: defaultPadding * 0.75),
@@ -61,7 +61,7 @@ class SetupProfileForm extends StatelessWidget {
           TextFormField(
             keyboardType: TextInputType.phone,
             decoration: InputDecoration(
-              hintText: "Phone number",
+              hintText: "電話號碼",
               prefixIcon: Padding(
                 padding: const EdgeInsets.only(left: defaultPadding),
                 child: SizedBox(

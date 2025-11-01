@@ -10,7 +10,7 @@ class OrdersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Orders"),
+        title: const Text("訂單"),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,20 +18,20 @@ class OrdersScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(defaultPadding),
             child: Text(
-              "Orders history",
+              "訂單歷史",
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
           OrderHistoryListTile(
             svgSrc: "assets/icons/Payonline.svg",
-            title: "Awaiting Payment",
+            title: "等待付款",
             counterColor: warningColor,
             numOfItem: 0,
             press: () {},
           ),
           OrderHistoryListTile(
             svgSrc: "assets/icons/Product.svg",
-            title: "Processing",
+            title: "處理中",
             numOfItem: 1,
             press: () {
               Navigator.pushNamed(context, orderProcessingScreenRoute);
@@ -39,7 +39,7 @@ class OrdersScreen extends StatelessWidget {
           ),
           OrderHistoryListTile(
             svgSrc: "assets/icons/Delivery.svg",
-            title: "Delivered",
+            title: "已送達",
             numOfItem: 5,
             press: () {
               Navigator.pushNamed(context, deliveredOrdersScreenRoute);
@@ -47,13 +47,13 @@ class OrdersScreen extends StatelessWidget {
           ),
           OrderHistoryListTile(
             svgSrc: "assets/icons/Return.svg",
-            title: "Returned",
+            title: "已退貨",
             numOfItem: 2,
             press: () {},
           ),
           OrderHistoryListTile(
             svgSrc: "assets/icons/Close-Circle.svg",
-            title: "Canceled",
+            title: "已取消",
             numOfItem: 2,
             counterColor: errorColor,
             press: () {

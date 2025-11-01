@@ -12,7 +12,7 @@ class SelectLanguageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Language"),
+        title: const Text("語言"),
       ),
       body: SafeArea(
         child: Padding(
@@ -22,11 +22,11 @@ class SelectLanguageScreen extends StatelessWidget {
             children: [
               const Spacer(),
               Text(
-                "Select your preferred lanaguage",
+                "選擇您的偏好語言",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: defaultPadding / 2),
-              const Text("You will use the same language throughout the app."),
+              const Text("您將在整個應用程式中使用相同的語言。"),
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: defaultPadding),
@@ -37,7 +37,7 @@ class SelectLanguageScreen extends StatelessWidget {
                       return null;
                     }, // validate your textfield
                     decoration: InputDecoration(
-                      hintText: "Search your language",
+                      hintText: "搜尋您的語言",
                       filled: false,
                       prefixIcon: Padding(
                         padding: const EdgeInsets.all(defaultPadding / 2),
@@ -80,7 +80,7 @@ class SelectLanguageScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text("Done"),
+                child: const Text("完成"),
               ),
               const SizedBox(height: defaultPadding),
             ],
@@ -101,10 +101,10 @@ const List<String> demoFlags = [
   "assets/flags/japaness.svg",
 ];
 const List<String> demoLanguage = [
-  "English",
-  "France",
-  "German",
-  "India",
-  "Italy",
-  "Japaness"
+  "英文",
+  "法文",
+  "德文",
+  "印地文",
+  "義大利文",
+  "日文"
 ];

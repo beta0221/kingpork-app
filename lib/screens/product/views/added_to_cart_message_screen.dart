@@ -22,7 +22,7 @@ class AddedToCartMessageScreen extends StatelessWidget {
               ),
               const Spacer(flex: 2),
               Text(
-                "Added to cart",
+                "已加入購物車",
                 style: Theme.of(context)
                     .textTheme
                     .headlineSmall!
@@ -30,7 +30,7 @@ class AddedToCartMessageScreen extends StatelessWidget {
               ),
               const SizedBox(height: defaultPadding / 2),
               const Text(
-                "Click the checkout button to complete the purchase process.",
+                "點擊結帳按鈕以完成購買流程。",
                 textAlign: TextAlign.center,
               ),
               const Spacer(flex: 2),
@@ -38,12 +38,12 @@ class AddedToCartMessageScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, entryPointScreenRoute);
                 },
-                child: const Text("Continue shopping"),
+                child: const Text("繼續購物"),
               ),
               const SizedBox(height: defaultPadding),
               ElevatedButton(
                 onPressed: () {},
-                child: const Text("Checkout"),
+                child: const Text("結帳"),
               ),
               const Spacer(),
             ],

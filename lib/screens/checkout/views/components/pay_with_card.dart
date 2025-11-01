@@ -38,7 +38,7 @@ class _PayWithCardState extends State<PayWithCard> {
                       ),
                     ),
                     label: Text(
-                      "Add new card",
+                      "新增信用卡",
                       style: TextStyle(
                           color: Theme.of(context).textTheme.bodyLarge!.color),
                     ),
@@ -74,7 +74,7 @@ class _PayWithCardState extends State<PayWithCard> {
                 onPressed: () {
                   Navigator.pushNamed(context, thanksForOrderScreenRoute);
                 },
-                child: const Text("Confirm"),
+                child: const Text("確認"),
               ),
             ),
           )

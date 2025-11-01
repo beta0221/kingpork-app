@@ -38,7 +38,7 @@ class SearchForm extends StatelessWidget {
         validator: validator,
         textInputAction: TextInputAction.search,
         decoration: InputDecoration(
-          hintText: "Find something...",
+          hintText: "搜尋商品...",
           filled: false,
           border: secodaryOutlineInputBorder(context),
           enabledBorder: secodaryOutlineInputBorder(context),

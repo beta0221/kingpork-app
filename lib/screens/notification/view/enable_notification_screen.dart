@@ -10,7 +10,7 @@ class EnableNotificationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Notification"),
+        title: const Text("通知"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -38,19 +38,19 @@ class EnableNotificationScreen extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "Push Notifications are currently turned off",
+                "推播通知目前已關閉",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: defaultPadding),
               const Text(
-                "Enabling push notifications allows us to send you info about our new products, sales, events and more!",
+                "啟用推播通知後，我們可以向您發送有關新產品、促銷、活動等資訊！",
               ),
               const Spacer(),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushNamed(context, notificationOptionsScreenRoute);
                 },
-                child: const Text("Enable Notification"),
+                child: const Text("啟用通知"),
               ),
               const SizedBox(height: defaultPadding),
             ],

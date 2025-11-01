@@ -36,12 +36,12 @@ class PayWithCredit extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(
                     top: defaultPadding * 3, bottom: defaultPadding),
-                child: Text("Credit is not enough",
+                child: Text("餘額不足",
                     style: Theme.of(context).textTheme.titleLarge),
               ),
             if (isInsufficientBalance)
               const Text(
-                "Your Shoplon credit are not sufficient to pay for the order, please select an additional payment method to cover the balance of \$500",
+                "您的餘額不足以支付此訂單，請選擇其他付款方式補足 \$500 的差額。",
                 textAlign: TextAlign.center,
               ),
             const Spacer(),
@@ -51,7 +51,7 @@ class PayWithCredit extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: defaultPadding),
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: const Text("Confirm"),
+                    child: const Text("確認"),
                   ),
                 ),
               )

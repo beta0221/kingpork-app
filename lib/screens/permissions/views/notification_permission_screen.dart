@@ -31,7 +31,7 @@ class NotificationPermissionScreen extends StatelessWidget {
                               context, preferredLanuageScreenRoute);
                         },
                         child: Text(
-                          "Skip",
+                          "跳過",
                           style: TextStyle(
                               color:
                                   Theme.of(context).textTheme.bodyLarge!.color),
@@ -49,12 +49,12 @@ class NotificationPermissionScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "Notify latest offers & product availability",
+                      "通知最新優惠和商品供應狀況",
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: defaultPadding),
                     const Text(
-                      "ba faal kardane notificatione shoplon, zoodtar az hame az akhbare ma bakhabar shavid.",
+                      "啟用通知功能，即可第一時間獲取最新資訊。",
                     ),
                     const Spacer(),
                     Container(
@@ -79,7 +79,7 @@ class NotificationPermissionScreen extends StatelessWidget {
                           ),
                           const SizedBox(width: defaultPadding),
                           Text(
-                            "Notifications",
+                            "通知",
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
@@ -100,7 +100,7 @@ class NotificationPermissionScreen extends StatelessWidget {
                         Navigator.pushNamed(
                             context, preferredLanuageScreenRoute);
                       },
-                      child: const Text("Next"),
+                      child: const Text("下一步"),
                     ),
                     const SizedBox(height: defaultPadding),
                   ],

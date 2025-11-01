@@ -19,12 +19,12 @@ class SetNewPasswordScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Set new password",
+                "設定新密碼",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: defaultPadding / 2),
               const Text(
-                  "Your new password must be diffrent from previosly used passwords."),
+                  "您的新密碼必須與先前使用的密碼不同。"),
               const SizedBox(
                 height: defaultPadding * 2,
               ),
@@ -37,7 +37,7 @@ class SetNewPasswordScreen extends StatelessWidget {
                         doneResetPasswordScreenRoute, (route) => false);
                   }
                 },
-                child: const Text("Change Password"),
+                child: const Text("更改密碼"),
               ),
               const SizedBox(height: defaultPadding),
             ],

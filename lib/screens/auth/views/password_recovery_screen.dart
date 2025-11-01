@@ -18,11 +18,11 @@ class PasswordRecoveryScreen extends StatelessWidget {
             children: [
               const SizedBox(height: defaultPadding),
               Text(
-                "Password recovery",
+                "密碼復原",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: defaultPadding / 2),
-              const Text("Enter your E-mail address to recover your password"),
+              const Text("輸入您的電子郵件地址以復原密碼"),
               const SizedBox(height: defaultPadding * 2),
               Form(
                 child: TextFormField(
@@ -33,7 +33,7 @@ class PasswordRecoveryScreen extends StatelessWidget {
                   validator: emaildValidator.call,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    hintText: "Email address",
+                    hintText: "電子郵件地址",
                     prefixIcon: Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: defaultPadding * 0.75),
@@ -59,7 +59,7 @@ class PasswordRecoveryScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, verificationMethodScreenRoute);
                 },
-                child: const Text("Next"),
+                child: const Text("下一步"),
               )
             ],
           ),

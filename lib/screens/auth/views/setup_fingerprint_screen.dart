@@ -16,12 +16,12 @@ class SetupFingerprintScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "How to set up Fingerprint",
+                "如何設定指紋",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: defaultPadding),
               const Text(
-                "First, positiion your face in the camera frame. The move your head in a circle to show all the angles of your face.",
+                "首先，將您的手指放在感應器上。然後按照指示移動手指，以便掃描手指的所有角度。",
               ),
               const Spacer(),
               Center(
@@ -42,7 +42,7 @@ class SetupFingerprintScreen extends StatelessWidget {
                     BlendMode.srcIn,
                   ),
                 ),
-                label: const Text("Set up Fingerprint"),
+                label: const Text("設定指紋"),
               )
             ],
           ),

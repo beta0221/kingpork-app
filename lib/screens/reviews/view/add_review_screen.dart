@@ -13,7 +13,7 @@ class AddReviewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Add Review"),
+        title: const Text("新增評價"),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(defaultPadding),
@@ -27,7 +27,7 @@ class AddReviewScreen extends StatelessWidget {
             const SizedBox(height: defaultPadding),
             const Divider(),
             const SizedBox(height: defaultPadding / 2),
-            const Text("Your overall rating of this product"),
+            const Text("您對此商品的整體評分"),
             const SizedBox(height: defaultPadding / 2),
             RatingBar.builder(
               initialRating: 0,

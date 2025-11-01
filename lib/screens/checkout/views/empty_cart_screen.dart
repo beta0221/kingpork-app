@@ -18,12 +18,12 @@ class EmptyCartScreen extends StatelessWidget {
             ),
             const SizedBox(height: defaultPadding),
             Text(
-              "Your cart is empty",
+              "購物車是空的",
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: defaultPadding),
             const Text(
-              "Customer network effects freemium. Advisor android paradigm shift product management. Customer disruptive crowdsource",
+              "您的購物車目前沒有商品，快去挑選喜歡的商品吧！",
               textAlign: TextAlign.center,
             ),
           ],

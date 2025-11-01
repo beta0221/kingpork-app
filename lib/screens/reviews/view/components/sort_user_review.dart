@@ -14,7 +14,7 @@ class SortUserReview extends SliverPersistentHeaderDelegate {
         children: [
           Expanded(
             child: Text(
-              "User reviews",
+              "使用者評價",
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
@@ -25,8 +25,8 @@ class SortUserReview extends SliverPersistentHeaderDelegate {
           ),
           const SizedBox(width: defaultPadding / 2),
           RatingSortDropdownButton(
-            items: const ['Most useful', 'Recent'],
-            value: "Most useful",
+            items: const ['最有幫助', '最新'],
+            value: "最有幫助",
             onChanged: (value) {
               // Set the dropdown value
             },

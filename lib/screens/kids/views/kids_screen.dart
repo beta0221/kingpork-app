@@ -20,7 +20,7 @@ class KidsScreen extends StatelessWidget {
           slivers: [
             const SliverAppBar(
               floating: true,
-              title: Text("Kids"),
+              title: Text("童裝"),
               actions: [
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: defaultPadding),
@@ -39,8 +39,8 @@ class KidsScreen extends StatelessWidget {
               sliver: SliverToBoxAdapter(
                 child: BannerLStyle1(
                   image: "https://i.imgur.com/z7noLen.png",
-                  title: "FASHION SALE",
-                  subtitle: "SPECIAL OFFER",
+                  title: "時尚特賣",
+                  subtitle: "特別優惠",
                   discountPercent: 25,
                   press: () {},
                 ),
@@ -53,17 +53,17 @@ class KidsScreen extends StatelessWidget {
                   children: [
                     BannerSStyle1(
                       image: "https://i.imgur.com/y4SR4Vy.png",
-                      title: "New \narrival",
-                      subtitle: "SPECIAL OFFER",
+                      title: "新品\n上市",
+                      subtitle: "特別優惠",
                       discountParcent: 50,
                       press: () {},
                     ),
                     const SizedBox(height: defaultPadding / 4),
                     BannerSStyle4(
                       image: "https://i.imgur.com/bmNTJLV.png",
-                      title: "Black \nfriday",
-                      subtitle: "50% off",
-                      bottomText: "Collection".toUpperCase(),
+                      title: "黑色\n星期五",
+                      subtitle: "5 折優惠",
+                      bottomText: "系列".toUpperCase(),
                       press: () {},
                     ),
                   ],

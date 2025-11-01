@@ -22,14 +22,14 @@ class ServerErrorScreen extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "Server error \nplease try again later!",
+                "伺服器錯誤\n請稍後再試！",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const Spacer(),
               ElevatedButton(
                 onPressed: () {},
-                child: const Text("Retry"),
+                child: const Text("重試"),
               )
             ],
           ),

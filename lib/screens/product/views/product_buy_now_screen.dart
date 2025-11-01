@@ -27,8 +27,8 @@ class ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
     return Scaffold(
       bottomNavigationBar: CartButton(
         price: 269.4,
-        title: "Add to cart",
-        subTitle: "Total price",
+        title: "加入購物車",
+        subTitle: "總價",
         press: () {
           customModalBottomSheet(
             context,
@@ -117,7 +117,7 @@ class ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                 SliverPadding(
                   padding: const EdgeInsets.symmetric(vertical: defaultPadding),
                   sliver: ProductListTile(
-                    title: "Size guide",
+                    title: "尺寸指南",
                     svgSrc: "assets/icons/Sizeguid.svg",
                     isShowBottomBorder: true,
                     press: () {
@@ -138,12 +138,12 @@ class ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                       children: [
                         const SizedBox(height: defaultPadding / 2),
                         Text(
-                          "Store pickup availability",
+                          "門市取貨可用性",
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         const SizedBox(height: defaultPadding / 2),
                         const Text(
-                            "Select a size to check store availability and In-Store pickup options.")
+                            "選擇尺寸以查看門市庫存與門市取貨選項。")
                       ],
                     ),
                   ),
@@ -151,7 +151,7 @@ class ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                 SliverPadding(
                   padding: const EdgeInsets.symmetric(vertical: defaultPadding),
                   sliver: ProductListTile(
-                    title: "Check stores",
+                    title: "查詢門市",
                     svgSrc: "assets/icons/Stores.svg",
                     isShowBottomBorder: true,
                     press: () {

@@ -37,7 +37,7 @@ class WalletHistoryCard extends StatelessWidget {
               height: 24,
               width: 24,
             ),
-            title: Text(isReturn ? "Return" : "Purchase"),
+            title: Text(isReturn ? "退貨" : "購買"),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: defaultPadding / 4),
               child: Text(

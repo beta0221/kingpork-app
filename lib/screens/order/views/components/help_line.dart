@@ -14,7 +14,7 @@ class HelpLine extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        "Need help with anything?",
+        "需要任何幫助嗎？",
         style: TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.w500,
@@ -24,7 +24,7 @@ class HelpLine extends StatelessWidget {
       subtitle: Padding(
         padding: const EdgeInsets.only(top: defaultPadding / 2),
         child: Text(
-          "Call $number",
+          "撥打 $number",
           style: Theme.of(context).textTheme.titleSmall,
         ),
       ),

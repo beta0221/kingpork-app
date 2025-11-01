@@ -39,7 +39,7 @@ class StandardShippingMethodCard extends StatelessWidget {
                     ),
                     const SizedBox(width: defaultPadding / 2),
                     Text(
-                      "Standard",
+                      "標準",
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
                             fontWeight: FontWeight.w500,
                           ),
@@ -48,7 +48,7 @@ class StandardShippingMethodCard extends StatelessWidget {
                 ),
                 const SizedBox(height: defaultPadding / 2),
                 const Text(
-                  "Arrives in 5-8 business days",
+                  "5-8個工作天送達",
                   style: TextStyle(fontSize: 12),
                 ),
                 const SizedBox(height: defaultPadding),
@@ -59,7 +59,7 @@ class StandardShippingMethodCard extends StatelessWidget {
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Order up to \$49.99:"),
+                      Text("訂單金額 \$49.99 以下："),
                       Text("\$4.95")
                     ],
                   ),
@@ -72,8 +72,8 @@ class StandardShippingMethodCard extends StatelessWidget {
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Orders \$50 and over:"),
-                      Text("Free")
+                      Text("訂單金額 \$50 以上："),
+                      Text("免費")
                     ],
                   ),
                 ),
@@ -82,7 +82,7 @@ class StandardShippingMethodCard extends StatelessWidget {
           ),
           const SizedBox(height: defaultPadding),
           Text(
-            "Free with Shoplon Premier",
+            "Shoplon Premier 會員免費",
             style: Theme.of(context)
                 .textTheme
                 .bodySmall!

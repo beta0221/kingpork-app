@@ -19,11 +19,11 @@ class CurrentPasswordScreen extends StatelessWidget {
             children: [
               const SizedBox(height: defaultPadding),
               Text(
-                "Current Password",
+                "目前密碼",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: defaultPadding / 2),
-              const Text("Enter your current password to reset your password"),
+              const Text("輸入您的目前密碼以重設密碼"),
               const SizedBox(height: defaultPadding * 2),
               Form(
                 child: TextFormField(
@@ -34,7 +34,7 @@ class CurrentPasswordScreen extends StatelessWidget {
                   },
                   validator: emaildValidator.call,
                   decoration: InputDecoration(
-                    hintText: "password",
+                    hintText: "密碼",
                     prefixIcon: Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: defaultPadding * 0.75),
@@ -60,7 +60,7 @@ class CurrentPasswordScreen extends StatelessWidget {
                   Navigator.pushReplacementNamed(
                       context, newPasswordScreenRoute);
                 },
-                child: const Text("Next"),
+                child: const Text("下一步"),
               )
             ],
           ),

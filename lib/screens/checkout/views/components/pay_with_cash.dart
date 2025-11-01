@@ -24,12 +24,12 @@ class PayWithCash extends StatelessWidget {
             ),
             const SizedBox(height: defaultPadding * 2),
             Text(
-              "Pay with cash",
+              "貨到付款",
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: defaultPadding * 1.5),
             const Text(
-              "a Shoplon refundable \$24.00 will be charged to use cash on delivery, if you want to save this amount please switch to Pay with Card.",
+              "使用貨到付款將收取可退款的 \$24.00 手續費，如果您想節省此費用，請切換至信用卡付款。",
               textAlign: TextAlign.center,
             ),
             const Spacer(),
@@ -41,7 +41,7 @@ class PayWithCash extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushNamed(context, thanksForOrderScreenRoute);
                   },
-                  child: const Text("Confirm"),
+                  child: const Text("確認"),
                 ),
               ),
             )

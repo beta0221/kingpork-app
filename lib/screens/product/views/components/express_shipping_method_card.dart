@@ -39,7 +39,7 @@ class ExpressShippingMethodCard extends StatelessWidget {
                     ),
                     const SizedBox(width: defaultPadding / 2),
                     Text(
-                      "Express",
+                      "快速",
                       style: Theme.of(context)
                           .textTheme
                           .titleMedium!
@@ -54,7 +54,7 @@ class ExpressShippingMethodCard extends StatelessWidget {
                 ),
                 const SizedBox(height: defaultPadding / 2),
                 const Text(
-                  "Arrives in 2-3 business days",
+                  "2-3個工作天送達",
                   style: TextStyle(fontSize: 12),
                 ),
                 const SizedBox(height: defaultPadding / 2),
@@ -64,7 +64,7 @@ class ExpressShippingMethodCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             child: Text(
-              "Free with Shoplon Premier",
+              "Shoplon Premier 會員免費",
               style: Theme.of(context)
                   .textTheme
                   .bodySmall!

@@ -19,7 +19,7 @@ class ReviewForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Set a Title for your review",
+            "為您的評價設定標題",
             style: Theme.of(context).textTheme.titleSmall,
           ),
           const SizedBox(height: defaultPadding),
@@ -30,12 +30,12 @@ class ReviewForm extends StatelessWidget {
             },
             textInputAction: TextInputAction.next,
             decoration: const InputDecoration(
-              hintText: "Summarize review",
+              hintText: "評價摘要",
             ),
           ),
           const SizedBox(height: defaultPadding / 4),
           Text(
-            "100 Character max",
+            "最多100個字元",
             style: Theme.of(context).textTheme.labelSmall!.copyWith(
                   color: Theme.of(context).textTheme.bodyMedium!.color,
                   fontWeight: FontWeight.w500,
@@ -43,23 +43,23 @@ class ReviewForm extends StatelessWidget {
           ),
           const SizedBox(height: defaultPadding * 1.5),
           Text(
-            "What did you like or dislike?",
+            "您喜歡或不喜歡什麼？",
             style: Theme.of(context).textTheme.titleSmall,
           ),
           const SizedBox(height: defaultPadding),
           TextFormField(
             onSaved: (review) {},
             validator:
-                RequiredValidator(errorText: "This field is required").call,
+                RequiredValidator(errorText: "此欄位為必填").call,
             maxLines: 5,
             textInputAction: TextInputAction.done,
             decoration: const InputDecoration(
-              hintText: "What should shoppers know befor?",
+              hintText: "購物者應該事先知道什麼？",
             ),
           ),
           const SizedBox(height: defaultPadding / 4),
           Text(
-            "3000 Character max",
+            "最多3000個字元",
             style: Theme.of(context).textTheme.labelSmall!.copyWith(
                   color: Theme.of(context).textTheme.bodyMedium!.color,
                   fontWeight: FontWeight.w500,
@@ -73,7 +73,7 @@ class ReviewForm extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  "Would you recommend this product?",
+                  "您會推薦此商品嗎？",
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
@@ -95,7 +95,7 @@ class ReviewForm extends StatelessWidget {
                   Navigator.popAndPushNamed(context, productReviewsScreenRoute);
                 }
               },
-              child: const Text("Submit Review"),
+              child: const Text("提交評價"),
             ),
           )
         ],

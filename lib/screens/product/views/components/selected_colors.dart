@@ -22,7 +22,7 @@ class SelectedColors extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(defaultPadding),
           child: Text(
-            "Select Color",
+            "選擇顏色",
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),

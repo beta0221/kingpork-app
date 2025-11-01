@@ -49,13 +49,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      viewModel.errorMessage ?? 'Failed to load data',
+                      viewModel.errorMessage ?? '載入資料失敗',
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: defaultPadding),
                     ElevatedButton(
                       onPressed: viewModel.refresh,
-                      child: const Text('Retry'),
+                      child: const Text('重試'),
                     ),
                   ],
                 ),
@@ -80,8 +80,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         // While loading use 👇
                         // const BannerMSkelton(),‚
                         BannerSStyle1(
-                          title: "New \narrival",
-                          subtitle: "SPECIAL OFFER",
+                          title: "新品\n上市",
+                          subtitle: "特別優惠",
                           discountParcent: 50,
                           press: () {
                             Navigator.pushNamed(context, onSaleScreenRoute);
@@ -91,9 +91,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         // While loading use 👇
                         //  const BannerMSkelton(),
                         BannerSStyle4(
-                          title: "SUMMER \nSALE",
-                          subtitle: "SPECIAL OFFER",
-                          bottomText: "UP TO 80% OFF",
+                          title: "夏季\n特賣",
+                          subtitle: "特別優惠",
+                          bottomText: "最高 80% 折扣",
                           press: () {
                             Navigator.pushNamed(context, onSaleScreenRoute);
                           },
@@ -103,9 +103,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         //  const BannerMSkelton(),
                         BannerSStyle4(
                           image: "https://i.imgur.com/dBrsD0M.png",
-                          title: "Black \nfriday",
-                          subtitle: "50% off",
-                          bottomText: "Collection".toUpperCase(),
+                          title: "黑色\n星期五",
+                          subtitle: "5折優惠",
+                          bottomText: "精選系列".toUpperCase(),
                           press: () {
                             Navigator.pushNamed(context, onSaleScreenRoute);
                           },
@@ -122,8 +122,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         // While loading use 👇
                         // const BannerLSkelton(),
                         BannerLStyle1(
-                          title: "Summer \nSale",
-                          subtitle: "SPECIAL OFFER",
+                          title: "夏季\n特賣",
+                          subtitle: "特別優惠",
                           discountPercent: 50,
                           press: () {
                             Navigator.pushNamed(context, onSaleScreenRoute);
@@ -133,9 +133,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         // While loading use 👇
                         // const BannerSSkelton(),
                         BannerSStyle5(
-                          title: "Black \nfriday",
-                          subtitle: "50% Off",
-                          bottomText: "Collection".toUpperCase(),
+                          title: "黑色\n星期五",
+                          subtitle: "5折優惠",
+                          bottomText: "精選系列".toUpperCase(),
                           press: () {
                             Navigator.pushNamed(context, onSaleScreenRoute);
                           },
@@ -145,8 +145,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         // const BannerSSkelton(),
                         BannerSStyle5(
                           image: "https://i.imgur.com/2443sJb.png",
-                          title: "Grab \nyours now",
-                          subtitle: "65% Off",
+                          title: "立即\n搶購",
+                          subtitle: "65% 折扣",
                           press: () {
                             Navigator.pushNamed(context, onSaleScreenRoute);
                           },

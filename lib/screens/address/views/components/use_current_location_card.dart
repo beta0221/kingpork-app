@@ -35,7 +35,7 @@ class UseCurrentLocationCard extends StatelessWidget {
             ),
           ),
           title: Text(
-            "Use my current location",
+            "使用目前位置",
             style: Theme.of(context).textTheme.titleSmall,
           ),
           subtitle: Padding(

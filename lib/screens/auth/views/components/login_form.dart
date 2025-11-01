@@ -37,7 +37,7 @@ class _LogInFormState extends State<LogInForm> {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-              hintText: "Email address",
+              hintText: "電子郵件地址",
               prefixIcon: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: defaultPadding * 0.75),
@@ -67,7 +67,7 @@ class _LogInFormState extends State<LogInForm> {
             obscureText: _obscurePassword,
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
-              hintText: "Password",
+              hintText: "密碼",
               prefixIcon: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: defaultPadding * 0.75),

@@ -25,7 +25,7 @@ class ShippingMethodsScreen extends StatelessWidget {
                 children: [
                   const BackButton(),
                   Text(
-                    "Shipping methods",
+                    "配送方式",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   IconButton(
@@ -51,31 +51,31 @@ class ShippingMethodsScreen extends StatelessWidget {
                       padding:
                           const EdgeInsets.symmetric(vertical: defaultPadding),
                       child: ShippingMethodCard(
-                        title: "Rush",
+                        title: "急件",
                         price: 21.95,
-                        subtitle: "Arrives in 1-2 business days",
+                        subtitle: "1-2個工作天送達",
                         press: () {},
                       ),
                     ),
                     ShippingMethodCard(
-                      title: "Truck",
+                      title: "卡車配送",
                       price: 102.50,
-                      subtitle: "Arrives in 2-4 weeks once shipped",
+                      subtitle: "出貨後2-4週送達",
                       press: () {},
                     ),
                     const SizedBox(height: defaultPadding),
                     const Text(
-                      "Rush shipping may not be available for all orders depending on fulfillment location.",
+                      "急件配送可能因履行地點而無法適用於所有訂單。",
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: defaultPadding / 2),
                       child: Text.rich(
                         TextSpan(
-                          text: "Shipping outside of the US? See our ",
+                          text: "配送至海外？請參閱我們的",
                           children: [
                             TextSpan(
-                              text: "International shipping rates.",
+                              text: "國際運費資訊。",
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   // Navigate to s hipping rates page
@@ -89,7 +89,7 @@ class ShippingMethodsScreen extends StatelessWidget {
                       ),
                     ),
                     const Text(
-                      "This item is available for delivery to one of our convenient Collection Points.",
+                      "此商品可配送至我們的便利取貨點。",
                     ),
                   ],
                 ),

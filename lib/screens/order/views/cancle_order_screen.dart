@@ -14,7 +14,7 @@ class CancleOrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Cancle order"),
+        title: const Text("取消訂單"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -70,7 +70,7 @@ class CancleOrderScreen extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: defaultPadding),
                     child: Text(
-                      "What is the biggest reason for your wish to cancel?",
+                      "取消訂單的最主要原因是什麼？",
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
                           color: Theme.of(context).textTheme.bodyMedium!.color),
                     ),
@@ -80,7 +80,7 @@ class CancleOrderScreen extends StatelessWidget {
                     onChanged: (value) {},
                     value: false,
                     controlAffinity: ListTileControlAffinity.leading,
-                    title: const Text("It’s too costly."),
+                    title: const Text("價格太貴了。"),
                   ),
                   CheckboxListTile(
                     activeColor: primaryColor,
@@ -88,14 +88,14 @@ class CancleOrderScreen extends StatelessWidget {
                     value: false,
                     controlAffinity: ListTileControlAffinity.leading,
                     title: const Text(
-                        "I found another product that fulfills my need."),
+                        "我找到了另一個更符合我需求的商品。"),
                   ),
                   CheckboxListTile(
                     activeColor: primaryColor,
                     onChanged: (value) {},
                     value: false,
                     controlAffinity: ListTileControlAffinity.leading,
-                    title: const Text("I don’t use it enough."),
+                    title: const Text("我用不到。"),
                   ),
                 ],
               ),
@@ -104,14 +104,14 @@ class CancleOrderScreen extends StatelessWidget {
                 onChanged: (value) {},
                 value: false,
                 controlAffinity: ListTileControlAffinity.leading,
-                title: const Text("Other"),
+                title: const Text("其他"),
               ),
               Padding(
                 padding: const EdgeInsets.all(defaultPadding),
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(backgroundColor: errorColor),
-                  child: const Text("Cancle"),
+                  child: const Text("取消"),
                 ),
               )
             ],

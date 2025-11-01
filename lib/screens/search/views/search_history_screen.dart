@@ -17,11 +17,11 @@ class SearchHistoryScreen extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
-        title: const Text("History"),
+        title: const Text("搜尋歷史"),
         actions: [
           TextButton(
             onPressed: () {},
-            child: const Text("Clear All"),
+            child: const Text("清除"),
           )
         ],
       ),

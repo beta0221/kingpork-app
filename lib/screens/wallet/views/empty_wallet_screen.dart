@@ -10,7 +10,7 @@ class EmptyWalletScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Wallet"),
+        title: const Text("錢包"),
       ),
       body: SafeArea(
         child: Column(
@@ -31,14 +31,14 @@ class EmptyWalletScreen extends StatelessWidget {
             ),
             const Spacer(),
             Text(
-              "Empty wallet history",
+              "錢包是空的",
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: defaultPadding * 1.5, vertical: defaultPadding),
               child: Text(
-                "Customer network effects freemium. Advisor android paradigm shift product management. Customer disruptive crowdsource",
+                "您的錢包目前沒有任何交易記錄。當您進行交易時，它們將顯示在這裡。",
                 textAlign: TextAlign.center,
               ),
             ),

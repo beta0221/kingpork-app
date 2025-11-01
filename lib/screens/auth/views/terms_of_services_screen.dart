@@ -29,10 +29,10 @@ class TermsOfServicesScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("Last updated Aprill 2020"),
+              const Text("最後更新於 2020 年 4 月"),
               const SizedBox(height: defaultPadding / 2),
               Text(
-                "Terms of services",
+                "服務條款",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: defaultPadding / 2),
@@ -46,7 +46,7 @@ class TermsOfServicesScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "1. Terms",
+                          "1. 條款",
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         const SizedBox(height: defaultPadding / 2),
@@ -55,7 +55,7 @@ class TermsOfServicesScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: defaultPadding),
                         Text(
-                          "2. Use license",
+                          "2. 使用許可",
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         const SizedBox(height: defaultPadding / 2),

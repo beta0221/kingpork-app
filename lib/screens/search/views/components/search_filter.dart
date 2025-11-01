@@ -39,13 +39,13 @@ class _SearchFilterState extends State<SearchFilter> {
                   const SizedBox(width: 32),
                   const Spacer(),
                   Text(
-                    "Filter",
+                    "篩選",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const Spacer(),
                   TextButton(
                     onPressed: () {},
-                    child: const Text("Clear All"),
+                    child: const Text("清除"),
                   )
                 ],
               ),
@@ -61,7 +61,7 @@ class _SearchFilterState extends State<SearchFilter> {
                           _isShowSort = false;
                         });
                       },
-                      text: "Filter",
+                      text: "篩選",
                       isActive: !_isShowSort,
                     ),
                   ),
@@ -73,7 +73,7 @@ class _SearchFilterState extends State<SearchFilter> {
                           _isShowSort = true;
                         });
                       },
-                      text: "Sort",
+                      text: "排序",
                       isActive: _isShowSort,
                     ),
                   ),
@@ -90,7 +90,7 @@ class _SearchFilterState extends State<SearchFilter> {
                       child: Column(
                         children: [
                           DividerListTile(
-                            title: const Text("Color"),
+                            title: const Text("顏色"),
                             press: () {
                               customModalBottomSheet(
                                 context,
@@ -101,7 +101,7 @@ class _SearchFilterState extends State<SearchFilter> {
                             },
                           ),
                           DividerListTile(
-                            title: const Text("Size"),
+                            title: const Text("尺寸"),
                             press: () {
                               customModalBottomSheet(
                                 context,
@@ -112,7 +112,7 @@ class _SearchFilterState extends State<SearchFilter> {
                             },
                           ),
                           DividerListTile(
-                            title: const Text("Brand"),
+                            title: const Text("品牌"),
                             press: () {
                               customModalBottomSheet(
                                 context,
@@ -123,7 +123,7 @@ class _SearchFilterState extends State<SearchFilter> {
                             },
                           ),
                           DividerListTile(
-                            title: const Text("Price"),
+                            title: const Text("價格"),
                             press: () {
                               customModalBottomSheet(
                                 context,

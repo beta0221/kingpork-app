@@ -10,11 +10,11 @@ class NotificationOptionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Notification"),
+        title: const Text("通知"),
         actions: [
           TextButton(
             onPressed: () {},
-            child: const Text("Reset"),
+            child: const Text("重設"),
           ),
         ],
       ),
@@ -23,37 +23,37 @@ class NotificationOptionsScreen extends StatelessWidget {
         child: Column(
           children: [
             CupertinoSwitchDividedListTile(
-              title: "Allow Notification",
+              title: "允許通知",
               value: true,
               onChanged: (value) {},
             ),
             CupertinoSwitchDividedListTile(
-              title: "Discount notifications",
-              subTitle: "At a mauris volutpat cras vitae convallis gravida.",
+              title: "折扣通知",
+              subTitle: "接收有關促銷和折扣的通知。",
               value: true,
               onChanged: (value) {},
             ),
             CupertinoSwitchDividedListTile(
-              title: "Stores notifications",
-              subTitle: "At a mauris volutpat cras vitae convallis gravida.",
+              title: "商店通知",
+              subTitle: "接收來自商店的更新和消息。",
               value: false,
               onChanged: (value) {},
             ),
             CupertinoSwitchDividedListTile(
-              title: "System notifications",
-              subTitle: "At a mauris volutpat cras vitae convallis gravida.",
+              title: "系統通知",
+              subTitle: "接收系統更新和重要消息。",
               value: false,
               onChanged: (value) {},
             ),
             CupertinoSwitchDividedListTile(
-              title: "Location notifications",
-              subTitle: "At a mauris volutpat cras vitae convallis gravida.",
+              title: "位置通知",
+              subTitle: "根據您的位置接收通知。",
               value: false,
               onChanged: (value) {},
             ),
             CupertinoSwitchDividedListTile(
-              title: "Payment notifications",
-              subTitle: "At a mauris volutpat cras vitae convallis gravida.",
+              title: "付款通知",
+              subTitle: "接收有關付款和交易的通知。",
               value: true,
               onChanged: (value) {},
             ),

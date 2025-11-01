@@ -36,9 +36,9 @@ class OnbordingContent extends StatelessWidget {
         if (!isTextOnTop) const Spacer(),
         if (!isTextOnTop)
           const OnbordTitleDescription(
-            title: "Find the item you’ve \nbeen looking for",
+            title: "尋找您一直在\n尋找的商品",
             description:
-                "Here you’ll see rich varieties of goods, carefully classified for seamless browsing experience.",
+                "在這裡您將看到豐富多樣的商品，精心分類以提供無縫的瀏覽體驗。",
           ),
 
         const Spacer(),

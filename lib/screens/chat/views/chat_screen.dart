@@ -13,7 +13,7 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Support chat"),
+        title: const Text("客服聊天"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -86,7 +86,7 @@ class ChatScreen extends StatelessWidget {
                 child: TextFormField(
                   decoration: InputDecoration(
                     filled: false,
-                    hintText: "Write a message...",
+                    hintText: "輸入訊息...",
                     border: secodaryOutlineInputBorder(context),
                     enabledBorder: secodaryOutlineInputBorder(context),
                     focusedBorder: focusedOutlineInputBorder,

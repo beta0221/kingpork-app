@@ -29,7 +29,7 @@ class NewPassForm extends StatelessWidget {
             obscureText: true,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              hintText: "New password",
+              hintText: "新密碼",
               prefixIcon: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: defaultPadding * 0.75),
@@ -54,11 +54,11 @@ class NewPassForm extends StatelessWidget {
               pass = pass;
             },
             validator: (value) =>
-                MatchValidator(errorText: "Passwords do not match")
+                MatchValidator(errorText: "密碼不符")
                     .validateMatch(value!, pass),
             obscureText: true,
             decoration: InputDecoration(
-              hintText: "New password again",
+              hintText: "再次輸入新密碼",
               prefixIcon: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: defaultPadding * 0.75),

@@ -20,14 +20,14 @@ class NoNotification extends StatelessWidget {
         ),
         const Spacer(),
         Text(
-          "No notification",
+          "沒有通知",
           style: Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(height: defaultPadding / 1),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: defaultPadding * 1.5),
           child: Text(
-            "Customer network effects freemium. Advisor android paradigm shift product management. Customer disruptive crowdsource",
+            "目前沒有任何通知。當您收到新通知時，它們將顯示在這裡。",
             textAlign: TextAlign.center,
           ),
         ),

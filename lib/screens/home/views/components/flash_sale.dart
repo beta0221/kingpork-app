@@ -20,14 +20,14 @@ class FlashSale extends StatelessWidget {
         // const BannerMWithCounterSkelton(),
         BannerMWithCounter(
           duration: const Duration(hours: 8),
-          text: "Super Flash Sale \n50% Off",
+          text: "超級限時搶購 \n50% 折扣",
           press: () {},
         ),
         const SizedBox(height: defaultPadding / 2),
         Padding(
           padding: const EdgeInsets.all(defaultPadding),
           child: Text(
-            "Flash sale",
+            "限時搶購",
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),

@@ -22,7 +22,7 @@ class ProductInfoScreen extends StatelessWidget {
                     child: BackButton(),
                   ),
                   Text(
-                    "Product details",
+                    "商品詳情",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const SizedBox(width: 40),

@@ -28,12 +28,12 @@ class VerificationMethodScreen extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "Choose verification method",
+                "選擇驗證方式",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: defaultPadding / 2),
               const Text(
-                  "We’ll send you a verification code to reset your password"),
+                  "我們將向您發送驗證碼以重設您的密碼"),
               const Spacer(),
               VerificationMethodCard(
                 text: "+19******1233",
@@ -53,7 +53,7 @@ class VerificationMethodScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, otpScreenRoute);
                 },
-                child: const Text("Next"),
+                child: const Text("下一步"),
               )
             ],
           ),

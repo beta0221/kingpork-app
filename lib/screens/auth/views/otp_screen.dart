@@ -18,11 +18,11 @@ class OtpScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Verification code",
+                "驗證碼",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               const SizedBox(height: defaultPadding / 2),
-              const Text("We have sent the code verification to "),
+              const Text("我們已將驗證碼發送至 "),
               Row(
                 children: [
                   Text(
@@ -31,7 +31,7 @@ class OtpScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: const Text("Change phone number?"),
+                    child: const Text("更改電話號碼？"),
                   )
                 ],
               ),
@@ -40,12 +40,15 @@ class OtpScreen extends StatelessWidget {
               const Center(
                 child: Text.rich(
                   TextSpan(
-                    text: "Resend code after ",
+                    text: "重新發送驗證碼於 ",
                     children: [
                       TextSpan(
                         text: "1:36",
                         style: TextStyle(
                             color: primaryColor, fontWeight: FontWeight.w500),
+                      ),
+                      TextSpan(
+                        text: " 後",
                       ),
                     ],
                   ),
@@ -57,7 +60,7 @@ class OtpScreen extends StatelessWidget {
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () {},
-                      child: const Text("Resend"),
+                      child: const Text("重新發送"),
                     ),
                   ),
                   const SizedBox(width: defaultPadding),
@@ -66,7 +69,7 @@ class OtpScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.pushNamed(context, newPasswordScreenRoute);
                       },
-                      child: const Text("Confirm"),
+                      child: const Text("確認"),
                     ),
                   )
                 ],

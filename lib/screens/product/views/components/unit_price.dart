@@ -18,7 +18,7 @@ class UnitPrice extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Unit price",
+          "單價",
           style: Theme.of(context).textTheme.titleSmall,
         ),
         const SizedBox(height: defaultPadding / 1),

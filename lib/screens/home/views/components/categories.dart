@@ -17,15 +17,15 @@ class CategoryModel {
 }
 
 List<CategoryModel> demoCategories = [
-  CategoryModel(name: "All Categories"),
+  CategoryModel(name: "全部分類"),
   CategoryModel(
-      name: "On Sale",
+      name: "特價優惠",
       svgSrc: "assets/icons/Sale.svg",
       route: onSaleScreenRoute),
-  CategoryModel(name: "Man's", svgSrc: "assets/icons/Man.svg"),
-  CategoryModel(name: "Woman’s", svgSrc: "assets/icons/Woman.svg"),
+  CategoryModel(name: "男裝", svgSrc: "assets/icons/Man.svg"),
+  CategoryModel(name: "女裝", svgSrc: "assets/icons/Woman.svg"),
   CategoryModel(
-      name: "Kids", svgSrc: "assets/icons/Child.svg", route: kidsScreenRoute),
+      name: "童裝", svgSrc: "assets/icons/Child.svg", route: kidsScreenRoute),
 ];
 // End For Preview
 

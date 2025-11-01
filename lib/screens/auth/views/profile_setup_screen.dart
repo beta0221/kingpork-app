@@ -14,7 +14,7 @@ class ProfileSetupScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const SizedBox(),
-        title: const Text("Setup profile"),
+        title: const Text("設定個人資料"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -50,7 +50,7 @@ class ProfileSetupScreen extends StatelessWidget {
                   Expanded(
                     child: OutlinedButton(
                       onPressed: () {},
-                      child: const Text("Skip"),
+                      child: const Text("跳過"),
                     ),
                   ),
                   const SizedBox(width: defaultPadding),
@@ -60,7 +60,7 @@ class ProfileSetupScreen extends StatelessWidget {
                         Navigator.pushNamed(
                             context, signUpVerificationScreenRoute);
                       },
-                      child: const Text("Sign up"),
+                      child: const Text("註冊"),
                     ),
                   ),
                 ],

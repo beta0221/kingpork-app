@@ -10,11 +10,11 @@ class PreferencesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Cookie preferences"),
+        title: const Text("Cookie 偏好設定"),
         actions: [
           TextButton(
             onPressed: () {},
-            child: const Text("Reset"),
+            child: const Text("重設"),
           )
         ],
       ),
@@ -23,33 +23,33 @@ class PreferencesScreen extends StatelessWidget {
         child: Column(
           children: [
             PreferencesListTile(
-              titleText: "Analytics",
+              titleText: "分析",
               subtitleTxt:
-                  "Analytics cookies help us improve our application by collecting and reporting info on how you use it. They collect information in a way that does not directly identify anyone.",
+                  "分析 Cookie 透過收集和報告您使用應用程式的資訊，幫助我們改善應用程式。它們以不直接識別任何人的方式收集資訊。",
               isActive: true,
               press: () {},
             ),
             const Divider(height: defaultPadding * 2),
             PreferencesListTile(
-              titleText: "Personalization",
+              titleText: "個人化",
               subtitleTxt:
-                  "Personalisation cookies collect information about your use of this app in order to display contect and experience that are relevant to you.",
+                  "個人化 Cookie 收集您使用此應用程式的資訊，以顯示與您相關的內容和體驗。",
               isActive: false,
               press: () {},
             ),
             const Divider(height: defaultPadding * 2),
             PreferencesListTile(
-              titleText: "Marketing",
+              titleText: "行銷",
               subtitleTxt:
-                  "Maarketing cookies collec information about your use of this and other apps to enable display ads and other marketing that is more relevant to you.",
+                  "行銷 Cookie 收集您使用此應用程式和其他應用程式的資訊，以便顯示與您更相關的廣告和其他行銷內容。",
               isActive: false,
               press: () {},
             ),
             const Divider(height: defaultPadding * 2),
             PreferencesListTile(
-              titleText: "Social media cookies",
+              titleText: "社群媒體 Cookie",
               subtitleTxt:
-                  "These cookies are set by a range of social media services that we have added to the site to enable you to share our content with your friends and networks.",
+                  "這些 Cookie 由我們新增到網站的一系列社群媒體服務設定，讓您能夠與朋友和網路分享我們的內容。",
               isActive: false,
               press: () {},
             ),

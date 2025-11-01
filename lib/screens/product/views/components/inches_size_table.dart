@@ -21,10 +21,10 @@ class InchesSizeTable extends StatelessWidget {
           ),
           columns: const <DataColumn>[
             DataColumn(label: Text('')),
-            DataColumn(label: Text('Size')),
-            DataColumn(label: Text('Bust')),
-            DataColumn(label: Text('Waist')),
-            DataColumn(label: Text('Hips')),
+            DataColumn(label: Text('尺寸')),
+            DataColumn(label: Text('胸圍')),
+            DataColumn(label: Text('腰圍')),
+            DataColumn(label: Text('臀圍')),
           ],
           rows: const <DataRow>[
             DataRow(

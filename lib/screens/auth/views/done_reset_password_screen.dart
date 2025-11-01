@@ -22,7 +22,7 @@ class DoneResetPasswordScreen extends StatelessWidget {
               ),
               const Spacer(),
               Text(
-                "Your password has been changed successfully!",
+                "您的密碼已成功變更！",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
@@ -31,7 +31,7 @@ class DoneResetPasswordScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(context, logInScreenRoute);
                 },
-                child: const Text("Log in"),
+                child: const Text("登入"),
               )
             ],
           ),

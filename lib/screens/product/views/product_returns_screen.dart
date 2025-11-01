@@ -23,7 +23,7 @@ class ProductReturnsScreen extends StatelessWidget {
                     child: BackButton(),
                   ),
                   Text(
-                    "Return",
+                    "退貨",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const SizedBox(width: 40),
@@ -33,7 +33,7 @@ class ProductReturnsScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.all(defaultPadding),
               child: Text(
-                "Free pre-paid returns and exchanges for orders shipped to the US. Get refunded faster with easy online returns and print a FREE pre-paid return SmartLabel@ online! Return or exchange any unused or defective merchandise by mail or at one of our US or Canada store locations. Made to order items cannot be canceled, exchange or returned.",
+                "提供免費預付退貨及換貨服務。透過簡易線上退貨流程加速退款處理，並可線上列印免費預付退貨標籤！您可透過郵寄或至門市辦理任何未使用或瑕疵商品的退貨或換貨。客製化訂製商品恕不接受取消、換貨或退貨。",
               ),
             )
           ],

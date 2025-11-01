@@ -20,36 +20,36 @@ class _OnBordingScreenState extends State<OnBordingScreen> {
     Onbord(
       image: "assets/Illustration/Illustration-0.png",
       imageDarkTheme: "assets/Illustration/Illustration_darkTheme_0.png",
-      title: "Find the item you’ve \nbeen looking for",
+      title: "尋找您一直在\n尋找的商品",
       description:
-          "Here you’ll see rich varieties of goods, carefully classified for seamless browsing experience.",
+          "在這裡您將看到豐富多樣的商品，精心分類以提供無縫的瀏覽體驗。",
     ),
     Onbord(
       image: "assets/Illustration/Illustration-1.png",
       imageDarkTheme: "assets/Illustration/Illustration_darkTheme_1.png",
-      title: "Get those shopping \nbags filled",
+      title: "填滿您的\n購物袋",
       description:
-          "Add any item you want to your cart, or save it on your wishlist, so you don’t miss it in your future purchases.",
+          "將任何您想要的商品加入購物車，或儲存到願望清單，這樣您就不會錯過未來的購買。",
     ),
     Onbord(
       image: "assets/Illustration/Illustration-2.png",
       imageDarkTheme: "assets/Illustration/Illustration_darkTheme_2.png",
-      title: "Fast & secure \npayment",
-      description: "There are many payment options available for your ease.",
+      title: "快速且安全的\n付款",
+      description: "為了您的便利，提供多種付款方式。",
     ),
     Onbord(
       image: "assets/Illustration/Illustration-3.png",
       imageDarkTheme: "assets/Illustration/Illustration_darkTheme_3.png",
-      title: "Package tracking",
+      title: "包裹追蹤",
       description:
-          "In particular, Shoplon can pack your orders, and help you seamlessly manage your shipments.",
+          "特別是，Shoplon 可以為您打包訂單，並幫助您無縫管理您的運送。",
     ),
     Onbord(
       image: "assets/Illustration/Illustration-4.png",
       imageDarkTheme: "assets/Illustration/Illustration_darkTheme_4.png",
-      title: "Nearby stores",
+      title: "附近的商店",
       description:
-          "Easily track nearby shops, browse through their items and get information about their prodcuts.",
+          "輕鬆追蹤附近的商店，瀏覽他們的商品並獲取有關其產品的資訊。",
     ),
   ];
 
@@ -81,7 +81,7 @@ class _OnBordingScreenState extends State<OnBordingScreen> {
                         context, notificationPermissionScreenRoute);
                   },
                   child: Text(
-                    "Skip",
+                    "跳過",
                     style: TextStyle(
                         color: Theme.of(context).textTheme.bodyLarge!.color),
                   ),

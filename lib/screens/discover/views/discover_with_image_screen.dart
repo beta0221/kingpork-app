@@ -23,7 +23,7 @@ class DiscoverWithImageScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
               sliver: SliverToBoxAdapter(
                 child: Text(
-                  "Categories",
+                  "分類",
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),

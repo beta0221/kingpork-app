@@ -12,7 +12,7 @@ class AddressesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Addresses"),
+        title: const Text("地址列表"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -39,7 +39,7 @@ class AddressesScreen extends StatelessWidget {
                     Theme.of(context).iconTheme.color!, BlendMode.srcIn),
               ),
               label: Text(
-                "Add new address",
+                "新增地址",
                 style: TextStyle(
                     color: Theme.of(context).textTheme.bodyLarge!.color),
               ),

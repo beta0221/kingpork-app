@@ -17,7 +17,7 @@ class ProductReviewsScreen extends StatelessWidget {
         slivers: [
           SliverAppBar(
             pinned: true,
-            title: const Text("Reviews"),
+            title: const Text("評價"),
             backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           ),
           const SliverPadding(
@@ -37,7 +37,7 @@ class ProductReviewsScreen extends StatelessWidget {
           SliverPadding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             sliver: ProductListTile(
-              title: "Add Review",
+              title: "新增評價",
               svgSrc: "assets/icons/Chat-add.svg",
               isShowBottomBorder: true,
               press: () {

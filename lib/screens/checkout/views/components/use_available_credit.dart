@@ -40,7 +40,7 @@ class UseAvailableCredit extends StatelessWidget {
                 BlendMode.srcIn,
               ),
             ),
-            title: const Text("Use Credit for this purchase"),
+            title: const Text("使用餘額支付此訂單"),
             trailing: CupertinoSwitch(
               value: value,
               activeTrackColor: primaryColor,
@@ -58,7 +58,7 @@ class UseAvailableCredit extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text("Available Balance:"),
+                const Text("可用餘額："),
                 Text(
                   "\$$availableBalance",
                   style: Theme.of(context).textTheme.titleSmall,

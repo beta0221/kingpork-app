@@ -49,13 +49,13 @@ class _BrandFilterState extends State<BrandFilter> {
                   const SizedBox(width: 32),
                   const Spacer(),
                   Text(
-                    "Brand",
+                    "品牌",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const Spacer(),
                   TextButton(
                     onPressed: () {},
-                    child: const Text("Clear All"),
+                    child: const Text("清除"),
                   )
                 ],
               ),
@@ -92,7 +92,7 @@ class _BrandFilterState extends State<BrandFilter> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text("Done"),
+                child: const Text("完成"),
               ),
             )
           ],

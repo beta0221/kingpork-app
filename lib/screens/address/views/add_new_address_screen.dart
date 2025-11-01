@@ -13,7 +13,7 @@ class AddNewAddressScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("New address"),
+        title: const Text("新增地址"),
       ),
       body: SafeArea(
         child: Form(
@@ -24,10 +24,10 @@ class AddNewAddressScreen extends StatelessWidget {
                 TextFormField(
                   onSaved: (newValue) {},
                   validator:
-                      RequiredValidator(errorText: "This field is required")
+                      RequiredValidator(errorText: "此欄位為必填")
                           .call,
                   decoration: const InputDecoration(
-                    hintText: "Type address title",
+                    hintText: "輸入地址標題",
                   ),
                 ),
                 Padding(
@@ -38,10 +38,10 @@ class AddNewAddressScreen extends StatelessWidget {
                 TextFormField(
                   onSaved: (newValue) {},
                   validator:
-                      RequiredValidator(errorText: "This field is required")
+                      RequiredValidator(errorText: "此欄位為必填")
                           .call,
                   decoration: InputDecoration(
-                    hintText: "Country/Region",
+                    hintText: "國家/地區",
                     prefixIcon: Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: defaultPadding * 0.74),
@@ -64,10 +64,10 @@ class AddNewAddressScreen extends StatelessWidget {
                   child: TextFormField(
                     onSaved: (newValue) {},
                     validator:
-                        RequiredValidator(errorText: "This field is required")
+                        RequiredValidator(errorText: "此欄位為必填")
                             .call,
                     decoration: InputDecoration(
-                      hintText: "Full name",
+                      hintText: "全名",
                       prefixIcon: Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: defaultPadding * 0.74),
@@ -89,23 +89,23 @@ class AddNewAddressScreen extends StatelessWidget {
                 TextFormField(
                   onSaved: (newValue) {},
                   validator:
-                      RequiredValidator(errorText: "This field is required")
+                      RequiredValidator(errorText: "此欄位為必填")
                           .call,
                   decoration: const InputDecoration(
-                    hintText: "Address line 1",
+                    hintText: "地址第一行",
                   ),
                 ),
                 const SizedBox(height: defaultPadding),
                 TextFormField(
                   onSaved: (newValue) {},
                   decoration: const InputDecoration(
-                    hintText: "Address line 2",
+                    hintText: "地址第二行",
                   ),
                 ),
                 ListTile(
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: defaultPadding),
-                  title: const Text("P.O. Box"),
+                  title: const Text("郵政信箱"),
                   trailing: CupertinoSwitch(
                     onChanged: (value) {},
                     value: false,
@@ -115,7 +115,7 @@ class AddNewAddressScreen extends StatelessWidget {
                 TextFormField(
                   onSaved: (newValue) {},
                   decoration: const InputDecoration(
-                    hintText: "City",
+                    hintText: "城市",
                   ),
                 ),
                 Padding(
@@ -123,14 +123,14 @@ class AddNewAddressScreen extends StatelessWidget {
                   child: TextFormField(
                     onSaved: (newValue) {},
                     decoration: const InputDecoration(
-                      hintText: "State",
+                      hintText: "州/省",
                     ),
                   ),
                 ),
                 TextFormField(
                   onSaved: (newValue) {},
                   decoration: const InputDecoration(
-                    hintText: "Zip code",
+                    hintText: "郵遞區號",
                   ),
                 ),
                 Padding(
@@ -138,7 +138,7 @@ class AddNewAddressScreen extends StatelessWidget {
                   child: TextFormField(
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
-                      hintText: "Phone number",
+                      hintText: "電話號碼",
                       prefixIcon: Padding(
                         padding: const EdgeInsets.only(left: defaultPadding),
                         child: SizedBox(
@@ -179,7 +179,7 @@ class AddNewAddressScreen extends StatelessWidget {
                 ),
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: const Text("Set default address"),
+                  title: const Text("設為預設地址"),
                   trailing: CupertinoSwitch(
                     onChanged: (value) {},
                     value: true,
@@ -189,7 +189,7 @@ class AddNewAddressScreen extends StatelessWidget {
                 const SizedBox(height: defaultPadding * 1.5),
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text("Save address"),
+                  child: const Text("儲存地址"),
                 )
               ],
             ),

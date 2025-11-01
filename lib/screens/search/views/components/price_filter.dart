@@ -21,11 +21,11 @@ class PriceFilter extends StatefulWidget {
 
 class _PriceFilterState extends State<PriceFilter> {
   final List<PriceModel> demoPrices = [
-    PriceModel(title: "Under \$25", numOfItems: 10),
+    PriceModel(title: "\$25 以下", numOfItems: 10),
     PriceModel(title: "\$25 - \$50", numOfItems: 27),
     PriceModel(title: "\$50 - \$100", numOfItems: 48),
     PriceModel(title: "\$100 - \$300", numOfItems: 13),
-    PriceModel(title: "Over \$300", numOfItems: 41),
+    PriceModel(title: "\$300 以上", numOfItems: 41),
   ];
   List<PriceModel> filterPrices = [];
   @override
@@ -45,13 +45,13 @@ class _PriceFilterState extends State<PriceFilter> {
                   const SizedBox(width: 32),
                   const Spacer(),
                   Text(
-                    "Price",
+                    "價格",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const Spacer(),
                   TextButton(
                     onPressed: () {},
-                    child: const Text("Clear All"),
+                    child: const Text("清除"),
                   )
                 ],
               ),
@@ -89,7 +89,7 @@ class _PriceFilterState extends State<PriceFilter> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text("Done"),
+                child: const Text("完成"),
               ),
             )
           ],

@@ -26,14 +26,14 @@ class RecentSearches extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Recent Searches",
+                "最近搜尋",
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, searchHistoryScreenRoute);
                 },
-                child: const Text("See All"),
+                child: const Text("查看全部"),
               ),
             ],
           ),

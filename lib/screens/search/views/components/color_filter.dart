@@ -22,12 +22,12 @@ class ProductColorFilter extends StatefulWidget {
 
 class _ProductColorFilterState extends State<ProductColorFilter> {
   final List<ColorModel> demoColors = [
-    ColorModel(title: "Black", numOfItems: 40, color: Colors.black),
-    ColorModel(title: "Blue", numOfItems: 160, color: Colors.blue),
-    ColorModel(title: "White", numOfItems: 42, color: Colors.white),
-    ColorModel(title: "Purple", numOfItems: 28, color: Colors.purple),
-    ColorModel(title: "Pink", numOfItems: 14, color: Colors.pink),
-    ColorModel(title: "Red", numOfItems: 14, color: Colors.red),
+    ColorModel(title: "黑色", numOfItems: 40, color: Colors.black),
+    ColorModel(title: "藍色", numOfItems: 160, color: Colors.blue),
+    ColorModel(title: "白色", numOfItems: 42, color: Colors.white),
+    ColorModel(title: "紫色", numOfItems: 28, color: Colors.purple),
+    ColorModel(title: "粉紅色", numOfItems: 14, color: Colors.pink),
+    ColorModel(title: "紅色", numOfItems: 14, color: Colors.red),
   ];
   List<ColorModel> filterColors = [];
   @override
@@ -47,13 +47,13 @@ class _ProductColorFilterState extends State<ProductColorFilter> {
                   const SizedBox(width: 32),
                   const Spacer(),
                   Text(
-                    "Color",
+                    "顏色",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const Spacer(),
                   TextButton(
                     onPressed: () {},
-                    child: const Text("Clear All"),
+                    child: const Text("清除"),
                   )
                 ],
               ),
@@ -102,7 +102,7 @@ class _ProductColorFilterState extends State<ProductColorFilter> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text("Done"),
+                child: const Text("完成"),
               ),
             )
           ],

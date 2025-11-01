@@ -23,8 +23,8 @@ class SupportPersonInfo extends StatelessWidget {
         title: Row(
           children: [
             Text("$name is "),
-            if (isConnected && !isTyping) const Text("connected"),
-            if (isConnected && isTyping) const Text("typing..."),
+            if (isConnected && !isTyping) const Text("線上"),
+            if (isConnected && isTyping) const Text("輸入中..."),
           ],
         ),
         minLeadingWidth: 24,

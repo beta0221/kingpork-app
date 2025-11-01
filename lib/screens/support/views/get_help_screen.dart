@@ -13,7 +13,7 @@ class GetHelpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Get Help"),
+        title: const Text("取得幫助"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -38,7 +38,7 @@ class GetHelpScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
             child: Text(
-              "We are here to help so please get in touch with us.",
+              "我們隨時為您提供協助，請與我們聯絡。",
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleLarge,
             ),
@@ -46,14 +46,14 @@ class GetHelpScreen extends StatelessWidget {
           const Spacer(),
           HelpListTile(
             svgSrc: "assets/icons/Call.svg",
-            title: "Phone Number",
+            title: "電話號碼",
             subtitle: "+1-202-555-0162",
             press: () {},
           ),
           const Divider(),
           HelpListTile(
             svgSrc: "assets/icons/Message.svg",
-            title: "E-mail address",
+            title: "電子郵件地址",
             subtitle: "theflutterway@gmail.com",
             press: () {},
           ),
@@ -77,10 +77,10 @@ class GetHelpScreen extends StatelessWidget {
                   Navigator.pushNamed(context, chatScreenRoute);
                 },
                 title: const Text(
-                  "Contact live chat",
+                  "聯絡線上客服",
                   style: TextStyle(fontWeight: FontWeight.w500),
                 ),
-                subtitle: const Text("we are ready to answer you."),
+                subtitle: const Text("我們隨時準備為您解答。"),
                 trailing: SvgPicture.asset(
                   "assets/icons/miniRight.svg",
                   colorFilter: ColorFilter.mode(

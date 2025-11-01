@@ -14,13 +14,13 @@ class UserInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: const Text("個人資料"),
         actions: [
           TextButton(
             onPressed: () {
               Navigator.pushNamed(context, editUserInfoScreenRoute);
             },
-            child: const Text("Edit"),
+            child: const Text("編輯"),
           )
         ],
       ),
@@ -31,13 +31,13 @@ class UserInfoScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Please log in to view your profile"),
+                  const Text("請登入以檢視您的個人資料"),
                   const SizedBox(height: defaultPadding),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, logInScreenRoute);
                     },
-                    child: const Text("Log In"),
+                    child: const Text("登入"),
                   ),
                 ],
               ),
@@ -60,37 +60,37 @@ class UserInfoScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: defaultPadding * 1.5),
                 UserInfoListTile(
-                  leadingText: "Name",
+                  leadingText: "姓名",
                   trailingText: name,
                 ),
                 const UserInfoListTile(
-                  leadingText: "Date of birth",
-                  trailingText: "Not provided",
+                  leadingText: "出生日期",
+                  trailingText: "未提供",
                 ),
                 UserInfoListTile(
-                  leadingText: "Phone number",
+                  leadingText: "電話號碼",
                   trailingText: phone,
                 ),
                 const UserInfoListTile(
-                  leadingText: "Gender",
-                  trailingText: "Not provided",
+                  leadingText: "性別",
+                  trailingText: "未提供",
                 ),
                 UserInfoListTile(
-                  leadingText: "Email",
+                  leadingText: "電子郵件",
                   trailingText: email,
                 ),
                 if (user?.bonus != null)
                   UserInfoListTile(
-                    leadingText: "Bonus Points",
+                    leadingText: "紅利點數",
                     trailingText: "${user!.bonus}",
                   ),
                 ListTile(
-                  leading: const Text("Password"),
+                  leading: const Text("密碼"),
                   trailing: TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, currentPasswordScreenRoute);
                     },
-                    child: const Text("Change password"),
+                    child: const Text("變更密碼"),
                   ),
                 )
               ],

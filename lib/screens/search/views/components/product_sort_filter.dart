@@ -21,10 +21,10 @@ class ProductSortFilter extends StatefulWidget {
 
 class _ProductSortFilterState extends State<ProductSortFilter> {
   final List<SizeModel> demoSortFilters = [
-    SizeModel(title: "Price [Low to High]"),
-    SizeModel(title: "Price [High to Low]"),
-    SizeModel(title: "New"),
-    SizeModel(title: "Highest Rated"),
+    SizeModel(title: "價格 [低至高]"),
+    SizeModel(title: "價格 [高至低]"),
+    SizeModel(title: "新品上市"),
+    SizeModel(title: "最高評價"),
     SizeModel(title: "A-Z"),
     SizeModel(title: "Z-A"),
   ];
@@ -70,7 +70,7 @@ class _ProductSortFilterState extends State<ProductSortFilter> {
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text("Done"),
+                child: const Text("完成"),
               ),
             )
           ],

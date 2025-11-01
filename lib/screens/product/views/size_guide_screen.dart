@@ -35,7 +35,7 @@ class _SizeGuideScreenState extends State<SizeGuideScreen> {
               children: [
                 const BackButton(),
                 Text(
-                  "Size guide",
+                  "尺寸指南",
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 IconButton(
@@ -57,7 +57,7 @@ class _SizeGuideScreenState extends State<SizeGuideScreen> {
                       Expanded(
                         child: OutlinedActiveButton(
                           press: updateSizes,
-                          text: "Centimeters",
+                          text: "公分",
                           isActive: _isShowCentimetersSize,
                         ),
                       ),
@@ -68,7 +68,7 @@ class _SizeGuideScreenState extends State<SizeGuideScreen> {
                         child: OutlinedActiveButton(
                           isActive: !_isShowCentimetersSize,
                           press: updateSizes,
-                          text: "Inches",
+                          text: "英吋",
                         ),
                       ),
                     ],
@@ -84,7 +84,7 @@ class _SizeGuideScreenState extends State<SizeGuideScreen> {
                     ),
                   ),
                   Text(
-                    "Measurement Guide",
+                    "測量指南",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const Padding(
@@ -92,21 +92,21 @@ class _SizeGuideScreenState extends State<SizeGuideScreen> {
                     child: Divider(),
                   ),
                   Text(
-                    "Bust",
+                    "胸圍",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const SizedBox(height: defaultPadding / 2),
                   const Text(
-                    "Measure under your arms at the fullest part of your bust. Be sure to go over your shoulder blades.",
+                    "在胸部最豐滿的部位測量，確保繞過肩胛骨。",
                   ),
                   const SizedBox(height: defaultPadding),
                   Text(
-                    "Natural Waist",
+                    "自然腰圍",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const SizedBox(height: defaultPadding / 2),
                   const Text(
-                    "Measure around the narrowest part of your waistiline with one forefinger between your body and the measuring taps.",
+                    "在腰部最窄的部位測量，保持一根手指的空間在身體與測量帶之間。",
                   ),
                 ],
               ),

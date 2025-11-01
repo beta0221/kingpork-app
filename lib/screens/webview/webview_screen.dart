@@ -116,7 +116,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
       child: Scaffold(
         appBar: widget.showAppBar
             ? AppBar(
-                title: Text(_pageTitle ?? widget.title ?? 'WebView'),
+                title: Text(_pageTitle ?? widget.title ?? '網頁檢視'),
                 actions: [
                   IconButton(
                     icon: const Icon(Icons.refresh),

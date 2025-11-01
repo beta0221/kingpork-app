@@ -25,7 +25,7 @@ class LocationPermissonStoreAvailabilityScreen extends StatelessWidget {
                     child: BackButton(),
                   ),
                   Text(
-                    "Store Pickup Availability",
+                    "門市取貨可用性",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   const SizedBox(width: 40),
@@ -42,7 +42,7 @@ class LocationPermissonStoreAvailabilityScreen extends StatelessWidget {
                       child: TextFormField(
                         decoration: InputDecoration(
                           fillColor: Colors.transparent,
-                          hintText: "Find something...",
+                          hintText: "搜尋...",
                           border: secodaryOutlineInputBorder(context),
                           enabledBorder: secodaryOutlineInputBorder(context),
                           focusedBorder: secodaryOutlineInputBorder(context),
@@ -75,7 +75,7 @@ class LocationPermissonStoreAvailabilityScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "Your Location Services are turned off.",
+                      "您的位置服務已關閉。",
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
@@ -83,12 +83,12 @@ class LocationPermissonStoreAvailabilityScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: defaultPadding),
                     const Text(
-                      "Turn on Location Services in your device Settings to search for stores by current location. You can still search by Country/Region, City or Zip Code.",
+                      "請在裝置設定中開啟位置服務，以便根據目前位置搜尋門市。您仍可透過國家/地區、城市或郵遞區號進行搜尋。",
                     ),
                     const SizedBox(height: defaultPadding * 1.5),
                     ElevatedButton(
                       onPressed: () {},
-                      child: const Text("Settings"),
+                      child: const Text("設定"),
                     )
                   ],
                 ),

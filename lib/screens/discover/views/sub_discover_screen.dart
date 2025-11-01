@@ -10,16 +10,16 @@ class SubDiscoverScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const List<String> demoManWomanItems = [
-      "All Clothing",
-      "New in",
-      "Coats & Jackets",
-      "Dresses",
-      "Hoodies & Sweatshirts",
-      "Jeans"
+      "所有服飾",
+      "新品上架",
+      "外套與夾克",
+      "洋裝",
+      "連帽衫與運動衫",
+      "牛仔褲"
     ];
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Man’s & Woman’s"),
+        title: const Text("男裝與女裝"),
         actions: const [
           Padding(
             padding: EdgeInsets.all(defaultPadding),

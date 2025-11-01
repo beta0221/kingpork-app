@@ -22,12 +22,12 @@ class NoSearchResult extends StatelessWidget {
           ),
         ),
         Text(
-          "No search result",
+          "找不到結果",
           style: Theme.of(context).textTheme.titleLarge,
         ),
         const SizedBox(height: defaultPadding / 2),
         const Text(
-          "Customer network effects freemium. Advisor android paradigm shift product management. Customer disruptive crowdsource",
+          "很抱歉，我們找不到符合您搜尋條件的商品。請嘗試使用其他關鍵字或調整篩選條件。",
           textAlign: TextAlign.center,
         ),
       ],

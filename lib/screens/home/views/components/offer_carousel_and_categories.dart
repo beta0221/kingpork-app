@@ -21,7 +21,7 @@ class OffersCarouselAndCategories extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(defaultPadding),
           child: Text(
-            "Categories",
+            "分類",
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),

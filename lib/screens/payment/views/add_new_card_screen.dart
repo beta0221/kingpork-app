@@ -22,7 +22,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
-        title: const Text("New card"),
+        title: const Text("新增卡片"),
         actions: [
           IconButton(
             onPressed: () {},
@@ -61,7 +61,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
                           controller: numberController,
                           validator: CardUtils.validateCardNum,
                           decoration: InputDecoration(
-                            hintText: "Card number",
+                            hintText: "卡號",
                             prefixIcon: Padding(
                               padding: const EdgeInsets.symmetric(
                                   vertical: defaultPadding * 0.75),
@@ -83,7 +83,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
                               vertical: defaultPadding),
                           child: TextFormField(
                             decoration: InputDecoration(
-                              hintText: "Full name",
+                              hintText: "持卡人姓名",
                               prefixIcon: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: defaultPadding * 0.75),
@@ -116,7 +116,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
                                   LengthLimitingTextInputFormatter(4),
                                 ],
                                 decoration: InputDecoration(
-                                  hintText: "CVV",
+                                  hintText: "安全碼",
                                   prefixIcon: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: defaultPadding * 0.75),
@@ -152,7 +152,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
                                   LengthLimitingTextInputFormatter(4),
                                 ],
                                 decoration: InputDecoration(
-                                  hintText: "Expiry date",
+                                  hintText: "有效期限",
                                   prefixIcon: Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: defaultPadding * 0.75),
@@ -180,7 +180,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
               ),
               ElevatedButton(
                 onPressed: () {},
-                child: const Text("Add card"),
+                child: const Text("新增卡片"),
               )
             ],
           ),
@@ -191,8 +191,8 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
 }
 
 class Strings {
-  static const String appName = 'Payment Card Demo';
-  static const String fieldReq = 'This field is required';
-  static const String numberIsInvalid = 'Card is invalid';
-  static const String pay = 'Validate';
+  static const String appName = '付款卡片示範';
+  static const String fieldReq = '此欄位為必填';
+  static const String numberIsInvalid = '卡片無效';
+  static const String pay = '驗證';
 }

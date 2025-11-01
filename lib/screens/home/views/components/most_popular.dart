@@ -19,7 +19,7 @@ class MostPopular extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(defaultPadding),
           child: Text(
-            "Most popular",
+            "最受歡迎",
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),

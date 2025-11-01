@@ -42,14 +42,14 @@ class _SignUpFormState extends State<SignUpForm> {
             },
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "Please enter your name";
+                return "請輸入您的姓名";
               }
               return null;
             },
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.name,
             decoration: InputDecoration(
-              hintText: "Full name",
+              hintText: "全名",
               prefixIcon: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: defaultPadding * 0.75),
@@ -80,7 +80,7 @@ class _SignUpFormState extends State<SignUpForm> {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
-              hintText: "Email address",
+              hintText: "電子郵件地址",
               prefixIcon: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: defaultPadding * 0.75),
@@ -116,7 +116,7 @@ class _SignUpFormState extends State<SignUpForm> {
             obscureText: _obscurePassword,
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(
-              hintText: "Password",
+              hintText: "密碼",
               prefixIcon: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: defaultPadding * 0.75),
@@ -160,17 +160,17 @@ class _SignUpFormState extends State<SignUpForm> {
             },
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "Please confirm your password";
+                return "請確認您的密碼";
               }
               if (value != _password) {
-                return "Passwords do not match";
+                return "密碼不符合";
               }
               return null;
             },
             obscureText: _obscurePasswordConfirmation,
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
-              hintText: "Confirm password",
+              hintText: "確認密碼",
               prefixIcon: Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: defaultPadding * 0.75),

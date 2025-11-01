@@ -38,7 +38,7 @@ class CardUtils {
     }
 
     if (value.length < 3 || value.length > 4) {
-      return "CVV is invalid";
+      return "安全碼無效";
     }
     return null;
   }
@@ -66,18 +66,18 @@ class CardUtils {
 
     if ((month < 1) || (month > 12)) {
       // A valid month is between 1 (January) and 12 (December)
-      return 'Expiry month is invalid';
+      return '有效期限月份無效';
     }
 
     var fourDigitsYear = convertYearTo4Digits(year);
     if ((fourDigitsYear < 1) || (fourDigitsYear > 2099)) {
       // We are assuming a valid should be between 1 and 2099.
       // Note that, it's valid doesn't mean that it has not expired.
-      return 'Expiry year is invalid';
+      return '有效期限年份無效';
     }
 
     if (!hasDateExpired(month, year)) {
-      return "Card has expired";
+      return "卡片已過期";
     }
     return null;
   }

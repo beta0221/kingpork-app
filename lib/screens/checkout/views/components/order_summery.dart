@@ -26,17 +26,17 @@ class OrderSummary extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Order Summary",
+            "訂單摘要",
             style: Theme.of(context).textTheme.titleSmall,
           ),
           const SizedBox(height: defaultPadding),
           OrderSummaryText(
-            leadingText: "Order number",
+            leadingText: "訂單編號",
             trilingText: "#$orderId",
           ),
           const SizedBox(height: defaultPadding / 2),
           OrderSummaryText(
-            leadingText: "Amount paid",
+            leadingText: "付款金額",
             trilingText: "\$${amount.toStringAsFixed(2)}",
             trilingTextColor: successColor,
           ),

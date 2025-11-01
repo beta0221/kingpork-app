@@ -58,7 +58,7 @@ class UserImageUpload extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {},
-          child: const Text("Upload Image"),
+          child: const Text("上傳圖片"),
         )
       ],
     );

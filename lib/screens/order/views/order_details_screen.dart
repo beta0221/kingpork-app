@@ -17,7 +17,7 @@ class OrderDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Order detail"),
+        title: const Text("訂單詳情"),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -46,7 +46,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Delivery address",
+                            "配送地址",
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
                           const SizedBox(height: defaultPadding / 2),
@@ -59,12 +59,12 @@ class OrderDetailsScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            "Estimated time",
+                            "預計送達時間",
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
                           const SizedBox(height: defaultPadding / 2),
                           const Text(
-                            "Today \n9 AM to 10 AM",
+                            "今天 \n上午 9 點到 10 點",
                             textAlign: TextAlign.end,
                           )
                         ],
@@ -77,7 +77,7 @@ class OrderDetailsScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(defaultPadding),
                 child: Text(
-                  "Products",
+                  "商品",
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
@@ -106,7 +106,7 @@ class OrderDetailsScreen extends StatelessWidget {
               const Divider(height: 1),
               ProfileMenuListTile(
                 svgSrc: "assets/icons/Delivery.svg",
-                text: "View shipment",
+                text: "查看貨運",
                 press: () {},
               ),
               const Padding(
@@ -129,7 +129,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     Navigator.pushNamed(context, cancleOrderScreenRoute);
                   },
                   child: Text(
-                    "Cancel order",
+                    "取消訂單",
                     style: TextStyle(
                         color: Theme.of(context).textTheme.bodyLarge!.color!),
                   ),

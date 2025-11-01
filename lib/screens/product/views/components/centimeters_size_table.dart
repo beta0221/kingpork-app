@@ -23,17 +23,17 @@ class CentimetersSizeTable extends StatelessWidget {
             DataColumn(
                 label: Expanded(
               child: Text(
-                'General Size',
+                '通用尺寸',
                 maxLines: 2,
               ),
             )),
             DataColumn(
                 label: Expanded(
-              child: Text('US Hat size'),
+              child: Text('美國帽子尺寸'),
             )),
             DataColumn(
               label: Expanded(
-                child: Text('Head Measurement'),
+                child: Text('頭圍測量'),
               ),
             ),
           ],

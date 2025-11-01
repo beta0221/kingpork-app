@@ -16,7 +16,7 @@ class BrandSearchForm extends StatelessWidget {
           return null;
         },
         decoration: InputDecoration(
-          hintText: "Find something...",
+          hintText: "搜尋品牌...",
           filled: false,
           border: secodaryOutlineInputBorder(context),
           enabledBorder: secodaryOutlineInputBorder(context),
