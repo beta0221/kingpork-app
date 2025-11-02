@@ -48,18 +48,18 @@ class AddressesScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: defaultPadding),
               child: AddressCard(
-                title: "My home",
+                title: "住家",
                 address:
-                    "Sophi Nowakowska, Zabiniec 12/222, 31-215 Cracow, Poland",
-                pnNumber: "+79 123 456 789",
+                    "台北市中山區XX路123號",
+                pnNumber: "+886 923 536 999",
                 isActive: true,
                 press: () {},
               ),
             ),
             AddressCard(
-              title: "Office",
-              address: "Rio Nowakowska, Zabiniec 12/222, 31-215 Cracow, Poland",
-              pnNumber: "+79 123 456 789",
+              title: "公司",
+              address: "台中市烏日區XX路666號",
+              pnNumber: "+886 123 456 789",
               press: () {},
             ),
           ],

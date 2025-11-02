@@ -41,7 +41,7 @@ class UseCurrentLocationCard extends StatelessWidget {
           subtitle: Padding(
             padding: const EdgeInsets.only(top: defaultPadding / 2),
             child: Text(
-              "John Nowakowska, Zabiniec",
+              "高雄市苓雅區XX路123號",
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.bodySmall,
