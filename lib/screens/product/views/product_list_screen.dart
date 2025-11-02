@@ -7,6 +7,7 @@ import 'package:tklab_ec_v2/route/route_constants.dart';
 import 'package:tklab_ec_v2/screens/on_sale/views/on_sale_screen.dart';
 import 'package:tklab_ec_v2/screens/product/views/components/product_grid_card.dart';
 import 'package:tklab_ec_v2/screens/product/views/components/quick_category_icons.dart';
+import 'package:tklab_ec_v2/services/api/api_endpoints.dart';
 
 import '../../../constants.dart';
 
@@ -197,7 +198,7 @@ class _ProductListScreenState extends State<ProductListScreen>
 
         return TkWebView(
           htmlContent: htmlContent,
-          htmlBaseUrl: null,
+          htmlBaseUrl: ApiEndpoints.baseUrl,
           showLoading: true,
           loadingMessage: '載入中...',
           enableJavaScript: true,
