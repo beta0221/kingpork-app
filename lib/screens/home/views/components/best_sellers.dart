@@ -38,14 +38,14 @@ class BestSellers extends StatelessWidget {
                     ? defaultPadding
                     : 0,
               ),
-              child: ProductCard(
-                image: demoBestSellersProducts[index].image,
-                brandName: demoBestSellersProducts[index].brandName,
-                title: demoBestSellersProducts[index].title,
-                price: demoBestSellersProducts[index].price,
+              child:  ProductCard(
+                image: "https://img.tklab.com.tw/uploads/product/202509/9288_19ea3a04a727bedd4e217c4a69af19367a57742b_m.webp",
+                brandName: "TKLab",
+                title: "膠原蛋白粉",
+                price: 100,
                 priceAfetDiscount:
-                    demoBestSellersProducts[index].priceAfetDiscount,
-                dicountpercent: demoBestSellersProducts[index].dicountpercent,
+                    80,
+                dicountpercent: 20,
                 press: () {
                   Navigator.pushNamed(context, productDetailsScreenRoute,
                       arguments: index.isEven);

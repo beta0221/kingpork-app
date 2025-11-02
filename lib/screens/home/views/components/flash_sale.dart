@@ -47,13 +47,13 @@ class FlashSale extends StatelessWidget {
                     : 0,
               ),
               child: ProductCard(
-                image: demoFlashSaleProducts[index].image,
-                brandName: demoFlashSaleProducts[index].brandName,
-                title: demoFlashSaleProducts[index].title,
-                price: demoFlashSaleProducts[index].price,
+                image: "https://img.tklab.com.tw/uploads/product/202509/9288_19ea3a04a727bedd4e217c4a69af19367a57742b_m.webp",
+                brandName: "TKLab",
+                title: "膠原蛋白粉",
+                price: 100,
                 priceAfetDiscount:
-                    demoFlashSaleProducts[index].priceAfetDiscount,
-                dicountpercent: demoFlashSaleProducts[index].dicountpercent,
+                    80,
+                dicountpercent: 20,
                 press: () {
                   Navigator.pushNamed(context, productDetailsScreenRoute,
                       arguments: index.isEven);

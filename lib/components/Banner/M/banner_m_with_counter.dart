@@ -10,7 +10,7 @@ import 'banner_m.dart';
 class BannerMWithCounter extends StatefulWidget {
   const BannerMWithCounter({
     super.key,
-    this.image = "https://i.imgur.com/pRgcbpS.png",
+    this.image = "https://i.ytimg.com/vi/N0d-IVRiL3o/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGHIgWigxMA8=&rs=AOn4CLAa5GLgnTEzvHXrIFVhpKDWfrRSOg",
     required this.text,
     required this.duration,
     required this.press,
