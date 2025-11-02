@@ -4,6 +4,7 @@ import 'package:tklab_ec_v2/components/Banner/L/banner_l_style_1.dart';
 import 'package:tklab_ec_v2/components/webview/tk_webview.dart';
 import 'package:tklab_ec_v2/models/product_model.dart';
 import 'package:tklab_ec_v2/route/route_constants.dart';
+import 'package:tklab_ec_v2/screens/on_sale/views/on_sale_screen.dart';
 import 'package:tklab_ec_v2/screens/product/views/components/product_grid_card.dart';
 import 'package:tklab_ec_v2/screens/product/views/components/quick_category_icons.dart';
 
@@ -86,7 +87,7 @@ class _ProductListScreenState extends State<ProductListScreen>
             children: [
               _buildTabContent("優惠"),
               _buildTestWebViewContent(),
-              _buildTabContent("保健"), // 使用 WebView
+              const OnSaleScreen(), // 使用 OnSaleScreen
               _buildTestWebViewContent(),
               _buildTabContent("面膜")
             ],
@@ -113,7 +114,7 @@ class _ProductListScreenState extends State<ProductListScreen>
           child: AspectRatio(
             aspectRatio: 2 / 1,
             child: BannerLStyle1(
-              image: "https://i.imgur.com/5hofImS.png",
+              image: "https://i.ytimg.com/vi/kTHkf_rapiE/maxresdefault.jpg?sqp=-oaymwEmCIAKENAF8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLA3jy5V_AGYfrbN2ZRzdWKjUeJkMQ",
               title: "雙11特賣",
               subtitle: "NEW ARRIVAL",
               discountPercent: 11,
