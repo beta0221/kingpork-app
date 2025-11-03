@@ -24,7 +24,7 @@ class OrderProcessingScreen extends StatelessWidget {
                 Navigator.pushNamed(context, orderDetailsScreenRoute);
               },
               orderId: "FDS6398220",
-              placedOn: "Jun 10, 2021",
+              placedOn: "2021-07-10",
               orderStatus: OrderProcessStatus.done,
               processingStatus: OrderProcessStatus.processing,
               packedStatus: OrderProcessStatus.notDoneYeat,

@@ -71,7 +71,7 @@ class OrderStatusCard extends StatelessWidget {
                           ),
                           const SizedBox(height: defaultPadding / 2),
                           Text(
-                            "Placed on $placedOn",
+                            "成立時間： $placedOn",
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
                         ],

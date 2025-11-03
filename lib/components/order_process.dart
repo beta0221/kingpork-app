@@ -27,7 +27,7 @@ class OrderProgress extends StatelessWidget {
         Expanded(
           child: ProcessDotWithLine(
             isShowLeftLine: false,
-            title: "Ordered",
+            title: "訂購",
             status: orderStatus,
             nextStatus: processingStatus,
           ),
@@ -35,14 +35,14 @@ class OrderProgress extends StatelessWidget {
         Expanded(
           child: ProcessDotWithLine(
             isActive: processingStatus == OrderProcessStatus.processing,
-            title: "Processing",
+            title: "處理中",
             status: processingStatus,
             nextStatus: packedStatus,
           ),
         ),
         Expanded(
           child: ProcessDotWithLine(
-            title: "Packed",
+            title: "待出貨",
             status: packedStatus,
             nextStatus: shippedStatus,
             isActive: packedStatus == OrderProcessStatus.processing,
@@ -50,7 +50,7 @@ class OrderProgress extends StatelessWidget {
         ),
         Expanded(
           child: ProcessDotWithLine(
-            title: "Shipped",
+            title: "運送中",
             status: shippedStatus,
             nextStatus: isCanceled ? OrderProcessStatus.error : deliveredStatus,
             isActive: shippedStatus == OrderProcessStatus.processing,
@@ -59,7 +59,7 @@ class OrderProgress extends StatelessWidget {
         isCanceled
             ? const Expanded(
                 child: ProcessDotWithLine(
-                  title: "Canceled",
+                  title: "已取消",
                   status: OrderProcessStatus.canceled,
                   isShowRightLine: false,
                   isActive: true,
@@ -67,7 +67,7 @@ class OrderProgress extends StatelessWidget {
               )
             : Expanded(
                 child: ProcessDotWithLine(
-                  title: "Delivered",
+                  title: "已送達",
                   status: deliveredStatus,
                   isShowRightLine: false,
                   isActive: deliveredStatus == OrderProcessStatus.done,
