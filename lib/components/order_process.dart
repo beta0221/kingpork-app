@@ -35,14 +35,14 @@ class OrderProgress extends StatelessWidget {
         Expanded(
           child: ProcessDotWithLine(
             isActive: processingStatus == OrderProcessStatus.processing,
-            title: "處理中",
+            title: "待出貨",
             status: processingStatus,
             nextStatus: packedStatus,
           ),
         ),
         Expanded(
           child: ProcessDotWithLine(
-            title: "待出貨",
+            title: "已出貨",
             status: packedStatus,
             nextStatus: shippedStatus,
             isActive: packedStatus == OrderProcessStatus.processing,
@@ -50,7 +50,7 @@ class OrderProgress extends StatelessWidget {
         ),
         Expanded(
           child: ProcessDotWithLine(
-            title: "運送中",
+            title: "已完成",
             status: shippedStatus,
             nextStatus: isCanceled ? OrderProcessStatus.error : deliveredStatus,
             isActive: shippedStatus == OrderProcessStatus.processing,

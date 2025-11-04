@@ -115,8 +115,8 @@ class _EntryPointState extends State<EntryPoint> {
           unselectedItemColor: Colors.grey,
           items: [
             BottomNavigationBarItem(
-              icon: svgIcon("assets/icons/Shop.svg"),
-              activeIcon: svgIcon("assets/icons/Shop.svg", color: primaryColor),
+              icon: svgIcon("assets/icons/Stores.svg"),
+              activeIcon: svgIcon("assets/icons/Stores.svg", color: primaryColor),
               label: "首頁",
             ),
             BottomNavigationBarItem(

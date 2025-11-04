@@ -85,7 +85,7 @@ class ProductDetailsScreen extends StatelessWidget {
             ),
             ProductListTile(
               svgSrc: "assets/icons/Delivery.svg",
-              title: "配送方式",
+              title: "送貨與付款方式",
               press: () {
                 customModalBottomSheet(
                   context,

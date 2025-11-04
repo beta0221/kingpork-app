@@ -72,30 +72,30 @@ class ProfileScreen extends StatelessWidget {
               Navigator.pushNamed(context, ordersScreenRoute);
             },
           ),
-          ProfileMenuListTile(
-            text: "退貨",
-            svgSrc: "assets/icons/Return.svg",
-            press: () {},
-          ),
+          // ProfileMenuListTile(
+          //   text: "退貨",
+          //   svgSrc: "assets/icons/Return.svg",
+          //   press: () {},
+          // ),
           ProfileMenuListTile(
             text: "願望清單",
             svgSrc: "assets/icons/Wishlist.svg",
             press: () {},
           ),
           ProfileMenuListTile(
-            text: "地址",
+            text: "設定收件地址",
             svgSrc: "assets/icons/Address.svg",
             press: () {
               Navigator.pushNamed(context, addressesScreenRoute);
             },
           ),
-          ProfileMenuListTile(
-            text: "付款方式",
-            svgSrc: "assets/icons/card.svg",
-            press: () {
-              Navigator.pushNamed(context, emptyPaymentScreenRoute);
-            },
-          ),
+          // ProfileMenuListTile(
+          //   text: "付款方式",
+          //   svgSrc: "assets/icons/card.svg",
+          //   press: () {
+          //     Navigator.pushNamed(context, emptyPaymentScreenRoute);
+          //   },
+          // ),
           ProfileMenuListTile(
             text: "錢包",
             svgSrc: "assets/icons/Wallet.svg",
@@ -132,20 +132,25 @@ class ProfileScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
                 horizontal: defaultPadding, vertical: defaultPadding / 2),
             child: Text(
-              "設定",
+              "更多服務",
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
           ProfileMenuListTile(
-            text: "語言",
-            svgSrc: "assets/icons/Language.svg",
+            text: "海外購物須知",
+            svgSrc: "assets/icons/info.svg",
             press: () {
               Navigator.pushNamed(context, selectLanguageScreenRoute);
             },
           ),
           ProfileMenuListTile(
-            text: "位置",
-            svgSrc: "assets/icons/Location.svg",
+            text: "付款貨運說明",
+            svgSrc: "assets/icons/info.svg",
+            press: () {},
+          ),
+          ProfileMenuListTile(
+            text: "退貨相關",
+            svgSrc: "assets/icons/info.svg",
             press: () {},
           ),
           const SizedBox(height: defaultPadding),
@@ -167,6 +172,12 @@ class ProfileScreen extends StatelessWidget {
           ProfileMenuListTile(
             text: "常見問題",
             svgSrc: "assets/icons/FAQ.svg",
+            press: () {},
+            isShowDivider: false,
+          ),
+          ProfileMenuListTile(
+            text: "申請刪除帳號",
+            svgSrc: "assets/icons/Danger Circle.svg",
             press: () {},
             isShowDivider: false,
           ),

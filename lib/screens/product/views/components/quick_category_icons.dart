@@ -24,32 +24,32 @@ final List<QuickCategoryModel> demoQuickCategories = [
     backgroundColor: const Color(0xFFF5F5F5),
   ),
   QuickCategoryModel(
-    name: "主播賣貨\n精選",
+    name: "鍾明軒推薦\n精選",
     icon: Icons.storefront,
     backgroundColor: const Color(0xFFFFE5E5),
   ),
   QuickCategoryModel(
-    name: "雜貨NO.1\n買愈 AGE→青",
+    name: "美容大王\n大S代言",
     icon: Icons.stars_rounded,
     backgroundColor: const Color(0xFFFFF4E5),
   ),
   QuickCategoryModel(
-    name: "雙條賣真\n心上酒",
+    name: "謝佳見\nTKLAB酒神飲",
     icon: Icons.local_offer,
     backgroundColor: const Color(0xFFE5F5FF),
   ),
   QuickCategoryModel(
-    name: "PORN系列\n(雙週簽到)",
+    name: "國際巨星小S\n膠原蛋白飲",
     icon: Icons.card_giftcard,
     backgroundColor: const Color(0xFFFFE5F5),
   ),
   QuickCategoryModel(
-    name: "EXO-S\nCICA系列",
+    name: "王子代言\n亮白面膜",
     icon: Icons.favorite,
     backgroundColor: const Color(0xFFE5FFE5),
   ),
   QuickCategoryModel(
-    name: "RED\n(消費)",
+    name: "語安輕仙\n酵素飲",
     icon: Icons.shopping_bag,
     backgroundColor: const Color(0xFFFFE5E5),
   ),

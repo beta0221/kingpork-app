@@ -52,11 +52,11 @@ class OrderSummaryCard extends StatelessWidget {
             leadingText: "總計 (含稅)",
             trilingText: "\$$totalWithVat",
           ),
-          const SizedBox(height: defaultPadding / 2),
-          OrderSummaryText(
-            leadingText: "預估稅額",
-            trilingText: "\$$vat",
-          ),
+          // const SizedBox(height: defaultPadding / 2),
+          // OrderSummaryText(
+          //   leadingText: "預估稅額",
+          //   trilingText: "\$$vat",
+          // ),
         ],
       ),
     );
