@@ -10,9 +10,9 @@ class SearchSuggestions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const List<String> demoSuggestion = [
-      "White Shirt",
-      "Gary Shirt",
-      "Yellow Top &  short"
+      "膠原蛋白飲",
+      "保濕精華液",
+      "解酒神飲"
     ];
     return Column(
       children: List.generate(

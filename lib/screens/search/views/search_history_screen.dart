@@ -9,11 +9,9 @@ class SearchHistoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const List<String> demoRecentSearch = [
-      "White Shirt",
-      "Blue short",
-      "Red shirt",
-      "Gray Dress",
-      "Yellow Top &  short"
+      "膠原蛋白飲",
+      "保濕精華液",
+      "解酒神飲"
     ];
     return Scaffold(
       appBar: AppBar(
@@ -31,7 +29,7 @@ class SearchHistoryScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Today - Saturday (2022 March 29)",
+              "今日  2022-03-29",
               style: Theme.of(context).textTheme.titleSmall,
             ),
             ...List.generate(
@@ -44,7 +42,7 @@ class SearchHistoryScreen extends StatelessWidget {
             ),
             const SizedBox(height: defaultPadding * 1.5),
             Text(
-              "Yesterday - Saturday, 2021 March 28",
+              "昨日  2021-03-28",
               style: Theme.of(context).textTheme.titleSmall,
             ),
             ...List.generate(

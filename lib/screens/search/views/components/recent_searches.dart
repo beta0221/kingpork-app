@@ -12,11 +12,9 @@ class RecentSearches extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const List<String> demoRecentSearch = [
-      "White Shirt",
-      "Blue short",
-      "Red shirt",
-      "Gray Dress",
-      "Yellow Top &  short"
+      "膠原蛋白飲",
+      "保濕精華液",
+      "解酒神飲"
     ];
     return Column(
       children: [

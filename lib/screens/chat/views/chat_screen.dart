@@ -45,7 +45,7 @@ class ChatScreen extends StatelessWidget {
               child: ListView(
                 children: const [
                   TextMessage(
-                    message: "Hi there!",
+                    message: "Hi 你好!",
                     time: "15:37",
                     isSender: true,
                     isSent: true,
@@ -53,13 +53,13 @@ class ChatScreen extends StatelessWidget {
                   ),
                   TextMessage(
                     message:
-                        "Howdy, is there something we can help you with today?",
+                        "你好，很高興為您服務，有什麼我能幫你的嗎?",
                     time: "15:38",
                     isSender: false,
                     isSent: false,
                   ),
                   TextMessage(
-                    message: "I need some assistance.",
+                    message: "我需要一些幫助.",
                     time: "15:43",
                     isSender: true,
                     isSent: true,
@@ -67,7 +67,7 @@ class ChatScreen extends StatelessWidget {
                     isShowTime: false,
                   ),
                   TextMessage(
-                    message: "Help me choose the best plan.",
+                    message: "無法做決定.",
                     time: "15:43",
                     isSender: true,
                     isSent: true,
