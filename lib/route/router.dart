@@ -235,6 +235,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const CartScreen(),
       );
+    case orderConfirmationScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) => const OrderConfirmationScreen(),
+      );
     case paymentMethodScreenRoute:
       return MaterialPageRoute(
         builder: (context) => const PaymentMethodScreen(),

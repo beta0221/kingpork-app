@@ -6,6 +6,7 @@ import 'package:tklab_ec_v2/theme/app_theme.dart';
 import 'package:tklab_ec_v2/config/flavor_config.dart';
 import 'package:tklab_ec_v2/viewmodels/home_view_model.dart';
 import 'package:tklab_ec_v2/viewmodels/member_view_model.dart';
+import 'package:tklab_ec_v2/viewmodels/order_confirmation_view_model.dart';
 
 /// 預設入口點（用於開發時快速測試）
 /// 正式使用時應該使用 main_dev.dart, main_uat.dart, main_prod.dart
@@ -25,6 +26,7 @@ void runMainApp() {
       providers: [
         ChangeNotifierProvider(create: (_) => HomeViewModel()),
         ChangeNotifierProvider(create: (_) => MemberViewModel()),
+        ChangeNotifierProvider(create: (_) => OrderConfirmationViewModel()),
       ],
       child: const MyApp(),
     ),

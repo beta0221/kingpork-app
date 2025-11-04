@@ -34,6 +34,7 @@ export '/screens/address/views/addresses_screen.dart';
 export '/screens/address/views/no_address_screen.dart';
 export '/screens/chat/views/chat_screen.dart';
 export '/screens/checkout/views/cart_screen.dart';
+export '/screens/checkout/views/order_confirmation_screen.dart';
 export '/screens/checkout/views/payment_method_screen.dart';
 export '/screens/notification/view/enable_notification_screen.dart';
 export '/screens/notification/view/no_notification_screen.dart';
