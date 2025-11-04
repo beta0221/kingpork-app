@@ -18,15 +18,15 @@ class OnSaleScreen extends StatelessWidget {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            const SliverAppBar(
-              floating: true,
-              title: Text("特價中"),
-              actions: [
-                ShoppingBag(
-                  numOfItem: 3,
-                ),
-              ],
-            ),
+            // const SliverAppBar(
+            //   floating: true,
+            //   title: Text("特價中"),
+            //   actions: [
+            //     ShoppingBag(
+            //       numOfItem: 3,
+            //     ),
+            //   ],
+            // ),
             SliverToBoxAdapter(
               child: BannerLStyle1(
                 image: "https://i.ytimg.com/vi/1AUhrQwoQtU/maxresdefault.jpg",

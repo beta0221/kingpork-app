@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:tklab_ec_v2/components/list_tile/divider_list_tile.dart';
-import 'package:tklab_ec_v2/components/network_image_with_loader.dart';
 import 'package:tklab_ec_v2/constants.dart';
 import 'package:tklab_ec_v2/route/screen_export.dart';
 import 'package:tklab_ec_v2/viewmodels/member_view_model.dart';
 
 import 'components/profile_card.dart';
 import 'components/profile_menu_item_list_tile.dart';
+import 'components/rewards_card.dart';
+import 'components/membership_level_card.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -44,18 +45,14 @@ class ProfileScreen extends StatelessWidget {
               },
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(
-          //       horizontal: defaultPadding, vertical: defaultPadding * 1.5),
-          //   child: GestureDetector(
-          //     onTap: () {},
-          //     child: const AspectRatio(
-          //       aspectRatio: 1.8,
-          //       child:
-          //           NetworkImageWithLoader("https://i.imgur.com/dz0BBom.png"),
-          //     ),
-          //   ),
-          // ),
+
+          // Rewards Card (TK幣 & 現金券)
+          const RewardsCard(),
+
+          // Membership Level Card
+          const MembershipLevelCard(),
+
+          const SizedBox(height: defaultPadding / 2),
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
