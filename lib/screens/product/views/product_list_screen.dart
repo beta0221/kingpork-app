@@ -25,7 +25,7 @@ class _ProductListScreenState extends State<ProductListScreen>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 5, vsync: this);
+    _tabController = TabController(length: 7, vsync: this);
   }
 
   @override
@@ -43,7 +43,7 @@ class _ProductListScreenState extends State<ProductListScreen>
             return [
               // TabBar Header
               SliverAppBar(
-                pinned: true,
+                pinned: false,
                 toolbarHeight: 0,
                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 elevation: 0,
@@ -54,7 +54,8 @@ class _ProductListScreenState extends State<ProductListScreen>
                     children: [
                       TabBar(
                         controller: _tabController,
-                        isScrollable: false,
+                        isScrollable: true,
+                        tabAlignment: TabAlignment.start,
                         labelColor: Theme.of(context).brightness == Brightness.light
                             ? blackColor
                             : whiteColor,
@@ -70,11 +71,13 @@ class _ProductListScreenState extends State<ProductListScreen>
                         indicatorColor: errorColor,
                         indicatorWeight: 2,
                         tabs: const [
+                          Tab(text: "首頁"),
                           Tab(text: "優惠"),
                           Tab(text: "保養"),
                           Tab(text: "保健"),
                           Tab(text: "彩妝"),
                           Tab(text: "面膜"),
+                          Tab(text: "限時優惠"),
                         ],
                       ),
                     ],
@@ -86,11 +89,13 @@ class _ProductListScreenState extends State<ProductListScreen>
           body: TabBarView(
             controller: _tabController,
             children: [
-              _buildTabContent("優惠"),
               _buildTestWebViewContent(),
-              const OnSaleScreen(), // 使用 OnSaleScreen
-              _buildTestWebViewContent(),
-              _buildTabContent("面膜")
+              _buildTabContent(""),
+              _buildTabContent(""),
+              _buildTabContent(""),
+              _buildTabContent(""),
+              _buildTabContent(""),
+              const OnSaleScreen(),
             ],
           ),
         ),
