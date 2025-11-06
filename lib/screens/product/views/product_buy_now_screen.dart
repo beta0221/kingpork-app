@@ -94,22 +94,22 @@ class ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                   ),
                 ),
                 const SliverToBoxAdapter(child: Divider()),
-                SliverToBoxAdapter(
-                  child: SelectedColors(
-                    colors: const [
-                      Color(0xFFEA6262),
-                      Color(0xFFB1CC63),
-                      Color(0xFFFFBF5F),
-                      Color(0xFF9FE1DD),
-                      Color(0xFFC482DB),
-                    ],
-                    selectedColorIndex: 2,
-                    press: (value) {},
-                  ),
-                ),
+                // SliverToBoxAdapter(
+                //   child: SelectedColors(
+                //     colors: const [
+                //       Color(0xFFEA6262),
+                //       Color(0xFFB1CC63),
+                //       Color(0xFFFFBF5F),
+                //       Color(0xFF9FE1DD),
+                //       Color(0xFFC482DB),
+                //     ],
+                //     selectedColorIndex: 2,
+                //     press: (value) {},
+                //   ),
+                // ),
                 SliverToBoxAdapter(
                   child: SelectedSize(
-                    sizes: const ["S", "M", "L", "XL", "XXL"],
+                    sizes: const ["03透亮紫(+送小銀管00透明保濕)", "03透亮紫(+送小銀管01淡粉)"],
                     selectedIndex: 1,
                     press: (value) {},
                   ),

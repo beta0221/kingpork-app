@@ -18,29 +18,32 @@ class SelectedSize extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: defaultPadding),
         Padding(
           padding: const EdgeInsets.all(defaultPadding),
           child: Text(
-            "選擇尺寸",
+            "選擇規格/容量",
             style: Theme.of(context).textTheme.titleSmall,
           ),
         ),
-        Row(
-          children: List.generate(
-            sizes.length,
-            (index) => Padding(
-              padding: EdgeInsets.only(
-                  left: index == 0 ? defaultPadding : defaultPadding / 2),
-              child: SizeButton(
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+          child: Wrap(
+            spacing: defaultPadding / 2,
+            runSpacing: defaultPadding / 2,
+            children: List.generate(
+              sizes.length,
+              (index) => SizeButton(
                 text: sizes[index],
                 isActive: selectedIndex == index,
                 press: () => press(index),
               ),
             ),
           ),
-        )
+        ),
+        const SizedBox(height: defaultPadding / 2),
       ],
     );
   }
@@ -60,22 +63,24 @@ class SizeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
-      width: 40,
-      child: OutlinedButton(
-        onPressed: press,
-        style: OutlinedButton.styleFrom(
-          padding: EdgeInsets.zero,
-          shape: const CircleBorder(),
-          side: isActive ? const BorderSide(color: primaryColor) : null,
+    return OutlinedButton(
+      onPressed: press,
+      style: OutlinedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
         ),
-        child: Text(
-          text.toUpperCase(),
-          style: TextStyle(
-              color: isActive
-                  ? primaryColor
-                  : Theme.of(context).textTheme.bodyLarge!.color),
+        side: isActive
+            ? const BorderSide(color: primaryColor, width: 1.5)
+            : BorderSide(color: Theme.of(context).dividerColor),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 13,
+          color: isActive
+              ? primaryColor
+              : Theme.of(context).textTheme.bodyLarge?.color ?? Colors.black,
         ),
       ),
     );
