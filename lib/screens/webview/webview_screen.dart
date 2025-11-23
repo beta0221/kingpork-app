@@ -10,11 +10,19 @@ class WebViewScreen extends StatefulWidget {
   final String? title;
   final bool showAppBar;
 
+  /// 自訂 AppBar actions（顯示在右邊）
+  final List<Widget>? actions;
+
+  /// 是否顯示重新整理按鈕（預設 true）
+  final bool showRefreshButton;
+
   const WebViewScreen({
     super.key,
     required this.url,
     this.title,
     this.showAppBar = true,
+    this.actions,
+    this.showRefreshButton = true,
   });
 
   @override
@@ -118,12 +126,16 @@ class _WebViewScreenState extends State<WebViewScreen> {
             ? AppBar(
                 title: Text(_pageTitle ?? widget.title ?? '網頁檢視'),
                 actions: [
-                  IconButton(
-                    icon: const Icon(Icons.refresh),
-                    onPressed: () {
-                      _controller.reload();
-                    },
-                  ),
+                  // 自訂 actions
+                  if (widget.actions != null) ...widget.actions!,
+                  // 重新整理按鈕
+                  if (widget.showRefreshButton)
+                    IconButton(
+                      icon: const Icon(Icons.refresh),
+                      onPressed: () {
+                        _controller.reload();
+                      },
+                    ),
                 ],
               )
             : null,

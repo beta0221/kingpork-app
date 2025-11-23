@@ -13,31 +13,45 @@ class EntryPoint extends StatefulWidget {
 }
 
 class _EntryPointState extends State<EntryPoint> {
+  // 移除 BookmarkScreen，改為 4 個頁面
   final List _pages = const [
     ProductListScreen(),
-    // HomeScreen(),
     DiscoverScreen(),
-    BookmarkScreen(),
-    // EmptyCartScreen(), // if Cart is empty
     CartScreen(),
     ProfileScreen(),
   ];
   int _currentIndex = 0;
 
+  void _openCustomerService() {
+    Navigator.pushNamed(
+      context,
+      webViewScreenRoute,
+      arguments: {
+        'url': '/customer-service',
+        'title': '客服中心',
+        'showRefreshButton': false,
+        'actions': <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: Center(
+              child: Text(
+                '服務時間\n平日09:30 ~ 20:30\n假日13:00 ~ 17:00',
+                style: TextStyle(
+                  fontSize: 10,
+                  color: Colors.grey[600],
+                  height: 1.3,
+                ),
+                textAlign: TextAlign.right,
+              ),
+            ),
+          ),
+        ],
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    SvgPicture svgIcon(String src, {Color? color}) {
-      return SvgPicture.asset(
-        src,
-        height: 24,
-        colorFilter: ColorFilter.mode(
-            color ??
-                Theme.of(context).iconTheme.color!.withValues(alpha:
-                    Theme.of(context).brightness == Brightness.dark ? 0.3 : 1),
-            BlendMode.srcIn),
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
         // pinned: true,
@@ -91,56 +105,91 @@ class _EntryPointState extends State<EntryPoint> {
         },
         child: _pages[_currentIndex],
       ),
-      bottomNavigationBar: Container(
-        padding: const EdgeInsets.only(top: defaultPadding / 2),
+      floatingActionButton: SizedBox(
+        width: 56,
+        height: 56,
+        child: FloatingActionButton(
+          onPressed: _openCustomerService,
+          backgroundColor: primaryColor,
+          elevation: 4,
+          shape: const CircleBorder(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                "assets/icons/Chat.svg",
+                height: 20,
+                colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+              ),
+              const SizedBox(height: 2),
+              const Text(
+                '客服',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        padding: const EdgeInsets.symmetric(horizontal: 0),
+        height: 60,
         color: Theme.of(context).brightness == Brightness.light
             ? Colors.white
             : const Color(0xFF101015),
-        child: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (index) {
-            if (index != _currentIndex) {
-              setState(() {
-                _currentIndex = index;
-              });
-            }
-          },
-          backgroundColor: Theme.of(context).brightness == Brightness.light
-              ? Colors.white
-              : const Color(0xFF101015),
-          type: BottomNavigationBarType.fixed,
-          // selectedLabelStyle: TextStyle(color: primaryColor),
-          selectedFontSize: 12,
-          selectedItemColor: primaryColor,
-          unselectedItemColor: Colors.grey,
-          items: [
-            BottomNavigationBarItem(
-              icon: svgIcon("assets/icons/Stores.svg"),
-              activeIcon: svgIcon("assets/icons/Stores.svg", color: primaryColor),
-              label: "首頁",
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 8,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            // 左邊兩個按鈕
+            _buildNavItem(0, "assets/icons/Stores.svg", "首頁"),
+            _buildNavItem(1, "assets/icons/Category.svg", "分類"),
+            // 中間空間給 FAB
+            const SizedBox(width: 56),
+            // 右邊兩個按鈕
+            _buildNavItem(2, "assets/icons/Bag.svg", "購物車"),
+            _buildNavItem(3, "assets/icons/Profile.svg", "我的"),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavItem(int index, String iconPath, String label) {
+    final isSelected = _currentIndex == index;
+    final color = isSelected ? primaryColor : Colors.grey;
+
+    return InkWell(
+      onTap: () {
+        if (_currentIndex != index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        }
+      },
+      child: SizedBox(
+        width: 60,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              iconPath,
+              height: 24,
+              colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
             ),
-            BottomNavigationBarItem(
-              icon: svgIcon("assets/icons/Category.svg"),
-              activeIcon:
-                  svgIcon("assets/icons/Category.svg", color: primaryColor),
-              label: "分類",
-            ),
-            BottomNavigationBarItem(
-              icon: svgIcon("assets/icons/Bookmark.svg"),
-              activeIcon:
-                  svgIcon("assets/icons/Bookmark.svg", color: primaryColor),
-              label: "收藏",
-            ),
-            BottomNavigationBarItem(
-              icon: svgIcon("assets/icons/Bag.svg"),
-              activeIcon: svgIcon("assets/icons/Bag.svg", color: primaryColor),
-              label: "購物車",
-            ),
-            BottomNavigationBarItem(
-              icon: svgIcon("assets/icons/Profile.svg"),
-              activeIcon:
-                  svgIcon("assets/icons/Profile.svg", color: primaryColor),
-              label: "我的",
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 12,
+                color: color,
+              ),
             ),
           ],
         ),

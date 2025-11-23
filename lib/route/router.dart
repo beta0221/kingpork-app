@@ -259,6 +259,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
             url: args?['url'] ?? '/',
             title: args?['title'],
             showAppBar: args?['showAppBar'] ?? true,
+            actions: args?['actions'] as List<Widget>?,
+            showRefreshButton: args?['showRefreshButton'] ?? true,
           );
         },
       );
