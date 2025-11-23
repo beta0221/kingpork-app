@@ -3,6 +3,7 @@ import 'package:tklab_ec_v2/components/custom_modal_bottom_sheet.dart';
 import 'package:tklab_ec_v2/constants.dart';
 import 'package:tklab_ec_v2/screens/search/views/components/search_form.dart';
 
+import 'components/hot_searches.dart';
 import 'components/recent_searches.dart';
 import 'components/search_filter.dart';
 import 'components/search_resulats.dart';
@@ -88,6 +89,13 @@ class _SearchScreenState extends State<SearchScreen> {
             if (_isFocused && !_isShowSuggestions)
               const SliverToBoxAdapter(
                 child: RecentSearches(),
+              ),
+            if (_isFocused && !_isShowSuggestions)
+              const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.only(top: defaultPadding),
+                  child: HotSearches(),
+                ),
               ),
             if (_isFocused && _isShowSuggestions)
               const SliverToBoxAdapter(
