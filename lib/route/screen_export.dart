@@ -56,3 +56,4 @@ export '/screens/wallet/views/wallet_screen.dart';
 export '/screens/profile/views/profile_screen.dart';
 export '/screens/user_info/views/user_info_screen.dart';
 export '/screens/webview/webview_screen.dart';
+export '/screens/product/views/product_category_screen.dart';

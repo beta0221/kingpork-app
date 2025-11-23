@@ -92,6 +92,10 @@ class JsBridgeHandler {
           await _handleOpenNewWebView(data);
           break;
 
+        case 'open_category':
+          await _handleOpenCategory(data);
+          break;
+
         case 'open_web_dialog':
           await _handleOpenDialog(data);
           break;
@@ -248,6 +252,33 @@ class JsBridgeHandler {
       debugPrint('JS Bridge: Opened new WebView: $url');
     } else {
       debugPrint('JS Bridge: Missing URL in open_new_webview');
+    }
+  }
+
+  Future<void> _handleOpenCategory(Map<String, dynamic> data) async {
+    final categoryName = data['categoryName'] as String?;
+    final categoryId = data['categoryId'] as String?;
+    final bannerImage = data['bannerImage'] as String?;
+    final bannerTitle = data['bannerTitle'] as String?;
+    final bannerSubtitle = data['bannerSubtitle'] as String?;
+    final discountPercent = data['discountPercent'] as int?;
+
+    if (categoryName != null && context.mounted) {
+      await Navigator.pushNamed(
+        context,
+        productCategoryScreenRoute,
+        arguments: {
+          'categoryName': categoryName,
+          'categoryId': categoryId,
+          'bannerImage': bannerImage,
+          'bannerTitle': bannerTitle,
+          'bannerSubtitle': bannerSubtitle,
+          'discountPercent': discountPercent,
+        },
+      );
+      debugPrint('JS Bridge: Opened category: $categoryName');
+    } else {
+      debugPrint('JS Bridge: Missing categoryName in open_category');
     }
   }
 

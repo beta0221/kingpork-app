@@ -7,6 +7,7 @@
     <style>
         img {
             width: 100%;
+            cursor: pointer;
         }
 
         iframe {
@@ -14,28 +15,54 @@
             height: auto;
             aspect-ratio: 16 / 9; /* For a 16:9 aspect ratio */
         }
+
+        .category-link {
+            display: block;
+            text-decoration: none;
+        }
     </style>
-    
+
+    <script>
+        // 發送訊息到 Flutter
+        function sendToFlutter(data) {
+            if (window.webviewFlutterJavascriptChannel) {
+                window.webviewFlutterJavascriptChannel.postMessage(JSON.stringify(data));
+            }
+        }
+
+        // 開啟分類頁面
+        function openCategory(categoryName, categoryId, bannerImage, bannerTitle, bannerSubtitle, discountPercent) {
+            sendToFlutter({
+                action: 'open_category',
+                categoryName: categoryName,
+                categoryId: categoryId,
+                bannerImage: bannerImage,
+                bannerTitle: bannerTitle,
+                bannerSubtitle: bannerSubtitle,
+                discountPercent: discountPercent
+            });
+        }
+    </script>
 </head>
 <body>
-    
-    <div>
-        <img src="https://img.tklab.com.tw/uploads/mobile_index/4/3/27733bc8d5224d6bbc1fa5eeb84ea04369a866c4_m.webp" alt="">
+
+    <div class="category-link" onclick="openCategory('保養', 'skincare', 'https://img.tklab.com.tw/uploads/mobile_index/4/3/27733bc8d5224d6bbc1fa5eeb84ea04369a866c4_m.webp', '保養專區', 'SKINCARE', 20)">
+        <img src="https://img.tklab.com.tw/uploads/mobile_index/4/3/27733bc8d5224d6bbc1fa5eeb84ea04369a866c4_m.webp" alt="保養">
     </div>
-    <div>
-        <img src="https://img.tklab.com.tw/uploads/mobile_index/4/3/56ad77f508c83ce39490bcea17a5bd664a984d92_m.webp" alt="">
+    <div class="category-link" onclick="openCategory('彩妝', 'makeup', 'https://img.tklab.com.tw/uploads/mobile_index/4/3/56ad77f508c83ce39490bcea17a5bd664a984d92_m.webp', '彩妝專區', 'MAKEUP', 15)">
+        <img src="https://img.tklab.com.tw/uploads/mobile_index/4/3/56ad77f508c83ce39490bcea17a5bd664a984d92_m.webp" alt="彩妝">
     </div>
     <div>
         <iframe src="https://www.youtube.com/embed/EiJVPM1LEss?si=M2vYYYTei60wvOLU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
 
-    <div>
-        <img src="https://img.tklab.com.tw/uploads/mobile_index/4/1/8b359795f3c00762f5420644fdf6a70441fcd17b_m.webp" alt="">
+    <div class="category-link" onclick="openCategory('保健', 'health', 'https://img.tklab.com.tw/uploads/mobile_index/4/1/8b359795f3c00762f5420644fdf6a70441fcd17b_m.webp', '保健專區', 'HEALTH', 10)">
+        <img src="https://img.tklab.com.tw/uploads/mobile_index/4/1/8b359795f3c00762f5420644fdf6a70441fcd17b_m.webp" alt="保健">
     </div>
-    <div>
-        <img src="https://img.tklab.com.tw/uploads/mobile_index/5/3/22c90af2a0fa622cab352056725d82ca4ed76431_m.webp" alt="">
+    <div class="category-link" onclick="openCategory('面膜', 'mask', 'https://img.tklab.com.tw/uploads/mobile_index/5/3/22c90af2a0fa622cab352056725d82ca4ed76431_m.webp', '面膜專區', 'MASK', 25)">
+        <img src="https://img.tklab.com.tw/uploads/mobile_index/5/3/22c90af2a0fa622cab352056725d82ca4ed76431_m.webp" alt="面膜">
     </div>
-    
+
 
 </body>
 </html>

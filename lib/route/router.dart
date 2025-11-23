@@ -262,6 +262,20 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           );
         },
       );
+    case productCategoryScreenRoute:
+      return MaterialPageRoute(
+        builder: (context) {
+          final args = settings.arguments as Map<String, dynamic>?;
+          return ProductCategoryScreen(
+            categoryName: args?['categoryName'] ?? '',
+            categoryId: args?['categoryId'],
+            bannerImage: args?['bannerImage'],
+            bannerTitle: args?['bannerTitle'],
+            bannerSubtitle: args?['bannerSubtitle'],
+            discountPercent: args?['discountPercent'],
+          );
+        },
+      );
     default:
       return MaterialPageRoute(
         // Make a screen for undefine
