@@ -8,7 +8,10 @@ import 'components/delivery_method_section.dart';
 import 'components/payment_method_section.dart';
 import 'components/invoice_type_section.dart';
 import 'components/voucher_section.dart';
+import 'components/tk_coin_section.dart';
+import 'components/order_items_section.dart';
 import 'components/order_confirmation_bottom_bar.dart';
+import 'components/recommended_products_section.dart';
 
 class OrderConfirmationScreen extends StatefulWidget {
   const OrderConfirmationScreen({super.key});
@@ -122,6 +125,18 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
 
                 // 現金券區塊
                 const VoucherSection(),
+                const SizedBox(height: 24),
+
+                // TK幣折抵區塊
+                const TkCoinSection(),
+                const SizedBox(height: 24),
+
+                // 本次購買商品列表
+                const OrderItemsSection(),
+                const SizedBox(height: 24),
+
+                // 推薦商品區塊
+                const RecommendedProductsSection(),
                 const SizedBox(height: 100), // 底部空間，避免被 bottom bar 遮擋
               ],
             ),

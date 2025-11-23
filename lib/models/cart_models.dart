@@ -7,6 +7,7 @@ class CartItem {
   final int quantity;
   final double subtotal;
   final String image;
+  final bool isSelected;
 
   CartItem({
     required this.id,
@@ -16,6 +17,7 @@ class CartItem {
     required this.quantity,
     required this.subtotal,
     required this.image,
+    this.isSelected = true,
   });
 
   factory CartItem.fromJson(Map<String, dynamic> json) {
@@ -51,6 +53,7 @@ class CartItem {
     int? quantity,
     double? subtotal,
     String? image,
+    bool? isSelected,
   }) {
     return CartItem(
       id: id ?? this.id,
@@ -60,6 +63,7 @@ class CartItem {
       quantity: quantity ?? this.quantity,
       subtotal: subtotal ?? this.subtotal,
       image: image ?? this.image,
+      isSelected: isSelected ?? this.isSelected,
     );
   }
 }

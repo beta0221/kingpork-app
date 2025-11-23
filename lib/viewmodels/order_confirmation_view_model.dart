@@ -27,6 +27,11 @@ class OrderConfirmationViewModel extends BaseViewModel {
   String? _voucherCode;
   double _voucherDiscount = 0.0;
 
+  // TK幣
+  final int _availableTkCoins = 500; // 可用 TK幣
+  int _usedTkCoins = 0; // 使用的 TK幣
+  bool _useTkCoins = false; // 是否使用 TK幣折抵
+
   // 訂單金額
   final double _subtotal = 1380.0;
   final int _itemCount = 1;
@@ -50,11 +55,16 @@ class OrderConfirmationViewModel extends BaseViewModel {
   String? get voucherCode => _voucherCode;
   double get voucherDiscount => _voucherDiscount;
 
+  int get availableTkCoins => _availableTkCoins;
+  int get usedTkCoins => _usedTkCoins;
+  bool get useTkCoins => _useTkCoins;
+  double get tkCoinDiscount => _usedTkCoins.toDouble(); // 1 TK幣 = 1 元
+
   double get subtotal => _subtotal;
   int get itemCount => _itemCount;
 
   /// 計算總金額
-  double get totalAmount => _subtotal - _voucherDiscount;
+  double get totalAmount => _subtotal - _voucherDiscount - tkCoinDiscount;
 
   /// 格式化的總金額
   String get formattedTotal => 'NT\$${totalAmount.toStringAsFixed(0).replaceAllMapped(
@@ -121,6 +131,32 @@ class OrderConfirmationViewModel extends BaseViewModel {
   void removeVoucher() {
     _voucherCode = null;
     _voucherDiscount = 0.0;
+    notifyListeners();
+  }
+
+  /// 切換是否使用 TK幣折抵
+  void toggleUseTkCoins(bool value) {
+    _useTkCoins = value;
+    if (value) {
+      // 計算可折抵的 TK幣數量（不超過可用數量，也不超過訂單金額）
+      final maxDiscount = (_subtotal - _voucherDiscount).toInt();
+      _usedTkCoins = _availableTkCoins > maxDiscount ? maxDiscount : _availableTkCoins;
+    } else {
+      _usedTkCoins = 0;
+    }
+    notifyListeners();
+  }
+
+  /// 更新使用的 TK幣數量
+  void updateUsedTkCoins(int coins) {
+    if (coins < 0) coins = 0;
+    if (coins > _availableTkCoins) coins = _availableTkCoins;
+
+    final maxDiscount = (_subtotal - _voucherDiscount).toInt();
+    if (coins > maxDiscount) coins = maxDiscount;
+
+    _usedTkCoins = coins;
+    _useTkCoins = coins > 0;
     notifyListeners();
   }
 
