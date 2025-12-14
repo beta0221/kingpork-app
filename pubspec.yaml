@@ -126,6 +126,8 @@ dependencies:
 
   # Photo Management
   photo_manager: ^3.7.1
+  cookie_jar: ^4.0.8
+  dio_cookie_manager: ^3.3.0
 
 dev_dependencies:
   flutter_test:

@@ -1,23 +1,61 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
-import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
+import 'package:cookie_jar/cookie_jar.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:tklab_ec_v2/services/api/api_endpoints.dart';
 import 'package:tklab_ec_v2/services/api/api_exception.dart';
 import 'package:tklab_ec_v2/utils/token_manager.dart';
 
 /// HTTP Client for API requests
+/// Supports both session-based (Cookie) and token-based authentication
 class ApiClient {
-  final http.Client _client;
+  late final Dio _dio;
   final TokenManager _tokenManager;
-  final Duration timeout;
+  static CookieJar? _cookieJar;
 
   ApiClient({
-    http.Client? client,
+    Dio? dio,
     TokenManager? tokenManager,
-    this.timeout = const Duration(seconds: 30),
-  })  : _client = client ?? http.Client(),
-        _tokenManager = tokenManager ?? TokenManager();
+    Duration timeout = const Duration(seconds: 30),
+  }) : _tokenManager = tokenManager ?? TokenManager() {
+    _dio = dio ?? Dio();
+    _initializeDio(timeout);
+  }
+
+  /// Initialize Dio with interceptors and cookie management
+  Future<void> _initializeDio(Duration timeout) async {
+    // Setup cookie jar for session management
+    if (_cookieJar == null) {
+      try {
+        final appDocDir = await getApplicationDocumentsDirectory();
+        final cookiePath = '${appDocDir.path}/.cookies';
+        _cookieJar = PersistCookieJar(
+          storage: FileStorage(cookiePath),
+        );
+      } catch (e) {
+        // Fallback to default cookie jar if file storage fails
+        _cookieJar = CookieJar();
+      }
+    }
+
+    _dio.interceptors.add(CookieManager(_cookieJar!));
+
+    _dio.options = BaseOptions(
+      connectTimeout: timeout,
+      receiveTimeout: timeout,
+      sendTimeout: timeout,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      validateStatus: (status) {
+        // Don't throw on any status code, we'll handle it
+        return status != null && status < 500;
+      },
+    );
+  }
 
   /// GET request
   Future<dynamic> get(
@@ -43,7 +81,7 @@ class ApiClient {
     return _request(
       'POST',
       endpoint,
-      body: body,
+      data: body,
       headers: headers,
       requiresAuth: requiresAuth,
     );
@@ -59,7 +97,7 @@ class ApiClient {
     return _request(
       'PUT',
       endpoint,
-      body: body,
+      data: body,
       headers: headers,
       requiresAuth: requiresAuth,
     );
@@ -83,56 +121,52 @@ class ApiClient {
   Future<dynamic> _request(
     String method,
     String endpoint, {
-    Map<String, dynamic>? body,
+    dynamic data,
     Map<String, String>? headers,
     bool requiresAuth = false,
   }) async {
-    final url = Uri.parse(ApiEndpoints.buildUrl(endpoint));
+    final url = ApiEndpoints.buildUrl(endpoint);
     final requestHeaders = await _buildHeaders(headers, requiresAuth);
 
     try {
-      http.Response response;
+      final options = Options(
+        method: method,
+        headers: requestHeaders,
+      );
 
+      final Response response;
       switch (method) {
         case 'GET':
-          response = await _client
-              .get(url, headers: requestHeaders)
-              .timeout(timeout);
+          response = await _dio.get(url, options: options);
           break;
         case 'POST':
-          response = await _client
-              .post(
-                url,
-                headers: requestHeaders,
-                body: body != null ? jsonEncode(body) : null,
-              )
-              .timeout(timeout);
+          response = await _dio.post(url, data: data, options: options);
           break;
         case 'PUT':
-          response = await _client
-              .put(
-                url,
-                headers: requestHeaders,
-                body: body != null ? jsonEncode(body) : null,
-              )
-              .timeout(timeout);
+          response = await _dio.put(url, data: data, options: options);
           break;
         case 'DELETE':
-          response = await _client
-              .delete(url, headers: requestHeaders)
-              .timeout(timeout);
+          response = await _dio.delete(url, options: options);
           break;
         default:
           throw ApiException('不支援的 HTTP 方法: $method');
       }
 
       return _handleResponse(response);
-    } on SocketException {
-      throw NetworkException();
-    } on TimeoutException {
-      throw TimeoutException();
-    } on http.ClientException catch (e) {
-      throw ApiException('網路請求錯誤: ${e.message}');
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.receiveTimeout ||
+          e.type == DioExceptionType.sendTimeout) {
+        throw TimeoutException('請求超時，請稍後再試');
+      } else if (e.error is SocketException) {
+        throw NetworkException();
+      } else if (e.response != null) {
+        return _handleResponse(e.response!);
+      } else {
+        throw ApiException('網路請求錯誤: ${e.message}');
+      }
+    } catch (e) {
+      throw ApiException('發生未知錯誤: $e');
     }
   }
 
@@ -151,30 +185,27 @@ class ApiClient {
       headers.addAll(customHeaders);
     }
 
-    // Add authorization header if required
+    // For session-based auth, we rely on cookies
+    // Only add Bearer token if specifically needed for token-based endpoints
+    // Member auth endpoints use session cookies, so we don't need Bearer token
     if (requiresAuth) {
       final token = await _tokenManager.getAccessToken();
-      if (token != null) {
-        headers['Authorization'] = 'Bearer $token';
-      } else {
+      // Only throw if it's a token-based API (not session-based)
+      // For now, we'll check if token exists to determine if user is logged in
+      if (token == null) {
         throw UnauthorizedException('未找到登入憑證');
       }
+      // For session-based APIs (member auth), don't add Authorization header
+      // The cookie will be automatically included by CookieManager
     }
 
     return headers;
   }
 
   /// Handle API response
-  dynamic _handleResponse(http.Response response) {
-    final statusCode = response.statusCode;
-
-    // Try to decode response body
-    dynamic responseBody;
-    try {
-      responseBody = jsonDecode(response.body);
-    } catch (_) {
-      responseBody = response.body;
-    }
+  dynamic _handleResponse(Response response) {
+    final statusCode = response.statusCode ?? 500;
+    final responseBody = response.data;
 
     // Success responses (200-299)
     if (statusCode >= 200 && statusCode < 300) {
@@ -213,6 +244,11 @@ class ApiClient {
   /// Extract error message from response
   String _extractErrorMessage(dynamic responseBody) {
     if (responseBody is Map) {
+      // Try 'msg' field first (member API format)
+      if (responseBody.containsKey('msg')) {
+        return responseBody['msg'] as String? ?? '發生未知錯誤';
+      }
+      // Fallback to 'message' field
       return responseBody['message'] as String? ?? '發生未知錯誤';
     }
     return '發生未知錯誤';
@@ -235,8 +271,15 @@ class ApiClient {
     return null;
   }
 
+  /// Clear all cookies (useful for logout)
+  Future<void> clearCookies() async {
+    if (_cookieJar != null) {
+      await _cookieJar!.deleteAll();
+    }
+  }
+
   /// Dispose the client
   void dispose() {
-    _client.close();
+    _dio.close();
   }
 }

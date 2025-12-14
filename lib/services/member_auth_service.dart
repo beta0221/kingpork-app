@@ -178,10 +178,12 @@ class MemberAuthService {
 
     final loginResponse = LoginResponse.fromJson(response);
 
-    // 如果登入成功，保存會員資訊到本地（可選）
+    // 如果登入成功，保存 session 標記
+    // 注意：後端使用 session-based auth，這裡保存一個標記表示已登入
     if (loginResponse.isSuccess && loginResponse.member != null) {
-      // 這裡可以保存會員 ID 或其他必要資訊
-      // 例如：await _tokenManager.saveAccessToken(loginResponse.member!.memberId.toString());
+      // 保存一個標記到 TokenManager 表示用戶已登入
+      // 使用 member_id 作為 token，這樣 checkTokenValidity 可以檢查是否已登入
+      await _tokenManager.saveAccessToken('session_${loginResponse.member!.memberId}');
     }
 
     return loginResponse;
@@ -210,8 +212,9 @@ class MemberAuthService {
       requiresAuth: true,
     );
 
-    // 清除本地儲存的會員資訊
+    // 清除本地儲存的會員資訊和 cookies
     await _tokenManager.clearTokens();
+    await _apiClient.clearCookies();
 
     return LogoutResponse.fromJson(response);
   }

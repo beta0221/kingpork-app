@@ -11,8 +11,37 @@ import 'components/profile_menu_item_list_tile.dart';
 import 'components/rewards_card.dart';
 import 'components/membership_level_card.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // 在初始化時載入會員資料
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      final viewModel = context.read<MemberViewModel>();
+      // 檢查是否有 token（表示已登入）
+      final isLoggedIn = await viewModel.checkTokenValidity();
+      if (isLoggedIn && mounted) {
+        // 只在有 token 時才載入會員資料
+        await viewModel.loadMemberProfile();
+        if (mounted && viewModel.errorMessage != null) {
+          // 如果載入失敗，顯示錯誤訊息
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(viewModel.errorMessage!),
+              backgroundColor: errorColor,
+            ),
+          );
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -188,7 +217,7 @@ class ProfileScreen extends StatelessWidget {
               }
 
               return ListTile(
-                onTap: () => _handleLogout(context, viewModel),
+                onTap: () => _handleLogout(viewModel),
                 minLeadingWidth: 24,
                 leading: SvgPicture.asset(
                   "assets/icons/Logout.svg",
@@ -211,8 +240,10 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Future<void> _handleLogout(
-      BuildContext context, MemberViewModel viewModel) async {
+  Future<void> _handleLogout(MemberViewModel viewModel) async {
+    // 先獲取需要的 context 相關物件
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+
     // 顯示確認對話框
     final shouldLogout = await showDialog<bool>(
       context: context,
@@ -233,26 +264,20 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
 
-    if (shouldLogout == true && context.mounted) {
+    if (shouldLogout == true) {
       // 執行登出
       await viewModel.logout();
 
-      if (context.mounted) {
-        // 顯示成功訊息
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("登出成功"),
-            duration: Duration(seconds: 2),
-          ),
-        );
+      // 顯示成功訊息
+      scaffoldMessenger.showSnackBar(
+        const SnackBar(
+          content: Text("登出成功"),
+          duration: Duration(seconds: 2),
+        ),
+      );
 
-        // 導航到登入頁面
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          logInScreenRoute,
-          (route) => false,
-        );
-      }
+      // 不需要導航，保持在 ProfileScreen
+      // UI 會自動更新為訪客狀態（透過 Consumer<MemberViewModel>）
     }
   }
 }
