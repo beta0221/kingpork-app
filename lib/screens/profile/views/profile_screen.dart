@@ -201,11 +201,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
             press: () {},
             isShowDivider: false,
           ),
-          ProfileMenuListTile(
-            text: "申請刪除帳號",
-            svgSrc: "assets/icons/Danger Circle.svg",
-            press: () {},
-            isShowDivider: false,
+          Consumer<MemberViewModel>(
+            builder: (context, viewModel, child) {
+              return ProfileMenuListTile(
+                text: "申請刪除帳號",
+                svgSrc: "assets/icons/Danger Circle.svg",
+                press: () {
+                  if (viewModel.isLoggedIn) {
+                    _handleDeleteAccount(viewModel);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("請先登入"),
+                        backgroundColor: warningColor,
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  }
+                },
+                isShowDivider: false,
+              );
+            },
           ),
           const SizedBox(height: defaultPadding),
 
@@ -278,6 +294,98 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       // 不需要導航，保持在 ProfileScreen
       // UI 會自動更新為訪客狀態（透過 Consumer<MemberViewModel>）
+    }
+  }
+
+  Future<void> _handleDeleteAccount(MemberViewModel viewModel) async {
+    // 先獲取需要的 context 相關物件
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+
+    // 顯示確認對話框
+    final shouldDelete = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text("申請刪除帳號"),
+        content: const Text(
+          "您確定要刪除帳號嗎？\n\n"
+          "刪除後將無法復原，您的所有資料將被永久刪除：\n"
+          "• 個人資料\n"
+          "• 訂單記錄\n"
+          "• TK幣與現金券\n"
+          "• 會員等級\n\n"
+          "此操作無法撤銷，請謹慎考慮。",
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: const Text("取消"),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            style: TextButton.styleFrom(foregroundColor: errorColor),
+            child: const Text("確認刪除"),
+          ),
+        ],
+      ),
+    );
+
+    if (shouldDelete == true && mounted) {
+      // 顯示載入對話框
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (dialogContext) => const Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+
+      try {
+        // 執行刪除帳號
+        final success = await viewModel.deleteAccount();
+
+        // 關閉載入對話框
+        if (mounted) {
+          navigator.pop();
+        }
+
+        if (success) {
+          // 顯示成功訊息
+          scaffoldMessenger.showSnackBar(
+            const SnackBar(
+              content: Text("帳號已成功刪除"),
+              backgroundColor: successColor,
+              duration: Duration(seconds: 3),
+            ),
+          );
+
+          // token 和使用者資料已由 viewModel.deleteAccount() 清除
+          // UI 會自動更新為訪客狀態，無需導航
+        } else {
+          // 顯示錯誤訊息
+          scaffoldMessenger.showSnackBar(
+            SnackBar(
+              content: Text(viewModel.errorMessage ?? '刪除帳號失敗'),
+              backgroundColor: errorColor,
+              duration: const Duration(seconds: 3),
+            ),
+          );
+        }
+      } catch (e) {
+        // 關閉載入對話框
+        if (mounted) {
+          navigator.pop();
+        }
+
+        // 顯示錯誤訊息
+        scaffoldMessenger.showSnackBar(
+          SnackBar(
+            content: Text('刪除帳號時發生錯誤：${e.toString()}'),
+            backgroundColor: errorColor,
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
     }
   }
 }
