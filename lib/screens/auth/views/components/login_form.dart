@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tklab_ec_v2/components/country_code_picker.dart';
 import '../../../../constants.dart';
 
 class LogInForm extends StatefulWidget {
   const LogInForm({
     super.key,
     required this.formKey,
-    required this.onEmailChanged,
+    required this.onCountryCodeChanged,
+    required this.onMobileChanged,
     required this.onPasswordChanged,
   });
 
   final GlobalKey<FormState> formKey;
-  final ValueChanged<String> onEmailChanged;
+  final ValueChanged<String> onCountryCodeChanged;
+  final ValueChanged<String> onMobileChanged;
   final ValueChanged<String> onPasswordChanged;
 
   @override
@@ -20,6 +23,7 @@ class LogInForm extends StatefulWidget {
 
 class _LogInFormState extends State<LogInForm> {
   bool _obscurePassword = true;
+  String _selectedCountryCode = '886';
 
   @override
   Widget build(BuildContext context) {
@@ -27,37 +31,58 @@ class _LogInFormState extends State<LogInForm> {
       key: widget.formKey,
       child: Column(
         children: [
-          // Email Field
-          TextFormField(
-            onChanged: widget.onEmailChanged,
-            onSaved: (email) {
-              // Email saved
-            },
-            validator: emaildValidator.call,
-            textInputAction: TextInputAction.next,
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-              hintText: "手機號碼",
-              prefixIcon: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: defaultPadding * 0.75),
-                child: SvgPicture.asset(
-                  "assets/icons/Message.svg",
-                  height: 24,
-                  width: 24,
-                  colorFilter: ColorFilter.mode(
-                      Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .color!
-                          .withValues(alpha: 0.3),
-                      BlendMode.srcIn),
+          // 手機號碼欄位（帶國碼選擇器）
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // 國碼選擇器
+              CountryCodePicker(
+                selectedCountryCode: _selectedCountryCode,
+                onCountryChanged: (country) {
+                  setState(() {
+                    _selectedCountryCode = country.dialCode;
+                  });
+                  widget.onCountryCodeChanged(country.dialCode);
+                },
+                showFlag: true,
+                showCountryName: false,
+              ),
+              const SizedBox(width: defaultPadding / 2),
+              // 手機號碼輸入框
+              Expanded(
+                child: TextFormField(
+                  onChanged: widget.onMobileChanged,
+                  onSaved: (mobile) {
+                    // Mobile saved
+                  },
+                  validator: mobileValidator.call,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.phone,
+                  decoration: InputDecoration(
+                    hintText: "手機號碼",
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: defaultPadding * 0.75),
+                      child: SvgPicture.asset(
+                        "assets/icons/Call.svg",
+                        height: 24,
+                        width: 24,
+                        colorFilter: ColorFilter.mode(
+                            Theme.of(context)
+                                .textTheme
+                                .bodyLarge!
+                                .color!
+                                .withValues(alpha: 0.3),
+                            BlendMode.srcIn),
+                      ),
+                    ),
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
           const SizedBox(height: defaultPadding),
-          // Password Field
+          // 密碼欄位
           TextFormField(
             onChanged: widget.onPasswordChanged,
             onSaved: (pass) {

@@ -18,10 +18,11 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _name = '';
-  String _email = '';
+  String? _name;
+  String _countryCode = '886';
+  String _mobile = '';
+  String _verificationCode = '';
   String _password = '';
-  String _passwordConfirmation = '';
   bool _agreedToTerms = false;
 
   @override
@@ -48,16 +49,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: defaultPadding / 2),
                     const Text(
-                      "請輸入您的有效資料以建立帳號。",
+                      "請輸入您的手機號碼以建立帳號。",
                     ),
                     const SizedBox(height: defaultPadding),
                     SignUpForm(
                       formKey: _formKey,
-                      onNameChanged: (value) => _name = value,
-                      onEmailChanged: (value) => _email = value,
+                      onNameChanged: (value) => _name = value.isEmpty ? null : value,
+                      onCountryCodeChanged: (value) => _countryCode = value,
+                      onMobileChanged: (value) => _mobile = value,
+                      onVerificationCodeChanged: (value) => _verificationCode = value,
                       onPasswordChanged: (value) => _password = value,
-                      onPasswordConfirmationChanged: (value) =>
-                          _passwordConfirmation = value,
+                      onSendVerificationCode: () => _handleSendVerificationCode(),
                     ),
                     const SizedBox(height: defaultPadding),
                     Row(
@@ -139,6 +141,43 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
+  Future<bool> _handleSendVerificationCode() async {
+    // 基本驗證：檢查手機號碼是否已輸入
+    if (_mobile.isEmpty || _mobile.length < 8) {
+      _showError('請先輸入有效的手機號碼');
+      return false;
+    }
+
+    final viewModel = context.read<MemberViewModel>();
+
+    try {
+      final success = await viewModel.sendVerificationCode(
+        countryCode: _countryCode,
+        mobile: _mobile,
+      );
+
+      if (success && mounted) {
+        _showSuccess('驗證碼已發送');
+        return true;
+      } else if (mounted) {
+        _showError(viewModel.errorMessage ?? '發送驗證碼失敗');
+        return false;
+      }
+    } on ApiException catch (e) {
+      if (mounted) {
+        _showError(e.message);
+      }
+      return false;
+    } catch (e) {
+      if (mounted) {
+        _showError('發送驗證碼時發生錯誤：${e.toString()}');
+      }
+      return false;
+    }
+
+    return false;
+  }
+
   Future<void> _handleSignup(MemberViewModel viewModel) async {
     // 驗證表單
     if (!_formKey.currentState!.validate()) {
@@ -152,11 +191,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
 
     try {
-      final success = await viewModel.signup(
-        name: _name,
-        email: _email,
+      final success = await viewModel.register(
+        countryCode: _countryCode,
+        mobile: _mobile,
+        verificationCode: _verificationCode,
         password: _password,
-        passwordConfirmation: _passwordConfirmation,
+        name: _name,
       );
 
       if (success && mounted) {
@@ -173,10 +213,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     } on ValidationException catch (e) {
       if (mounted) {
         _showError(e.getAllErrors().join('\n'));
-      }
-    } on UnauthorizedException {
-      if (mounted) {
-        _showError('此帳號已被使用');
       }
     } on NetworkException {
       if (mounted) {
@@ -199,6 +235,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
         content: Text(message),
         backgroundColor: Theme.of(context).colorScheme.error,
         duration: const Duration(seconds: 3),
+      ),
+    );
+  }
+
+  void _showSuccess(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: successColor,
+        duration: const Duration(seconds: 2),
       ),
     );
   }

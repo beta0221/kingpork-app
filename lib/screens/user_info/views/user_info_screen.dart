@@ -44,10 +44,10 @@ class UserInfoScreen extends StatelessWidget {
             );
           }
 
-          final user = viewModel.currentUser;
-          final name = user?.name ?? "N/A";
-          final email = user?.email ?? "N/A";
-          final phone = user?.phone ?? "Not provided";
+          final member = viewModel.currentMember;
+          final name = member?.name ?? "N/A";
+          final email = member?.email ?? "N/A";
+          final phone = member?.mobile ?? "未提供";
 
           return SingleChildScrollView(
             child: Column(
@@ -79,11 +79,6 @@ class UserInfoScreen extends StatelessWidget {
                   leadingText: "電子郵件",
                   trailingText: email,
                 ),
-                if (user?.bonus != null)
-                  UserInfoListTile(
-                    leadingText: "紅利點數",
-                    trailingText: "${user!.bonus}",
-                  ),
                 ListTile(
                   leading: const Text("密碼"),
                   trailing: TextButton(

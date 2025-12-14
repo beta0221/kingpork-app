@@ -1,24 +1,25 @@
-import 'package:tklab_ec_v2/models/auth_models.dart';
-import 'package:tklab_ec_v2/services/auth_service.dart';
+import 'package:tklab_ec_v2/models/member_models.dart';
+import 'package:tklab_ec_v2/services/member_auth_service.dart';
 import 'package:tklab_ec_v2/utils/token_manager.dart';
 import 'package:tklab_ec_v2/viewmodels/base_view_model.dart';
 
 /// MemberViewModel manages user authentication and profile data
 class MemberViewModel extends BaseViewModel {
-  final AuthService _authService;
+  final MemberAuthService _memberAuthService;
   final TokenManager _tokenManager;
 
-  User? _currentUser;
+  Member? _currentMember;
 
-  User? get currentUser => _currentUser;
-  bool get isLoggedIn => _currentUser != null;
-  String? get userName => _currentUser?.name;
-  String? get userEmail => _currentUser?.email;
+  Member? get currentMember => _currentMember;
+  bool get isLoggedIn => _currentMember != null;
+  String? get memberName => _currentMember?.name;
+  String? get memberMobile => _currentMember?.mobile;
+  int? get memberId => _currentMember?.memberId;
 
   MemberViewModel({
-    AuthService? authService,
+    MemberAuthService? memberAuthService,
     TokenManager? tokenManager,
-  })  : _authService = authService ?? AuthService(),
+  })  : _memberAuthService = memberAuthService ?? MemberAuthService(),
         _tokenManager = tokenManager ?? TokenManager();
 
   /// Initialize member data - check if user is logged in
@@ -27,9 +28,9 @@ class MemberViewModel extends BaseViewModel {
     try {
       final loggedIn = await _tokenManager.isLoggedIn();
       if (loggedIn) {
-        await loadUserProfile();
+        await loadMemberProfile();
       } else {
-        _currentUser = null;
+        _currentMember = null;
         setSuccess();
       }
     } catch (e) {
@@ -37,91 +38,214 @@ class MemberViewModel extends BaseViewModel {
     }
   }
 
-  /// Load user profile from API
-  Future<void> loadUserProfile() async {
+  /// Load member profile from API
+  Future<void> loadMemberProfile() async {
     try {
-      _currentUser = await _authService.getUser();
-      setSuccess();
+      final response = await _memberAuthService.getCurrentMember();
+      if (response.isSuccess && response.member != null) {
+        _currentMember = response.member;
+        setSuccess();
+      } else {
+        throw Exception(response.msg ?? '載入會員資料失敗');
+      }
     } catch (e) {
       // Token might be invalid
       await logout();
-      setError('載入用戶資料失敗: ${e.toString()}');
+      setError('載入會員資料失敗: ${e.toString()}');
     }
   }
 
-  /// Login with email and password
-  Future<bool> login(String email, String password) async {
+  /// Send verification code for registration
+  Future<bool> sendVerificationCode({
+    required String countryCode,
+    required String mobile,
+  }) async {
+    try {
+      final response = await _memberAuthService.sendVerificationCode(
+        countryCode: countryCode,
+        mobile: mobile,
+      );
+
+      if (response.isSuccess) {
+        return true;
+      } else {
+        setError(response.msg);
+        return false;
+      }
+    } catch (e) {
+      setError('發送驗證碼失敗: ${e.toString()}');
+      return false;
+    }
+  }
+
+  /// Login with country code, mobile and password
+  Future<bool> login({
+    required String countryCode,
+    required String mobile,
+    required String password,
+  }) async {
     setLoading();
     try {
-      final response = await _authService.login(email, password);
-      _currentUser = response.user;
-      setSuccess();
-      return true;
+      final response = await _memberAuthService.login(
+        countryCode: countryCode,
+        mobile: mobile,
+        password: password,
+      );
+
+      if (response.isSuccess && response.member != null) {
+        _currentMember = response.member;
+        setSuccess();
+        return true;
+      } else {
+        setError(response.msg);
+        return false;
+      }
     } catch (e) {
       setError('登入失敗: ${e.toString()}');
       return false;
     }
   }
 
-  /// Signup with user information
-  Future<bool> signup({
-    required String name,
-    required String email,
+  /// Register with member information
+  Future<bool> register({
+    required String countryCode,
+    required String mobile,
+    required String verificationCode,
     required String password,
-    required String passwordConfirmation,
+    String? name,
   }) async {
     setLoading();
     try {
-      final response = await _authService.register(
-        name: name,
-        email: email,
+      final response = await _memberAuthService.register(
+        countryCode: countryCode,
+        mobile: mobile,
         password: password,
-        passwordConfirmation: passwordConfirmation,
+        verificationCode: verificationCode,
+        name: name,
       );
-      _currentUser = response.user;
-      setSuccess();
-      return true;
+
+      if (response.isSuccess && response.data != null) {
+        setSuccess();
+        return true;
+      } else {
+        setError(response.msg);
+        return false;
+      }
     } catch (e) {
       setError('註冊失敗: ${e.toString()}');
       return false;
     }
   }
 
-  /// Logout current user
+  /// Logout current member
   Future<void> logout() async {
     try {
-      await _authService.logout();
+      await _memberAuthService.logout();
     } catch (e) {
       // Ignore logout errors, just clear local data
     } finally {
-      _currentUser = null;
+      _currentMember = null;
       await _tokenManager.clearTokens();
       notifyListeners();
     }
   }
 
-  /// Update user profile
-  Future<bool> updateProfile({
-    String? name,
-    String? email,
-    String? phone,
+  /// Delete account
+  Future<bool> deleteAccount() async {
+    setLoading();
+    try {
+      final response = await _memberAuthService.deleteAccount();
+
+      if (response.isSuccess) {
+        _currentMember = null;
+        await _tokenManager.clearTokens();
+        setSuccess();
+        return true;
+      } else {
+        setError(response.msg);
+        return false;
+      }
+    } catch (e) {
+      setError('刪除帳號失敗: ${e.toString()}');
+      return false;
+    }
+  }
+
+  /// Send password reset code
+  Future<bool> sendPasswordResetCode({
+    required String countryCode,
+    required String mobile,
   }) async {
     setLoading();
     try {
-      // Call API to update profile
-      // For now, just update locally
-      if (_currentUser != null) {
-        _currentUser = User(
-          id: _currentUser!.id,
-          name: name ?? _currentUser!.name,
-          email: email ?? _currentUser!.email,
-        );
-        notifyListeners();
+      final response = await _memberAuthService.sendPasswordResetCode(
+        countryCode: countryCode,
+        mobile: mobile,
+      );
+
+      if (response.isSuccess) {
+        setSuccess();
+        return true;
+      } else {
+        setError(response.msg);
+        return false;
       }
-      setSuccess();
-      return true;
     } catch (e) {
-      setError('更新資料失敗: ${e.toString()}');
+      setError('發送密碼重設驗證碼失敗: ${e.toString()}');
+      return false;
+    }
+  }
+
+  /// Verify password reset code
+  Future<String?> verifyPasswordResetCode({
+    required String countryCode,
+    required String mobile,
+    required String verificationCode,
+  }) async {
+    setLoading();
+    try {
+      final response = await _memberAuthService.verifyPasswordResetCode(
+        countryCode: countryCode,
+        mobile: mobile,
+        verificationCode: verificationCode,
+      );
+
+      if (response.isSuccess && response.resetToken != null) {
+        setSuccess();
+        return response.resetToken;
+      } else {
+        setError(response.msg);
+        return null;
+      }
+    } catch (e) {
+      setError('驗證碼驗證失敗: ${e.toString()}');
+      return null;
+    }
+  }
+
+  /// Reset password
+  Future<bool> resetPassword({
+    required String resetToken,
+    required String password,
+    required String passwordConfirmation,
+  }) async {
+    setLoading();
+    try {
+      final response = await _memberAuthService.resetPassword(
+        resetToken: resetToken,
+        password: password,
+        passwordConfirmation: passwordConfirmation,
+      );
+
+      if (response.isSuccess) {
+        setSuccess();
+        return true;
+      } else {
+        setError(response.msg);
+        return false;
+      }
+    } catch (e) {
+      setError('重設密碼失敗: ${e.toString()}');
       return false;
     }
   }
@@ -135,14 +259,14 @@ class MemberViewModel extends BaseViewModel {
     }
   }
 
-  /// Refresh user data
+  /// Refresh member data
   Future<void> refresh() async {
-    await loadUserProfile();
+    await loadMemberProfile();
   }
 
   @override
   void dispose() {
-    _authService.dispose();
+    _memberAuthService.dispose();
     super.dispose();
   }
 }

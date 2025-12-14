@@ -8,9 +8,13 @@ class NewPassForm extends StatelessWidget {
   const NewPassForm({
     super.key,
     required this.formKey,
+    this.onPasswordChanged,
+    this.onConfirmPasswordChanged,
   });
 
   final GlobalKey formKey;
+  final ValueChanged<String>? onPasswordChanged;
+  final ValueChanged<String>? onConfirmPasswordChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,12 @@ class NewPassForm extends StatelessWidget {
             onSaved: (pass) {
               // Password
             },
-            onChanged: (password) => pass = password,
+            onChanged: (password) {
+              pass = password;
+              if (onPasswordChanged != null) {
+                onPasswordChanged!(password);
+              }
+            },
             validator: passwordValidator.call,
             autofocus: true,
             obscureText: true,
@@ -52,6 +61,11 @@ class NewPassForm extends StatelessWidget {
           TextFormField(
             onSaved: (pass) {
               pass = pass;
+            },
+            onChanged: (confirmPassword) {
+              if (onConfirmPasswordChanged != null) {
+                onConfirmPasswordChanged!(confirmPassword);
+              }
             },
             validator: (value) =>
                 MatchValidator(errorText: "密碼不符")

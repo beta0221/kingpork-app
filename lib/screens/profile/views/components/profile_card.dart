@@ -30,8 +30,8 @@ class ProfileCard extends StatelessWidget {
     if (useViewModel) {
       return Consumer<MemberViewModel>(
         builder: (context, viewModel, child) {
-          final displayName = viewModel.userName ?? name ?? "王小明";
-          final displayEmail = viewModel.userEmail ?? email ?? "";
+          final displayName = viewModel.memberName ?? name ?? "王小明";
+          final displayEmail = viewModel.currentMember?.email ?? email ?? "";
           final displayImage = imageSrc ?? "assets/icons/user-circle-svgrepo-com.svg";
 
           return _buildCard(

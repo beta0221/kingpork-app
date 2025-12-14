@@ -1,7 +1,6 @@
 export '/screens/permissions/views/notification_permission_screen.dart';
 export '/screens/onbording/views/onbording_screnn.dart';
 export '/screens/auth/views/otp_screen.dart';
-export '/screens/auth/views/verification_method_screen.dart';
 export '/screens/auth/views/login_screen.dart';
 export '/screens/auth/views/password_recovery_screen.dart';
 export '/screens/auth/views/profile_setup_screen.dart';

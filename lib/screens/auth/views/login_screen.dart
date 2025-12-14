@@ -17,7 +17,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _email = '';
+  String _countryCode = '886';
+  String _mobile = '';
   String _password = '';
 
   @override
@@ -46,12 +47,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: defaultPadding / 2),
                     const Text(
-                      "使用您註冊時輸入的資料登入。",
+                      "使用您的手機號碼登入。",
                     ),
                     const SizedBox(height: defaultPadding),
                     LogInForm(
                       formKey: _formKey,
-                      onEmailChanged: (value) => _email = value,
+                      onCountryCodeChanged: (value) => _countryCode = value,
+                      onMobileChanged: (value) => _mobile = value,
                       onPasswordChanged: (value) => _password = value,
                     ),
                     Align(
@@ -116,7 +118,11 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     try {
-      final success = await viewModel.login(_email, _password);
+      final success = await viewModel.login(
+        countryCode: _countryCode,
+        mobile: _mobile,
+        password: _password,
+      );
 
       if (success && mounted) {
         // 登入成功，導航到首頁
@@ -133,13 +139,13 @@ class _LoginScreenState extends State<LoginScreen> {
       if (mounted) {
         _showError(e.getAllErrors().join('\n'));
       }
-    } on UnauthorizedException {
-      if (mounted) {
-        _showError('帳號或密碼錯誤');
-      }
     } on NetworkException {
       if (mounted) {
         _showError('無網路連線，請檢查網路設定');
+      }
+    } on UnauthorizedException {
+      if (mounted) {
+        _showError('帳號或密碼錯誤');
       }
     } on ApiException catch (e) {
       if (mounted) {

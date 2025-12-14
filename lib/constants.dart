@@ -67,15 +67,29 @@ const double defaultBorderRadious = 12.0;
 const Duration defaultDuration = Duration(milliseconds: 300);
 
 final passwordValidator = MultiValidator([
-  RequiredValidator(errorText: 'Password is required'),
-  MinLengthValidator(8, errorText: 'password must be at least 8 digits long'),
-  PatternValidator(r'(?=.*?[#?!@$%^&*-])',
-      errorText: 'passwords must have at least one special character')
+  RequiredValidator(errorText: '請輸入密碼'),
+  MinLengthValidator(6, errorText: '密碼長度至少 6 個字元'),
 ]);
 
 final emaildValidator = MultiValidator([
   RequiredValidator(errorText: 'Email is required'),
   EmailValidator(errorText: "Enter a valid email address"),
+]);
+
+// 手機號碼驗證器（10-15 位數字）
+final mobileValidator = MultiValidator([
+  RequiredValidator(errorText: '請輸入手機號碼'),
+  MinLengthValidator(8, errorText: '手機號碼至少 8 位數字'),
+  MaxLengthValidator(15, errorText: '手機號碼最多 15 位數字'),
+  PatternValidator(r'^[0-9]+$', errorText: '手機號碼只能包含數字'),
+]);
+
+// 驗證碼驗證器（6 位數字）
+final verificationCodeValidator = MultiValidator([
+  RequiredValidator(errorText: '請輸入驗證碼'),
+  MinLengthValidator(6, errorText: '驗證碼為 6 位數字'),
+  MaxLengthValidator(6, errorText: '驗證碼為 6 位數字'),
+  PatternValidator(r'^[0-9]{6}$', errorText: '驗證碼格式不正確'),
 ]);
 
 const pasNotMatchErrorText = "passwords do not match";

@@ -4,7 +4,7 @@ import 'package:tklab_ec_v2/config/flavor_config.dart';
 class ApiEndpoints {
   // Base URL - 自動根據 Flavor 環境決定
   static String get baseUrl => FlavorConfig.instance.baseUrl;
-  static const String apiPrefix = '/api/next';
+  static const String apiPrefix = '/api';
 
   static String get apiBaseUrl => '$baseUrl$apiPrefix';
 
@@ -58,6 +58,18 @@ class ApiEndpoints {
   static const String messageUnreadCount = '/messages/unread-count';
   static String messageRead(int messageId) => '/messages/$messageId/read';
   static String messageDelete(int messageId) => '/messages/$messageId';
+
+  // Member Auth Endpoints
+  static const String memberSendVerificationCode = '/member/send-verification-code';
+  static const String memberRegister = '/member/register';
+  static const String memberLogin = '/member/login';
+  static const String memberLogout = '/member/logout';
+  static const String memberMe = '/member/me';
+  static const String memberDeleteAccount = '/member/delete-account';
+  static const String memberPasswordSendResetCode = '/member/password/send-reset-code';
+  static const String memberPasswordVerifyResetCode = '/member/password/verify-reset-code';
+  static const String memberPasswordReset = '/member/password/reset';
+  static const String memberDebugDecryptMobile = '/member/debug/decrypt-mobile';
 
   // Helper method to build full URL
   static String buildUrl(String endpoint) => '$apiBaseUrl$endpoint';

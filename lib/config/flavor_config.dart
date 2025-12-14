@@ -47,11 +47,11 @@ class FlavorConfig {
         _instance = FlavorConfig._(
           flavor: Flavor.dev,
           name: 'DEV',
-          baseUrl: 'https://rd.tklab.com.tw',
+          baseUrl: 'https://www.stage.daf-shoes.com:8081',
           oneSignalAppId: '2780fb32-fc29-41be-9c0b-b43131b71b65', // DEV OneSignal App ID
-          wssUrl: 'wss://rd.tklab.com.tw/wss',
+          wssUrl: 'wss://www.stage.daf-shoes.com:8081/wss',
           firebaseAppLink: 'https://tklab.page.link',
-          matomoUrl: 'https://rd.tklab.com.tw/matomo/matomo.php',
+          matomoUrl: 'https://www.stage.daf-shoes.com:8081/matomo/matomo.php',
           matomoSiteId: 1,
         );
         break;
@@ -106,10 +106,10 @@ class FlavorConfig {
   }
 
   /// 取得 API 服務 URL
-  String get apiUrl => '$baseUrl/api/next';
+  String get apiUrl => '$baseUrl/api';
 
   /// 取得 APP API 服務 URL（相容舊版 API）
-  String get appApiUrl => '$baseUrl/api/app';
+  String get appApiUrl => '$baseUrl/api';
 
   @override
   String toString() {
