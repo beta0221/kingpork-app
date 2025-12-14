@@ -42,6 +42,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       );
     case newPasswordScreenRoute:
       return MaterialPageRoute(
+        settings: settings,
         builder: (context) => const SetNewPasswordScreen(),
       );
     case doneResetPasswordScreenRoute:
