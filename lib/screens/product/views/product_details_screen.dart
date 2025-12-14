@@ -106,28 +106,28 @@ class ProductDetailsScreen extends StatelessWidget {
                 );
               },
             ),
-            const SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.all(defaultPadding),
-                child: ReviewCard(
-                  rating: 4.3,
-                  numOfReviews: 128,
-                  numOfFiveStar: 80,
-                  numOfFourStar: 30,
-                  numOfThreeStar: 5,
-                  numOfTwoStar: 4,
-                  numOfOneStar: 1,
-                ),
-              ),
-            ),
-            ProductListTile(
-              svgSrc: "assets/icons/Chat.svg",
-              title: "評價",
-              isShowBottomBorder: true,
-              press: () {
-                Navigator.pushNamed(context, productReviewsScreenRoute);
-              },
-            ),
+            // const SliverToBoxAdapter(
+            //   child: Padding(
+            //     padding: EdgeInsets.all(defaultPadding),
+            //     child: ReviewCard(
+            //       rating: 4.3,
+            //       numOfReviews: 128,
+            //       numOfFiveStar: 80,
+            //       numOfFourStar: 30,
+            //       numOfThreeStar: 5,
+            //       numOfTwoStar: 4,
+            //       numOfOneStar: 1,
+            //     ),
+            //   ),
+            // ),
+            // ProductListTile(
+            //   svgSrc: "assets/icons/Chat.svg",
+            //   title: "評價",
+            //   isShowBottomBorder: true,
+            //   press: () {
+            //     Navigator.pushNamed(context, productReviewsScreenRoute);
+            //   },
+            // ),
             SliverPadding(
               padding: const EdgeInsets.all(defaultPadding),
               sliver: SliverToBoxAdapter(

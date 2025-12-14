@@ -39,19 +39,19 @@ class ProductInfo extends StatelessWidget {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: defaultPadding),
-            Row(
-              children: [
-                ProductAvailabilityTag(isAvailable: isAvailable),
-                const Spacer(),
-                SvgPicture.asset("assets/icons/Star_filled.svg"),
-                const SizedBox(width: defaultPadding / 4),
-                Text(
-                  "$rating ",
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                Text("($numOfReviews 則評價)")
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     ProductAvailabilityTag(isAvailable: isAvailable),
+            //     const Spacer(),
+            //     SvgPicture.asset("assets/icons/Star_filled.svg"),
+            //     const SizedBox(width: defaultPadding / 4),
+            //     Text(
+            //       "$rating ",
+            //       style: Theme.of(context).textTheme.bodyLarge,
+            //     ),
+            //     Text("($numOfReviews 則評價)")
+            //   ],
+            // ),
             const SizedBox(height: defaultPadding),
             Text(
               "商品介紹",
