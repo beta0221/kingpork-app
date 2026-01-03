@@ -133,3 +133,90 @@ class ProductCategoryListResponse {
   /// 檢查 API 回應是否成功
   bool get isSuccess => status == 1;
 }
+
+/// 產品項目 model
+class Product {
+  final String sku;
+  final String name;
+  final String price;
+  final String spacialOffer;
+  final String imgUrl;
+  final String tag;
+
+  Product({
+    required this.sku,
+    required this.name,
+    required this.price,
+    required this.spacialOffer,
+    required this.imgUrl,
+    required this.tag,
+  });
+
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      sku: json['sku'] as String,
+      name: json['name'] as String,
+      price: json['price'] as String,
+      spacialOffer: json['spacialOffer'] as String? ?? '',
+      imgUrl: json['imgUrl'] as String? ?? '',
+      tag: json['tag'] as String? ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'sku': sku,
+      'name': name,
+      'price': price,
+      'spacialOffer': spacialOffer,
+      'imgUrl': imgUrl,
+      'tag': tag,
+    };
+  }
+
+  /// 是否有特價
+  bool get hasSpecialOffer => spacialOffer.isNotEmpty && spacialOffer != '0';
+
+  /// 是否有標籤
+  bool get hasTag => tag.isNotEmpty;
+
+  /// 是否為 TOP 產品
+  bool get isTopProduct => tag.toUpperCase().contains('TOP');
+}
+
+/// 產品列表回應
+class ProductListResponse {
+  final int status;
+  final String message;
+  final List<Product> productList;
+
+  ProductListResponse({
+    required this.status,
+    required this.message,
+    required this.productList,
+  });
+
+  factory ProductListResponse.fromJson(Map<String, dynamic> json) {
+    final data = json['data'] as Map<String, dynamic>;
+    return ProductListResponse(
+      status: json['s'] as int,
+      message: json['msg'] as String,
+      productList: (data['productList'] as List)
+          .map((item) => Product.fromJson(item as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      's': status,
+      'msg': message,
+      'data': {
+        'productList': productList.map((item) => item.toJson()).toList(),
+      },
+    };
+  }
+
+  /// 檢查 API 回應是否成功
+  bool get isSuccess => status == 1;
+}

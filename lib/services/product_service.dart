@@ -82,8 +82,8 @@ class ProductService {
   /// final response = await localService.getProductCatList('electronics');
   ///
   /// if (response.isSuccess) {
-  ///   for (var category in response.productCategoryList) {
-  ///     print('${category.name}: ${category.url}');
+  ///   for (var category in response.categoryList) {
+  ///     print('${category.name}: ${category.imgUrl}');
   ///   }
   /// } else {
   ///   print('錯誤: ${response.message}');
@@ -102,6 +102,47 @@ class ProductService {
       // FlavorConfig 模式（正式環境）
       final response = await _apiClient!.get(ApiEndpoints.productCategoryList(name));
       return ProductCategoryListResponse.fromJson(response);
+    }
+  }
+
+  /// 取得產品列表
+  ///
+  /// [catId] 分類 ID
+  ///
+  /// 範例:
+  /// ```dart
+  /// // 使用 FlavorConfig 環境（預設）
+  /// final productService = ProductService();
+  /// final response = await productService.getProductList(1);
+  ///
+  /// // 使用 localhost
+  /// final localService = ProductService(useLocalhost: true);
+  /// final response = await localService.getProductList(1);
+  ///
+  /// if (response.isSuccess) {
+  ///   for (var product in response.productList) {
+  ///     print('${product.name}: ${product.price}');
+  ///     if (product.hasSpecialOffer) {
+  ///       print('特價: ${product.spacialOffer}');
+  ///     }
+  ///   }
+  /// } else {
+  ///   print('錯誤: ${response.message}');
+  /// }
+  /// ```
+  Future<ProductListResponse> getProductList(int catId) async {
+    if (useLocalhost) {
+      // Localhost 模式
+      try {
+        final response = await _dio!.get('/product/list/$catId');
+        return ProductListResponse.fromJson(response.data);
+      } on DioException catch (e) {
+        throw Exception('API 請求失敗: ${e.message}');
+      }
+    } else {
+      // FlavorConfig 模式（正式環境）
+      final response = await _apiClient!.get(ApiEndpoints.productList(catId));
+      return ProductListResponse.fromJson(response);
     }
   }
 
