@@ -26,7 +26,11 @@ class ProductLineTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final tabWidth = screenWidth / 5;
+
     return Container(
+      width: double.infinity,
       height: 48,
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
@@ -41,7 +45,7 @@ class ProductLineTabBar extends StatelessWidget {
         controller: scrollController,
         scrollDirection: Axis.horizontal,
         itemCount: productLines.length,
-        padding: const EdgeInsets.symmetric(horizontal: 8),
+        padding: EdgeInsets.zero,
         itemBuilder: (context, index) {
           final productLine = productLines[index];
           final isSelected = index == selectedIndex;
@@ -49,7 +53,8 @@ class ProductLineTabBar extends StatelessWidget {
           return GestureDetector(
             onTap: () => onTabSelected(index),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              width: tabWidth,
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
