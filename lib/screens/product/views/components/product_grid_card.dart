@@ -132,7 +132,7 @@ class ProductGridCard extends StatelessWidget {
                     // Product Title
                     Text(
                       title,
-                      maxLines: 2,
+                      maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: 13,

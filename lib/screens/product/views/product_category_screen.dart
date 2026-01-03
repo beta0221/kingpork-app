@@ -155,7 +155,7 @@ class _ProductCategoryScreenState extends State<ProductCategoryScreen> {
                         crossAxisCount: 2,
                         mainAxisSpacing: defaultPadding,
                         crossAxisSpacing: defaultPadding,
-                        childAspectRatio: 0.52, // 調整以容納 4:3 圖片 + 產品資訊
+                        childAspectRatio: 0.515, // 調整以容納 4:3 圖片 + 3行標題 + 產品資訊
                       ),
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
