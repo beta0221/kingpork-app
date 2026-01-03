@@ -92,8 +92,8 @@ class JsBridgeHandler {
           await _handleOpenNewWebView(data);
           break;
 
-        case 'open_category':
-          await _handleOpenCategory(data);
+        case 'open_category_list':
+          await _handleOpenCategoryList(data);
           break;
 
         case 'open_web_dialog':
@@ -255,25 +255,15 @@ class JsBridgeHandler {
     }
   }
 
-  Future<void> _handleOpenCategory(Map<String, dynamic> data) async {
-    final categoryName = data['categoryName'] as String?;
-    final categoryId = data['categoryId'] as String?;
-    final bannerImage = data['bannerImage'] as String?;
-    final bannerTitle = data['bannerTitle'] as String?;
-    final bannerSubtitle = data['bannerSubtitle'] as String?;
-    final discountPercent = data['discountPercent'] as int?;
+  Future<void> _handleOpenCategoryList(Map<String, dynamic> data) async {
+    final categoryName = data['name'] as String?;
 
     if (categoryName != null && context.mounted) {
       await Navigator.pushNamed(
         context,
         productCategoryScreenRoute,
         arguments: {
-          'categoryName': categoryName,
-          'categoryId': categoryId,
-          'bannerImage': bannerImage,
-          'bannerTitle': bannerTitle,
-          'bannerSubtitle': bannerSubtitle,
-          'discountPercent': discountPercent,
+          'categoryName': categoryName
         },
       );
       debugPrint('JS Bridge: Opened category: $categoryName');

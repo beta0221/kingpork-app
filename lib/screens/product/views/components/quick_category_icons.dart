@@ -1,83 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:tklab_ec_v2/models/product_line_model.dart';
+import 'package:tklab_ec_v2/components/network_image_with_loader.dart';
 
 import '../../../../constants.dart';
 
-class QuickCategoryModel {
-  final String name;
-  final String? imagePath;
-  final IconData? icon;
-  final Color? backgroundColor;
-
-  QuickCategoryModel({
-    required this.name,
-    this.imagePath,
-    this.icon,
-    this.backgroundColor,
-  });
-}
-
-// Demo data
-final List<QuickCategoryModel> demoQuickCategories = [
-  QuickCategoryModel(
-    name: "全部商品",
-    icon: Icons.grid_view_rounded,
-    backgroundColor: const Color(0xFFF5F5F5),
-  ),
-  QuickCategoryModel(
-    name: "鍾明軒推薦\n精選",
-    icon: Icons.storefront,
-    backgroundColor: const Color(0xFFFFE5E5),
-  ),
-  QuickCategoryModel(
-    name: "美容大王\n大S代言",
-    icon: Icons.stars_rounded,
-    backgroundColor: const Color(0xFFFFF4E5),
-  ),
-  QuickCategoryModel(
-    name: "謝佳見\nTKLAB酒神飲",
-    icon: Icons.local_offer,
-    backgroundColor: const Color(0xFFE5F5FF),
-  ),
-  QuickCategoryModel(
-    name: "國際巨星小S\n膠原蛋白飲",
-    icon: Icons.card_giftcard,
-    backgroundColor: const Color(0xFFFFE5F5),
-  ),
-  QuickCategoryModel(
-    name: "王子代言\n亮白面膜",
-    icon: Icons.favorite,
-    backgroundColor: const Color(0xFFE5FFE5),
-  ),
-  QuickCategoryModel(
-    name: "語安輕仙\n酵素飲",
-    icon: Icons.shopping_bag,
-    backgroundColor: const Color(0xFFFFE5E5),
-  ),
-];
-
+/// QuickCategoryIcons - 快速分類圖示列表
+///
+/// 支援從 API 傳入的 categories 資料
 class QuickCategoryIcons extends StatelessWidget {
-  const QuickCategoryIcons({super.key});
+  final List<ProductCategory>? categories;
+  final Function(ProductCategory)? onCategoryTap;
+
+  const QuickCategoryIcons({
+    super.key,
+    this.categories,
+    this.onCategoryTap,
+  });
 
   @override
   Widget build(BuildContext context) {
+    // 如果沒有傳入 categories，顯示空狀態
+    final displayCategories = categories ?? [];
+
+    if (displayCategories.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return Container(
       height: 110,
       padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-        itemCount: demoQuickCategories.length,
+        itemCount: displayCategories.length,
         itemBuilder: (context, index) {
-          final category = demoQuickCategories[index];
+          final category = displayCategories[index];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 4),
             child: QuickCategoryIcon(
               name: category.name,
-              imagePath: category.imagePath,
-              icon: category.icon,
-              backgroundColor: category.backgroundColor,
+              imageUrl: category.imgUrl.isNotEmpty ? category.imgUrl : null,
               press: () {
-                // Handle category selection
+                if (onCategoryTap != null) {
+                  onCategoryTap!(category);
+                }
               },
             ),
           );
@@ -87,20 +53,17 @@ class QuickCategoryIcons extends StatelessWidget {
   }
 }
 
+/// QuickCategoryIcon - 單個快速分類圖示
 class QuickCategoryIcon extends StatelessWidget {
   const QuickCategoryIcon({
     super.key,
     required this.name,
-    this.imagePath,
-    this.icon,
-    this.backgroundColor,
+    this.imageUrl,
     required this.press,
   });
 
   final String name;
-  final String? imagePath;
-  final IconData? icon;
-  final Color? backgroundColor;
+  final String? imageUrl;
   final VoidCallback press;
 
   @override
@@ -117,24 +80,22 @@ class QuickCategoryIcon extends StatelessWidget {
               width: 56,
               height: 56,
               decoration: BoxDecoration(
-                color: backgroundColor ??
-                    (Theme.of(context).brightness == Brightness.light
-                        ? lightGreyColor
-                        : darkGreyColor),
+                color: Theme.of(context).brightness == Brightness.light
+                    ? lightGreyColor
+                    : darkGreyColor,
                 shape: BoxShape.circle,
               ),
               child: Center(
-                child: imagePath != null
+                child: imageUrl != null && imageUrl!.isNotEmpty
                     ? ClipOval(
-                        child: Image.asset(
-                          imagePath!,
-                          width: 32,
-                          height: 32,
+                        child: NetworkImageWithLoader(
+                          imageUrl!,
                           fit: BoxFit.cover,
+                          radius: 28,
                         ),
                       )
                     : Icon(
-                        icon ?? Icons.category,
+                        Icons.category,
                         size: 28,
                         color: Theme.of(context).brightness == Brightness.light
                             ? blackColor60

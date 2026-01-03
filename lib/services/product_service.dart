@@ -67,6 +67,44 @@ class ProductService {
     }
   }
 
+  /// 取得產品分類列表
+  ///
+  /// [name] 產品線名稱
+  ///
+  /// 範例:
+  /// ```dart
+  /// // 使用 FlavorConfig 環境（預設）
+  /// final productService = ProductService();
+  /// final response = await productService.getProductCatList('electronics');
+  ///
+  /// // 使用 localhost
+  /// final localService = ProductService(useLocalhost: true);
+  /// final response = await localService.getProductCatList('electronics');
+  ///
+  /// if (response.isSuccess) {
+  ///   for (var category in response.productCategoryList) {
+  ///     print('${category.name}: ${category.url}');
+  ///   }
+  /// } else {
+  ///   print('錯誤: ${response.message}');
+  /// }
+  /// ```
+  Future<ProductCategoryListResponse> getProductCatList(String name) async {
+    if (useLocalhost) {
+      // Localhost 模式
+      try {
+        final response = await _dio!.get('/product/category-list/$name');
+        return ProductCategoryListResponse.fromJson(response.data);
+      } on DioException catch (e) {
+        throw Exception('API 請求失敗: ${e.message}');
+      }
+    } else {
+      // FlavorConfig 模式（正式環境）
+      final response = await _apiClient!.get(ApiEndpoints.productCategoryList(name));
+      return ProductCategoryListResponse.fromJson(response);
+    }
+  }
+
   /// 釋放資源
   void dispose() {
     _apiClient?.dispose();
