@@ -71,6 +71,9 @@ class ApiEndpoints {
   static const String memberPasswordReset = '/member/password/reset';
   static const String memberDebugDecryptMobile = '/member/debug/decrypt-mobile';
 
+  // Product Endpoints
+  static const String productLineList = '/product/line-list';
+
   // Helper method to build full URL
   static String buildUrl(String endpoint) => '$apiBaseUrl$endpoint';
 }
