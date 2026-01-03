@@ -21,6 +21,10 @@ class ProductLine {
       'url': url,
     };
   }
+
+  String devUrl() {
+    return 'http://localhost:8083$url';
+  }
 }
 
 /// 產品線列表回應

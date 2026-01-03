@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tklab_ec_v2/constants.dart';
 import 'package:tklab_ec_v2/route/screen_export.dart';
-import 'package:tklab_ec_v2/screens/product/views/product_list_screen.dart';
+import 'package:tklab_ec_v2/screens/product/views/product_line_screen.dart';
+// import 'package:tklab_ec_v2/screens/product/views/product_list_screen.dart';
 
 class EntryPoint extends StatefulWidget {
   const EntryPoint({super.key});
@@ -15,7 +16,8 @@ class EntryPoint extends StatefulWidget {
 class _EntryPointState extends State<EntryPoint> {
   // 移除 BookmarkScreen，改為 4 個頁面
   final List _pages = const [
-    ProductListScreen(),
+    // ProductListScreen(),
+    ProductLineScreen(),
     DiscoverScreen(),
     CartScreen(),
     ProfileScreen(),
