@@ -40,22 +40,24 @@ class ProductGridCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Product Image with TOP badge and Cart button
-            Expanded(
-              flex: 3,
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Stack(
-                  children: [
-                    // Product Image
-                    SizedBox.expand(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(defaultBorderRadious),
-                        child: NetworkImageWithLoader(
-                          image,
-                          radius: 0,
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: SizedBox(
+                width: double.infinity,
+                child: AspectRatio(
+                  aspectRatio: 375 / 500, // 寬/高 = 375/500
+                  child: Stack(
+                    children: [
+                      // Product Image (fills the AspectRatio container)
+                      Positioned.fill(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(defaultBorderRadious),
+                          child: NetworkImageWithLoader(
+                            image,
+                            radius: 0,
+                          ),
                         ),
                       ),
-                    ),
 
                     // TOP Ranking Badge
                     if (topRanking != null)
@@ -118,16 +120,15 @@ class ProductGridCard extends StatelessWidget {
                 ),
               ),
             ),
+            ),
 
             // Product Info
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
                     // Product Title
                     Text(
                       title,
@@ -138,6 +139,7 @@ class ProductGridCard extends StatelessWidget {
                             height: 1.3,
                           ),
                     ),
+                    const SizedBox(height: 8),
 
                     // Price Section
                     Column(
@@ -179,7 +181,6 @@ class ProductGridCard extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
           ],
         ),
       ),

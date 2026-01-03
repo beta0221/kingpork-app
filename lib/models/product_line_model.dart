@@ -138,8 +138,8 @@ class ProductCategoryListResponse {
 class Product {
   final String sku;
   final String name;
-  final String price;
-  final String spacialOffer;
+  final double price;
+  final double spacialOffer;
   final String imgUrl;
   final String tag;
 
@@ -156,32 +156,63 @@ class Product {
     return Product(
       sku: json['sku'] as String,
       name: json['name'] as String,
-      price: json['price'] as String,
-      spacialOffer: json['spacialOffer'] as String? ?? '',
+      price: _parsePrice(json['price']),
+      spacialOffer: _parsePrice(json['spacialOffer']),
       imgUrl: json['imgUrl'] as String? ?? '',
       tag: json['tag'] as String? ?? '',
     );
+  }
+
+  /// 解析價格，支援多種格式（String/int/double/null）
+  static double _parsePrice(dynamic value) {
+    if (value == null || value == '') return 0.0;
+    if (value is double) return value;
+    if (value is int) return value.toDouble();
+    if (value is String) {
+      // 移除可能的千分位逗號和空白
+      final cleaned = value.replaceAll(RegExp(r'[,\s]'), '');
+      try {
+        return double.parse(cleaned);
+      } catch (e) {
+        return 0.0;
+      }
+    }
+    return 0.0;
   }
 
   Map<String, dynamic> toJson() {
     return {
       'sku': sku,
       'name': name,
-      'price': price,
-      'spacialOffer': spacialOffer,
+      'price': price.toString(),
+      'spacialOffer': spacialOffer.toString(),
       'imgUrl': imgUrl,
       'tag': tag,
     };
   }
 
   /// 是否有特價
-  bool get hasSpecialOffer => spacialOffer.isNotEmpty && spacialOffer != '0';
+  bool get hasSpecialOffer => spacialOffer > 0 && spacialOffer < price;
 
   /// 是否有標籤
   bool get hasTag => tag.isNotEmpty;
 
   /// 是否為 TOP 產品
   bool get isTopProduct => tag.toUpperCase().contains('TOP');
+
+  /// 從 tag 中提取排名數字（如 "TOP10" → 10, "TOP 5" → 5）
+  int? get ranking {
+    if (!isTopProduct) return null;
+
+    // 支援多種格式: "TOP10", "TOP 10", "top10", "Top10"
+    final regex = RegExp(r'TOP\s*(\d+)', caseSensitive: false);
+    final match = regex.firstMatch(tag);
+
+    if (match != null && match.groupCount >= 1) {
+      return int.tryParse(match.group(1)!);
+    }
+    return null;
+  }
 }
 
 /// 產品列表回應
