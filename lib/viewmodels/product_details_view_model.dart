@@ -10,12 +10,12 @@ class ProductDetailsViewModel extends BaseViewModel {
   // 產品資料
   ProductDetail? _productDetail;
   List<RelatedProduct> _relatedProducts = [];
-  String _currentSku = '';
+  int _currentId = 0;
 
   // Getters - 產品詳情相關
   ProductDetail? get productDetail => _productDetail;
   List<RelatedProduct> get relatedProducts => _relatedProducts;
-  String get currentSku => _currentSku;
+  int get currentId => _currentId;
 
   // 便利查詢方法
   bool get hasProductDetail => _productDetail != null;
@@ -27,20 +27,20 @@ class ProductDetailsViewModel extends BaseViewModel {
 
   /// 初始化產品詳情資料
   ///
-  /// [sku] 產品 SKU
+  /// [id] 產品 ID
   ///
   /// 流程：
   /// 1. 設置載入狀態
   /// 2. 調用 API 獲取產品詳情和相關產品
   /// 3. 解析並設置資料
   /// 4. 設置成功狀態
-  Future<void> initialize(String sku) async {
-    _currentSku = sku;
+  Future<void> initialize(int id) async {
+    _currentId = id;
     setLoading();
 
     try {
       // 調用 API 獲取產品詳情
-      final response = await _productService.getProductDetail(sku);
+      final response = await _productService.getProductDetail(id);
 
       if (response.isSuccess) {
         _productDetail = response.productDetail;
@@ -56,10 +56,10 @@ class ProductDetailsViewModel extends BaseViewModel {
 
   /// 重新載入（供下拉刷新或錯誤重試使用）
   ///
-  /// 重新載入當前 SKU 的產品詳情
+  /// 重新載入當前 ID 的產品詳情
   Future<void> refresh() async {
-    if (_currentSku.isNotEmpty) {
-      await initialize(_currentSku);
+    if (_currentId != 0) {
+      await initialize(_currentId);
     }
   }
 
@@ -69,7 +69,7 @@ class ProductDetailsViewModel extends BaseViewModel {
   void clear() {
     _productDetail = null;
     _relatedProducts = [];
-    _currentSku = '';
+    _currentId = 0;
     setIdle();
   }
 

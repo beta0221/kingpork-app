@@ -149,7 +149,7 @@ class ProductService {
 
   /// 取得產品詳情
   ///
-  /// [sku] 產品 SKU
+  /// [id] 產品 ID
   ///
   /// 範例:
   /// ```dart
@@ -169,18 +169,18 @@ class ProductService {
   ///   print('錯誤: ${response.message}');
   /// }
   /// ```
-  Future<ProductDetailResponse> getProductDetail(String sku) async {
+  Future<ProductDetailResponse> getProductDetail(int id) async {
     if (useLocalhost) {
       // Localhost 模式
       try {
-        final response = await _dio!.get('/product/detail/$sku');
+        final response = await _dio!.get('/product/detail/$id');
         return ProductDetailResponse.fromJson(response.data);
       } on DioException catch (e) {
         throw Exception('API 請求失敗: ${e.message}');
       }
     } else {
       // FlavorConfig 模式（正式環境）
-      final response = await _apiClient!.get(ApiEndpoints.productDetail(sku));
+      final response = await _apiClient!.get(ApiEndpoints.productDetail(id));
       return ProductDetailResponse.fromJson(response);
     }
   }

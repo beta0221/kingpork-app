@@ -136,7 +136,7 @@ class ProductCategoryListResponse {
 
 /// 產品項目 model
 class Product {
-  final String sku;
+  final int id;
   final String name;
   final double price;
   final double spacialOffer;
@@ -144,7 +144,7 @@ class Product {
   final String tag;
 
   Product({
-    required this.sku,
+    required this.id,
     required this.name,
     required this.price,
     required this.spacialOffer,
@@ -154,7 +154,7 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      sku: json['sku'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
       price: _parsePrice(json['price']),
       spacialOffer: _parsePrice(json['spacialOffer']),
@@ -182,7 +182,7 @@ class Product {
 
   Map<String, dynamic> toJson() {
     return {
-      'sku': sku,
+      'id': id,
       'name': name,
       'price': price.toString(),
       'spacialOffer': spacialOffer.toString(),

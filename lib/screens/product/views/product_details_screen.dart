@@ -19,10 +19,10 @@ import 'product_buy_now_screen.dart';
 class ProductDetailsScreen extends StatefulWidget {
   const ProductDetailsScreen({
     super.key,
-    required this.sku,
+    required this.id,
   });
 
-  final String sku;
+  final int id;
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -34,7 +34,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     super.initState();
     // 在 Widget 構建完成後初始化資料
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ProductDetailsViewModel>().initialize(widget.sku);
+      context.read<ProductDetailsViewModel>().initialize(widget.id);
     });
   }
 

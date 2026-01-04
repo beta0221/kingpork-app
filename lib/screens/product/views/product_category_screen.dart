@@ -171,7 +171,7 @@ class _ProductCategoryScreenState extends State<ProductCategoryScreen> {
                               Navigator.pushNamed(
                                 context,
                                 productDetailsScreenRoute,
-                                arguments: {'sku': product.sku},
+                                arguments: {'id': product.id},
                               );
                             },
                             onAddToCart: () {
