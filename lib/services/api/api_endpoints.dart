@@ -77,6 +77,16 @@ class ApiEndpoints {
   static String productList(int catId) => '/product/list/$catId';
   static String productDetail(int id) => '/product/detail/$id';
 
+  // TKCoin Endpoints
+  static const String tkCoinBalance = '/tkcoin/balance';
+  static const String tkCoinUse = '/tkcoin/use';
+  static const String tkCoinExpiring = '/tkcoin/expiring';
+  static String tkCoinClaim(String token) => '/tkcoin/claim/$token';
+  static const String tkCoinGetList = '/tkcoin/getTKCoinsList';
+  static String tkCoinMemberGetList(int memberId) => '/tkcoin/member/$memberId/getTKCoinsList';
+  static String tkCoinMemberGrants(int memberId) => '/tkcoin/member/$memberId/grants';
+  static String tkCoinMemberUsages(int memberId) => '/tkcoin/member/$memberId/usages';
+
   // Helper method to build full URL
   static String buildUrl(String endpoint) => '$apiBaseUrl$endpoint';
 }
