@@ -69,10 +69,19 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                     const SizedBox(height: defaultPadding),
-                    ElevatedButton.icon(
-                      onPressed: viewModel.refresh,
-                      icon: const Icon(Icons.refresh),
-                      label: const Text('重試'),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                      child: ElevatedButton.icon(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(Icons.arrow_back),
+                        label: const Text('返回'),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 24,
+                            vertical: 12,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

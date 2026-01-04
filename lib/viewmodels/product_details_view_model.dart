@@ -50,7 +50,7 @@ class ProductDetailsViewModel extends BaseViewModel {
         setError(response.message.isNotEmpty ? response.message : '無法載入產品詳情');
       }
     } catch (e) {
-      setError('載入產品詳情失敗: ${e.toString()}');
+      setError('很抱歉，此商品已下架。');
     }
   }
 
