@@ -11,6 +11,7 @@ class CartItemCard extends StatelessWidget {
     super.key,
     required this.image,
     required this.productName,
+    this.skuName,
     required this.price,
     required this.quantity,
     required this.isSelected,
@@ -22,6 +23,7 @@ class CartItemCard extends StatelessWidget {
 
   final String image;
   final String productName;
+  final String? skuName;
   final double price;
   final int quantity;
   final bool isSelected;
@@ -75,6 +77,18 @@ class CartItemCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
+
+                // SKU 資訊
+                if (skuName != null && skuName!.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 4),
+                    child: Text(
+                      skuName!,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: blackColor60,
+                          ),
+                    ),
+                  ),
 
                 const SizedBox(height: defaultPadding / 4),
 

@@ -8,6 +8,8 @@ class CartItem {
   final double subtotal;
   final String image;
   final bool isSelected;
+  final String? skuId;      // SKU ID
+  final String? skuName;    // SKU 名稱（例如：「紅色 L號」）
 
   CartItem({
     required this.id,
@@ -18,6 +20,8 @@ class CartItem {
     required this.subtotal,
     required this.image,
     this.isSelected = true,
+    this.skuId,
+    this.skuName,
   });
 
   factory CartItem.fromJson(Map<String, dynamic> json) {
@@ -29,6 +33,9 @@ class CartItem {
       quantity: json['quantity'] as int,
       subtotal: (json['subtotal'] as num).toDouble(),
       image: json['image'] as String,
+      isSelected: json['is_selected'] as bool? ?? true,
+      skuId: json['sku_id'] as String?,
+      skuName: json['sku_name'] as String?,
     );
   }
 
@@ -41,6 +48,9 @@ class CartItem {
       'quantity': quantity,
       'subtotal': subtotal,
       'image': image,
+      'is_selected': isSelected,
+      'sku_id': skuId,
+      'sku_name': skuName,
     };
   }
 
@@ -54,6 +64,8 @@ class CartItem {
     double? subtotal,
     String? image,
     bool? isSelected,
+    String? skuId,
+    String? skuName,
   }) {
     return CartItem(
       id: id ?? this.id,
@@ -64,6 +76,8 @@ class CartItem {
       subtotal: subtotal ?? this.subtotal,
       image: image ?? this.image,
       isSelected: isSelected ?? this.isSelected,
+      skuId: skuId ?? this.skuId,
+      skuName: skuName ?? this.skuName,
     );
   }
 }

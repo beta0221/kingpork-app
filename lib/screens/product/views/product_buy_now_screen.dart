@@ -8,6 +8,7 @@ import 'package:tklab_ec_v2/screens/product/views/added_to_cart_message_screen.d
 import 'package:tklab_ec_v2/screens/product/views/components/product_list_tile.dart';
 import 'package:tklab_ec_v2/screens/product/views/location_permission_store_availability_screen.dart';
 import 'package:tklab_ec_v2/screens/product/views/size_guide_screen.dart';
+import 'package:tklab_ec_v2/viewmodels/cart_view_model.dart';
 import 'package:tklab_ec_v2/viewmodels/product_details_view_model.dart';
 
 import '../../../constants.dart';
@@ -127,13 +128,39 @@ class ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
             price: totalPrice,
             title: "加入購物車",
             subTitle: "總價",
-            press: () {
-              // TODO: 未來需傳遞選中的 SKU 和數量到購物車
-              customModalBottomSheet(
-                context,
-                isDismissible: false,
-                child: const AddedToCartMessageScreen(),
-              );
+            press: () async {
+              // 獲取選中的 SKU
+              final selectedSku = product.skuList[_selectedSkuIndex];
+
+              try {
+                // 調用 CartViewModel 添加到購物車
+                await context.read<CartViewModel>().addToCartWithSku(
+                      productId: product.id,
+                      productName: product.title,
+                      price: product.price,
+                      quantity: _quantity,
+                      image: product.primaryImage,
+                      skuId: selectedSku.id,
+                      skuName: selectedSku.name,
+                    );
+
+                // 成功後顯示提示
+                if (!mounted) return;
+                customModalBottomSheet(
+                  context,
+                  isDismissible: false,
+                  child: const AddedToCartMessageScreen(),
+                );
+              } catch (e) {
+                // 錯誤處理
+                if (!mounted) return;
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('加入購物車失敗: ${e.toString()}'),
+                    backgroundColor: errorColor,
+                  ),
+                );
+              }
             },
           ),
           body: Column(

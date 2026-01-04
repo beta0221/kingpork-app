@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tklab_ec_v2/constants.dart';
-import 'package:tklab_ec_v2/route/screen_export.dart';
+import 'package:tklab_ec_v2/route/route_constants.dart';
 
 class AddedToCartMessageScreen extends StatelessWidget {
   const AddedToCartMessageScreen({super.key});
@@ -36,13 +36,15 @@ class AddedToCartMessageScreen extends StatelessWidget {
               const Spacer(flex: 2),
               OutlinedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, entryPointScreenRoute);
+                  Navigator.pop(context);
                 },
                 child: const Text("繼續購物"),
               ),
               const SizedBox(height: defaultPadding),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Navigator.pushNamed(context, cartScreenRoute);
+                },
                 child: const Text("結帳"),
               ),
               const Spacer(),

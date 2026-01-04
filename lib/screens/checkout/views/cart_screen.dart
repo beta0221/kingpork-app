@@ -98,6 +98,7 @@ class _CartScreenState extends State<CartScreen> {
                           child: CartItemCard(
                             image: item.image,
                             productName: item.productName,
+                            skuName: item.skuName,
                             price: item.price,
                             quantity: item.quantity,
                             isSelected: item.isSelected,

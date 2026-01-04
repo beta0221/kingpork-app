@@ -1,10 +1,12 @@
 import 'package:tklab_ec_v2/models/cart_models.dart';
 import 'package:tklab_ec_v2/services/cart_service.dart';
 import 'package:tklab_ec_v2/viewmodels/base_view_model.dart';
+import 'package:tklab_ec_v2/utils/cart_storage_manager.dart';
 
 /// CartViewModel manages shopping cart data and operations
 class CartViewModel extends BaseViewModel {
   final CartService _cartService;
+  final CartStorageManager _storageManager = CartStorageManager();
 
   CartResponse? _cart;
 
@@ -31,53 +33,25 @@ class CartViewModel extends BaseViewModel {
   CartViewModel({CartService? cartService})
       : _cartService = cartService ?? CartService();
 
-  /// Load cart items (使用範例資料)
+  /// 從 localStorage 載入購物車資料
   Future<void> loadCart() async {
     setLoading();
     try {
-      // 使用範例資料，不呼叫 API
-      await Future.delayed(const Duration(milliseconds: 300));
-      _cart = CartResponse(
-        items: _demoCartItems,
-        total: _demoCartItems.fold(
-            0.0, (sum, item) => sum + (item.price * item.quantity)),
+      // 從 localStorage 讀取購物車資料
+      final items = await _storageManager.loadCart();
+
+      // 計算總金額
+      final total = items.fold(
+        0.0,
+        (sum, item) => sum + (item.price * item.quantity),
       );
+
+      _cart = CartResponse(items: items, total: total);
       setSuccess();
     } catch (e) {
       setError('載入購物車失敗: ${e.toString()}');
     }
   }
-
-  /// 範例購物車資料
-  static final List<CartItem> _demoCartItems = [
-    CartItem(
-      id: 1,
-      productId: 101,
-      productName: '極致保濕精華液 30ml',
-      price: 1280,
-      quantity: 1,
-      subtotal: 1280,
-      image: 'https://img.tklab.com.tw/uploads/product/202509/5382_ffcc5cb7c3724d567d31bd452ecbe83e27af592b_s.webp',
-    ),
-    CartItem(
-      id: 2,
-      productId: 102,
-      productName: '玻尿酸補水面膜 (5入)',
-      price: 599,
-      quantity: 2,
-      subtotal: 1198,
-      image: 'https://img.tklab.com.tw/uploads/product/202509/5384_f8bfca50ed8ad963618f88a27736c1a7afa9d9fb_m.webp',
-    ),
-    CartItem(
-      id: 3,
-      productId: 103,
-      productName: '維他命C亮白精華 15ml',
-      price: 890,
-      quantity: 1,
-      subtotal: 890,
-      image: 'https://img.tklab.com.tw/uploads/product/202509/5388_790617a1b212f0095ee92e644fda1c7494c3c2cc_m.webp',
-    ),
-  ];
 
   /// Add product to cart
   Future<void> addToCart(int productId, int quantity) async {
@@ -90,6 +64,81 @@ class CartViewModel extends BaseViewModel {
       await loadCart();
     } catch (e) {
       setError('加入購物車失敗: ${e.toString()}');
+    }
+  }
+
+  /// 添加商品到購物車（支援 SKU）
+  ///
+  /// [productId] 產品 ID
+  /// [productName] 產品名稱
+  /// [price] 單價
+  /// [quantity] 數量
+  /// [image] 產品圖片 URL
+  /// [skuId] SKU ID（可選）
+  /// [skuName] SKU 名稱（可選）
+  ///
+  /// 如果購物車中已存在相同 productId + skuId 的商品，則累加數量
+  /// 否則創建新的購物車項目
+  Future<void> addToCartWithSku({
+    required int productId,
+    required String productName,
+    required double price,
+    required int quantity,
+    required String image,
+    String? skuId,
+    String? skuName,
+  }) async {
+    try {
+      _cart ??= CartResponse(items: [], total: 0.0);
+
+      // 檢查是否已存在相同產品+SKU
+      final existingIndex = _cart!.items.indexWhere(
+        (item) =>
+            item.productId == productId &&
+            item.skuId == skuId, // SKU ID 相同（包括都是 null 的情況）
+      );
+
+      List<CartItem> updatedItems;
+
+      if (existingIndex != -1) {
+        // 已存在：累加數量
+        final existingItem = _cart!.items[existingIndex];
+        final newQuantity = existingItem.quantity + quantity;
+
+        updatedItems = List.from(_cart!.items);
+        updatedItems[existingIndex] = existingItem.copyWith(
+          quantity: newQuantity,
+          subtotal: price * newQuantity,
+        );
+      } else {
+        // 不存在：創建新項目
+        final newItem = CartItem(
+          id: DateTime.now().millisecondsSinceEpoch, // 使用時間戳作為唯一 ID
+          productId: productId,
+          productName: productName,
+          price: price,
+          quantity: quantity,
+          subtotal: price * quantity,
+          image: image,
+          isSelected: true,
+          skuId: skuId,
+          skuName: skuName,
+        );
+
+        updatedItems = [..._cart!.items, newItem];
+      }
+
+      // 更新購物車
+      _cart = _cart!.copyWith(items: updatedItems);
+      _calculateTotal();
+
+      // 保存到 localStorage
+      await _storageManager.saveCart(_cart!.items);
+
+      notifyListeners();
+    } catch (e) {
+      setError('加入購物車失敗: ${e.toString()}');
+      rethrow;
     }
   }
 
@@ -134,16 +183,17 @@ class CartViewModel extends BaseViewModel {
     }
   }
 
-  /// Clear all items from cart
+  /// 清空購物車
   Future<void> clearCart() async {
     if (_cart == null || _cart!.items.isEmpty) return;
 
     try {
-      // Remove all items one by one
-      for (final item in _cart!.items) {
-        await _cartService.removeFromCart(item.id);
-      }
-      await loadCart();
+      // 清空 localStorage
+      await _storageManager.clearCart();
+
+      // 清空內存中的資料
+      _cart = CartResponse(items: [], total: 0.0);
+      notifyListeners();
     } catch (e) {
       setError('清空購物車失敗: ${e.toString()}');
     }
@@ -155,7 +205,7 @@ class CartViewModel extends BaseViewModel {
   }
 
   /// 切換單一商品的勾選狀態
-  void toggleItemSelection(int cartItemId) {
+  void toggleItemSelection(int cartItemId) async {
     if (_cart == null) return;
 
     final updatedItems = _cart!.items.map((item) {
@@ -167,10 +217,18 @@ class CartViewModel extends BaseViewModel {
 
     _cart = _cart!.copyWith(items: updatedItems);
     notifyListeners();
+
+    // 保存到 localStorage
+    try {
+      await _storageManager.saveCart(_cart!.items);
+    } catch (e) {
+      // ignore: avoid_print
+      print('保存購物車失敗: ${e.toString()}');
+    }
   }
 
   /// 全選或取消全選
-  void toggleSelectAll() {
+  void toggleSelectAll() async {
     if (_cart == null || _cart!.items.isEmpty) return;
 
     final newSelectState = !isAllSelected;
@@ -180,10 +238,18 @@ class CartViewModel extends BaseViewModel {
 
     _cart = _cart!.copyWith(items: updatedItems);
     notifyListeners();
+
+    // 保存到 localStorage
+    try {
+      await _storageManager.saveCart(_cart!.items);
+    } catch (e) {
+      // ignore: avoid_print
+      print('保存購物車失敗: ${e.toString()}');
+    }
   }
 
   /// 更新商品數量（本地更新，用於即時 UI 反饋）
-  void updateItemQuantity(int cartItemId, int quantity) {
+  void updateItemQuantity(int cartItemId, int quantity) async {
     if (_cart == null || quantity < 1) return;
 
     final updatedItems = _cart!.items.map((item) {
@@ -199,10 +265,18 @@ class CartViewModel extends BaseViewModel {
     _cart = _cart!.copyWith(items: updatedItems);
     _calculateTotal();
     notifyListeners();
+
+    // 保存到 localStorage
+    try {
+      await _storageManager.saveCart(_cart!.items);
+    } catch (e) {
+      // ignore: avoid_print
+      print('保存購物車失敗: ${e.toString()}');
+    }
   }
 
   /// 刪除商品（本地刪除，用於即時 UI 反饋）
-  void deleteItem(int cartItemId) {
+  void deleteItem(int cartItemId) async {
     if (_cart == null) return;
 
     final updatedItems =
@@ -211,6 +285,14 @@ class CartViewModel extends BaseViewModel {
     _cart = _cart!.copyWith(items: updatedItems);
     _calculateTotal();
     notifyListeners();
+
+    // 保存到 localStorage
+    try {
+      await _storageManager.saveCart(_cart!.items);
+    } catch (e) {
+      // ignore: avoid_print
+      print('保存購物車失敗: ${e.toString()}');
+    }
   }
 
   /// Calculate total price
