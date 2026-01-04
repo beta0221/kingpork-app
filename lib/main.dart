@@ -12,6 +12,7 @@ import 'package:tklab_ec_v2/viewmodels/product_list_view_model.dart';
 import 'package:tklab_ec_v2/viewmodels/product_category_view_model.dart';
 import 'package:tklab_ec_v2/viewmodels/product_details_view_model.dart';
 import 'package:tklab_ec_v2/viewmodels/tkcoin_view_model.dart';
+import 'package:tklab_ec_v2/viewmodels/coupon_view_model.dart';
 
 /// 預設入口點（用於開發時快速測試）
 /// 正式使用時應該使用 main_dev.dart, main_uat.dart, main_prod.dart
@@ -37,6 +38,7 @@ void runMainApp() {
         ChangeNotifierProvider(create: (_) => ProductCategoryViewModel()),
         ChangeNotifierProvider(create: (_) => ProductDetailsViewModel()),
         ChangeNotifierProvider(create: (_) => TKCoinViewModel()),
+        ChangeNotifierProvider(create: (_) => CouponViewModel()),
       ],
       child: const MyApp(),
     ),

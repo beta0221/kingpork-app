@@ -6,6 +6,7 @@ import 'package:tklab_ec_v2/constants.dart';
 import 'package:tklab_ec_v2/route/screen_export.dart';
 import 'package:tklab_ec_v2/viewmodels/member_view_model.dart';
 import 'package:tklab_ec_v2/viewmodels/tkcoin_view_model.dart';
+import 'package:tklab_ec_v2/viewmodels/coupon_view_model.dart';
 
 import 'components/profile_card.dart';
 import 'components/profile_menu_item_list_tile.dart';
@@ -23,19 +24,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    // 在初始化時載入會員資料和 TK幣餘額
+    // 在初始化時載入會員資料、TK幣餘額和優惠券數量
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       final memberViewModel = context.read<MemberViewModel>();
       final tkcoinViewModel = context.read<TKCoinViewModel>();
+      final couponViewModel = context.read<CouponViewModel>();
 
       // 檢查是否有 token（表示已登入）
       final isLoggedIn = await memberViewModel.checkTokenValidity();
 
       if (isLoggedIn && mounted) {
-        // 並行載入會員資料和 TK幣餘額
+        // 並行載入會員資料、TK幣餘額和優惠券數量
         await Future.wait([
           memberViewModel.loadMemberProfile(),
           tkcoinViewModel.loadBalance(),
+          couponViewModel.loadUnusedCouponCount(),
         ]);
 
         if (mounted) {
@@ -49,11 +52,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             );
           }
 
-          // TK幣載入失敗不顯示錯誤訊息（靜默失敗，不影響頁面使用）
+          // TK幣和優惠券載入失敗不顯示錯誤訊息（靜默失敗，不影響頁面使用）
         }
       } else {
-        // 未登入時清除 TK幣資料
+        // 未登入時清除 TK幣和優惠券資料
         tkcoinViewModel.clear();
+        couponViewModel.clear();
       }
     });
   }
@@ -299,9 +303,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
       // 執行登出
       await viewModel.logout();
 
-      // 清除 TK幣資料
+      // 清除 TK幣和優惠券資料
       if (mounted) {
         context.read<TKCoinViewModel>().clear();
+        context.read<CouponViewModel>().clear();
       }
 
       // 顯示成功訊息
@@ -370,9 +375,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         }
 
         if (success) {
-          // 清除 TK幣資料
+          // 清除 TK幣和優惠券資料
           if (mounted) {
             context.read<TKCoinViewModel>().clear();
+            context.read<CouponViewModel>().clear();
           }
 
           // 顯示成功訊息

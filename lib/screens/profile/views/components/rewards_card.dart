@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tklab_ec_v2/constants.dart';
 import 'package:tklab_ec_v2/viewmodels/tkcoin_view_model.dart';
+import 'package:tklab_ec_v2/viewmodels/coupon_view_model.dart';
 
 class RewardsCard extends StatelessWidget {
   const RewardsCard({super.key});
@@ -51,12 +52,21 @@ class RewardsCard extends StatelessWidget {
           ),
           // 現金券 section
           Expanded(
-            child: _RewardItem(
-              icon: Icons.confirmation_num_outlined,
-              iconColor: const Color.fromRGBO(238, 155, 53, 1.0),
-              title: '現金券',
-              value: '3',
-              hasNotification: true,
+            child: Consumer<CouponViewModel>(
+              builder: (context, couponViewModel, child) {
+                // 根據載入狀態顯示不同內容
+                final couponCount = couponViewModel.isLoading
+                    ? '...'
+                    : couponViewModel.unusedCouponCount.toString();
+
+                return _RewardItem(
+                  icon: Icons.confirmation_num_outlined,
+                  iconColor: const Color.fromRGBO(238, 155, 53, 1.0),
+                  title: '現金券',
+                  value: couponCount,
+                  hasNotification: couponViewModel.hasUnusedCoupon,
+                );
+              },
             ),
           ),
         ],
