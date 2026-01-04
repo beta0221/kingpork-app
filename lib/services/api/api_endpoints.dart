@@ -87,6 +87,15 @@ class ApiEndpoints {
   static String tkCoinMemberGrants(int memberId) => '/tkcoin/member/$memberId/grants';
   static String tkCoinMemberUsages(int memberId) => '/tkcoin/member/$memberId/usages';
 
+  // Coupon Endpoints
+  static const String couponCheckAutoGrant = '/coupon/check-auto-grant';
+  static String couponClaim(int couponId) => '/coupon/claim/$couponId';
+  static String couponClaimByCode(String code) => '/coupon/claim-by-code/$code';
+  static const String couponList = '/coupon/list';
+  static const String couponAutoGrantList = '/coupon/auto-grant-list';
+  static const String couponMyCoupons = '/coupon/my-coupons';
+  static const String couponUse = '/coupon/use';
+
   // Helper method to build full URL
   static String buildUrl(String endpoint) => '$apiBaseUrl$endpoint';
 }
