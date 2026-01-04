@@ -26,7 +26,7 @@ class PopularProducts extends StatelessWidget {
         // While loading use 👇
         // const ProductsSkelton(),
         SizedBox(
-          height: 220,
+          height: 280,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             // Find demoPopularProducts on models/ProductModel.dart

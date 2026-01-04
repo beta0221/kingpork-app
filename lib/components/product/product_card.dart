@@ -25,8 +25,8 @@ class ProductCard extends StatelessWidget {
     return OutlinedButton(
       onPressed: press,
       style: OutlinedButton.styleFrom(
-        minimumSize: const Size(140, 220),
-        maximumSize: const Size(140, 220),
+        minimumSize: const Size(140, 280),
+        maximumSize: const Size(140, 280),
         padding: const EdgeInsets.all(8),
         side: BorderSide(
           color: Theme.of(context).dividerColor,
@@ -35,7 +35,7 @@ class ProductCard extends StatelessWidget {
       child: Column(
         children: [
           AspectRatio(
-            aspectRatio: 1.15,
+            aspectRatio: 0.75,
             child: Stack(
               children: [
                 NetworkImageWithLoader(image, radius: defaultBorderRadious),

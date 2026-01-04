@@ -34,7 +34,7 @@ class FlashSale extends StatelessWidget {
         // While loading show 👇
         // const ProductsSkelton(),
         SizedBox(
-          height: 220,
+          height: 280,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             // Find demoFlashSaleProducts on models/ProductModel.dart

@@ -191,7 +191,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     if (viewModel.hasRelatedProducts)
                       SliverToBoxAdapter(
                         child: SizedBox(
-                          height: 220,
+                          height: 280,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: viewModel.relatedProducts.length,

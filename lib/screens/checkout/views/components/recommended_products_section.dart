@@ -34,7 +34,7 @@ class RecommendedProductsSection extends StatelessWidget {
 
         // 水平滑動商品列表
         SizedBox(
-          height: 220,
+          height: 280,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: demoPopularProducts.length,

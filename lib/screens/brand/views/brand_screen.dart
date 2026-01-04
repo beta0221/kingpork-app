@@ -49,7 +49,7 @@ class BrandScreen extends StatelessWidget {
                     maxCrossAxisExtent: 200.0,
                     mainAxisSpacing: defaultPadding,
                     crossAxisSpacing: defaultPadding,
-                    childAspectRatio: 0.66,
+                    childAspectRatio: 0.5,
                   ),
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {

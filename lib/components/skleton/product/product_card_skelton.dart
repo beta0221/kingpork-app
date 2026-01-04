@@ -11,7 +11,7 @@ class ProductCardSkelton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const SizedBox(
-      height: 220,
+      height: 280,
       width: 140,
       child: Padding(
         padding: EdgeInsets.all(defaultPadding / 2),
@@ -19,7 +19,7 @@ class ProductCardSkelton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: 1.15,
+              aspectRatio: 0.75,
               child: Skeleton(),
             ),
             Spacer(flex: 2),
