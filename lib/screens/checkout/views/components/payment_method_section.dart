@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/constants.dart';
 import '/viewmodels/order_confirmation_view_model.dart';
+import 'payment_method_selection_bottom_sheet.dart';
 
 class PaymentMethodSection extends StatelessWidget {
   const PaymentMethodSection({super.key});
@@ -47,10 +48,8 @@ class PaymentMethodSection extends StatelessWidget {
                   // 右側「變更」按鈕
                   GestureDetector(
                     onTap: () {
-                      // 導航至付款方式選擇頁面
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('前往付款方式選擇頁面')),
-                      );
+                      // 顯示付款方式選擇底部彈窗
+                      showPaymentMethodSelectionBottomSheet(context);
                     },
                     child: Row(
                       children: [

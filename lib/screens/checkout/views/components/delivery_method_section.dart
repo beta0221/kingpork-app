@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/constants.dart';
 import '/viewmodels/order_confirmation_view_model.dart';
+import 'delivery_method_selection_bottom_sheet.dart';
 
 class DeliveryMethodSection extends StatelessWidget {
   const DeliveryMethodSection({super.key});
@@ -68,10 +69,8 @@ class DeliveryMethodSection extends StatelessWidget {
                   // 右側「變更」按鈕
                   GestureDetector(
                     onTap: () {
-                      // TODO: 導航至地址選擇頁面
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('前往地址選擇頁面')),
-                      );
+                      // 顯示送貨方式選擇底部彈窗
+                      showDeliveryMethodSelectionBottomSheet(context);
                     },
                     child: Row(
                       children: [

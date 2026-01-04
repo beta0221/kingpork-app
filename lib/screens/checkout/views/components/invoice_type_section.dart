@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/constants.dart';
+import '/models/checkout_options.dart';
 import '/viewmodels/order_confirmation_view_model.dart';
+import 'invoice_type_selection_bottom_sheet.dart';
 
 class InvoiceTypeSection extends StatelessWidget {
   const InvoiceTypeSection({super.key});
@@ -45,13 +47,48 @@ class InvoiceTypeSection extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 4),
-                        Text(
-                          viewModel.invoiceCarrierType,
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: blackColor60,
+                        // 根據發票類型顯示額外資訊
+                        if (viewModel.selectedInvoiceType == InvoiceType.cloud)
+                          Text(
+                            viewModel.invoiceCarrierType,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: blackColor60,
+                            ),
+                          )
+                        else if (viewModel.selectedInvoiceType == InvoiceType.donation &&
+                                 viewModel.invoiceDonationCode != null)
+                          Text(
+                            '捐贈碼：${viewModel.invoiceDonationCode}',
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: blackColor60,
+                            ),
+                          )
+                        else if (viewModel.selectedInvoiceType == InvoiceType.triplicate)
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (viewModel.invoiceCompanyId != null)
+                                Text(
+                                  '統編：${viewModel.invoiceCompanyId}',
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: blackColor60,
+                                  ),
+                                ),
+                              if (viewModel.invoiceCompanyTitle != null) ...[
+                                const SizedBox(height: 2),
+                                Text(
+                                  viewModel.invoiceCompanyTitle!,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: blackColor60,
+                                  ),
+                                ),
+                              ],
+                            ],
                           ),
-                        ),
                       ],
                     ),
                   ),
@@ -60,10 +97,8 @@ class InvoiceTypeSection extends StatelessWidget {
                   // 右側「變更」按鈕
                   GestureDetector(
                     onTap: () {
-                      // 顯示發票類型選擇 modal
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('顯示發票類型選擇')),
-                      );
+                      // 顯示發票類型選擇底部彈窗
+                      showInvoiceTypeSelectionBottomSheet(context);
                     },
                     child: Row(
                       children: [

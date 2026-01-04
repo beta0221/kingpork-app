@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/constants.dart';
 import '/viewmodels/order_confirmation_view_model.dart';
+import 'voucher_selection_bottom_sheet.dart';
 
 class VoucherSection extends StatelessWidget {
   const VoucherSection({super.key});
@@ -33,7 +34,7 @@ class VoucherSection extends StatelessWidget {
               child: Row(
                 children: [
                   // 左側圖示 (可選)
-                  if (viewModel.voucherCode != null)
+                  if (viewModel.selectedCoupon != null)
                     Container(
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
@@ -46,16 +47,16 @@ class VoucherSection extends StatelessWidget {
                         size: 20,
                       ),
                     ),
-                  if (viewModel.voucherCode != null) const SizedBox(width: 12),
+                  if (viewModel.selectedCoupon != null) const SizedBox(width: 12),
 
                   // 左側資訊
                   Expanded(
-                    child: viewModel.voucherCode != null
+                    child: viewModel.selectedCoupon != null
                         ? Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                viewModel.voucherCode!,
+                                viewModel.selectedCoupon!.title,
                                 style: const TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
@@ -77,15 +78,13 @@ class VoucherSection extends StatelessWidget {
                   // 右側按鈕/文字
                   GestureDetector(
                     onTap: () {
-                      // 前往現金券選擇或輸入頁面
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('前往現金券選擇頁面')),
-                      );
+                      // 顯示現金券選擇底部彈窗
+                      showVoucherSelectionBottomSheet(context);
                     },
                     child: Row(
                       children: [
                         Text(
-                          viewModel.voucherCode != null ? '變更' : '選擇現金券或輸入折扣碼',
+                          viewModel.selectedCoupon != null ? '變更' : '選擇現金券或輸入折扣碼',
                           style: const TextStyle(
                             color: primaryColor,
                             fontSize: 14,

@@ -78,26 +78,58 @@ class _TkCoinSectionState extends State<TkCoinSection> {
 
                       // 可用餘額
                       Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              '可用 TK幣',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
+                        child: viewModel.isTkCoinsLoading
+                            ? const Row(
+                                children: [
+                                  SizedBox(
+                                    width: 16,
+                                    height: 16,
+                                    child: CircularProgressIndicator(
+                                      color: primaryColor,
+                                      strokeWidth: 2,
+                                    ),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Text(
+                                    '載入中...',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: blackColor60,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    '可用 TK幣',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    '${viewModel.availableTkCoins} 點 (可折抵 NT\$${viewModel.availableTkCoins})',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: blackColor60,
+                                    ),
+                                  ),
+                                  if (viewModel.tkCoinsError != null)
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 4),
+                                      child: Text(
+                                        viewModel.tkCoinsError!,
+                                        style: const TextStyle(
+                                          fontSize: 12,
+                                          color: errorColor,
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
-                            ),
-                            const SizedBox(height: 2),
-                            Text(
-                              '${viewModel.availableTkCoins} 點 (可折抵 NT\$${viewModel.availableTkCoins})',
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: blackColor60,
-                              ),
-                            ),
-                          ],
-                        ),
                       ),
 
                       // 使用開關
