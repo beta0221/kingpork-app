@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tklab_ec_v2/constants.dart';
+import 'package:tklab_ec_v2/viewmodels/tkcoin_view_model.dart';
 
 class RewardsCard extends StatelessWidget {
   const RewardsCard({super.key});
@@ -23,12 +25,21 @@ class RewardsCard extends StatelessWidget {
         children: [
           // TK幣 section
           Expanded(
-            child: _RewardItem(
-              icon: Icons.monetization_on_outlined,
-              iconColor: const Color.fromRGBO(238, 155, 53, 1.0),
-              title: 'TK幣',
-              value: '0',
-              hasNotification: false,
+            child: Consumer<TKCoinViewModel>(
+              builder: (context, tkcoinViewModel, child) {
+                // 根據載入狀態顯示不同內容
+                final balance = tkcoinViewModel.isLoading
+                    ? '...'
+                    : tkcoinViewModel.tkCoinBalance.toString();
+
+                return _RewardItem(
+                  icon: Icons.monetization_on_outlined,
+                  iconColor: const Color.fromRGBO(238, 155, 53, 1.0),
+                  title: 'TK幣',
+                  value: balance,
+                  hasNotification: false,
+                );
+              },
             ),
           ),
           // Divider

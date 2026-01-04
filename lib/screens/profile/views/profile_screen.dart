@@ -5,6 +5,7 @@ import 'package:tklab_ec_v2/components/list_tile/divider_list_tile.dart';
 import 'package:tklab_ec_v2/constants.dart';
 import 'package:tklab_ec_v2/route/screen_export.dart';
 import 'package:tklab_ec_v2/viewmodels/member_view_model.dart';
+import 'package:tklab_ec_v2/viewmodels/tkcoin_view_model.dart';
 
 import 'components/profile_card.dart';
 import 'components/profile_menu_item_list_tile.dart';
@@ -22,23 +23,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    // 在初始化時載入會員資料
+    // 在初始化時載入會員資料和 TK幣餘額
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      final viewModel = context.read<MemberViewModel>();
+      final memberViewModel = context.read<MemberViewModel>();
+      final tkcoinViewModel = context.read<TKCoinViewModel>();
+
       // 檢查是否有 token（表示已登入）
-      final isLoggedIn = await viewModel.checkTokenValidity();
+      final isLoggedIn = await memberViewModel.checkTokenValidity();
+
       if (isLoggedIn && mounted) {
-        // 只在有 token 時才載入會員資料
-        await viewModel.loadMemberProfile();
-        if (mounted && viewModel.errorMessage != null) {
-          // 如果載入失敗，顯示錯誤訊息
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(viewModel.errorMessage!),
-              backgroundColor: errorColor,
-            ),
-          );
+        // 並行載入會員資料和 TK幣餘額
+        await Future.wait([
+          memberViewModel.loadMemberProfile(),
+          tkcoinViewModel.loadBalance(),
+        ]);
+
+        if (mounted) {
+          // 處理會員資料錯誤
+          if (memberViewModel.errorMessage != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(memberViewModel.errorMessage!),
+                backgroundColor: errorColor,
+              ),
+            );
+          }
+
+          // TK幣載入失敗不顯示錯誤訊息（靜默失敗，不影響頁面使用）
         }
+      } else {
+        // 未登入時清除 TK幣資料
+        tkcoinViewModel.clear();
       }
     });
   }
@@ -284,6 +299,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       // 執行登出
       await viewModel.logout();
 
+      // 清除 TK幣資料
+      if (mounted) {
+        context.read<TKCoinViewModel>().clear();
+      }
+
       // 顯示成功訊息
       scaffoldMessenger.showSnackBar(
         const SnackBar(
@@ -350,6 +370,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         }
 
         if (success) {
+          // 清除 TK幣資料
+          if (mounted) {
+            context.read<TKCoinViewModel>().clear();
+          }
+
           // 顯示成功訊息
           scaffoldMessenger.showSnackBar(
             const SnackBar(
