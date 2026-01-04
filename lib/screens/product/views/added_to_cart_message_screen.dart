@@ -28,10 +28,10 @@ class AddedToCartMessageScreen extends StatelessWidget {
                     .copyWith(fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: defaultPadding / 2),
-              const Text(
-                "點擊結帳按鈕以完成購買流程。",
-                textAlign: TextAlign.center,
-              ),
+              // const Text(
+              //   "點擊結帳按鈕以完成購買流程。",
+              //   textAlign: TextAlign.center,
+              // ),
               const Spacer(flex: 2),
               OutlinedButton(
                 onPressed: () {
@@ -39,13 +39,13 @@ class AddedToCartMessageScreen extends StatelessWidget {
                 },
                 child: const Text("繼續購物"),
               ),
-              const SizedBox(height: defaultPadding),
-              ElevatedButton(
-                onPressed: () {
-                  // Navigator.pushNamed(context, cartScreenRoute);
-                },
-                child: const Text("結帳"),
-              ),
+              // const SizedBox(height: defaultPadding),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     // Navigator.pushNamed(context, cartScreenRoute);
+              //   },
+              //   child: const Text("結帳"),
+              // ),
               const Spacer(),
             ],
           ),

@@ -37,7 +37,7 @@ class _ProductImagesState extends State<ProductImages> {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: AspectRatio(
-        aspectRatio: 1,
+        aspectRatio: 3 / 4,
         child: Stack(
           children: [
             PageView.builder(

@@ -257,13 +257,15 @@ class JsBridgeHandler {
 
   Future<void> _handleOpenCategoryList(Map<String, dynamic> data) async {
     final categoryName = data['name'] as String?;
+    final displayTitle = data['display'] as String?;
 
     if (categoryName != null && context.mounted) {
       await Navigator.pushNamed(
         context,
         productCategoryScreenRoute,
         arguments: {
-          'categoryName': categoryName
+          'categoryName': categoryName,
+          'displayTitle': displayTitle
         },
       );
       debugPrint('JS Bridge: Opened category: $categoryName');

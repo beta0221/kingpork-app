@@ -121,6 +121,26 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   ),
 
+                // 功能特色區塊標題
+                SliverToBoxAdapter(
+                  child: Text.rich(
+                      TextSpan(
+                        children: [
+                          const TextSpan(text: '為什麼要從'),
+                          TextSpan(
+                            text: '官方TKLAB',
+                            style: TextStyle(color: primaryColor),
+                          ),
+                          const TextSpan(text: '選購?'),
+                        ],
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                ),
+
                 // 功能特色區塊
                 const SliverPadding(
                   padding: EdgeInsets.symmetric(vertical: defaultPadding),

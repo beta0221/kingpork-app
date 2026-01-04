@@ -86,36 +86,36 @@ class ProductGridCard extends StatelessWidget {
                     ),
 
                     // Add to Cart Button
-                    Positioned(
-                      bottom: 4,
-                      right: 4,
-                      child: InkWell(
-                        onTap: onAddToCart,
-                        child: Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFF6B00),
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.15),
-                                blurRadius: 4,
-                                offset: const Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: SvgPicture.asset(
-                            "assets/icons/Bag.svg",
-                            height: 16,
-                            width: 16,
-                            colorFilter: const ColorFilter.mode(
-                              Colors.white,
-                              BlendMode.srcIn,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Positioned(
+                    //   bottom: 4,
+                    //   right: 4,
+                    //   child: InkWell(
+                    //     onTap: onAddToCart,
+                    //     child: Container(
+                    //       padding: const EdgeInsets.all(8),
+                    //       decoration: BoxDecoration(
+                    //         color: const Color(0xFFFF6B00),
+                    //         shape: BoxShape.circle,
+                    //         boxShadow: [
+                    //           BoxShadow(
+                    //             color: Colors.black.withValues(alpha: 0.15),
+                    //             blurRadius: 4,
+                    //             offset: const Offset(0, 2),
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       child: SvgPicture.asset(
+                    //         "assets/icons/Bag.svg",
+                    //         height: 16,
+                    //         width: 16,
+                    //         colorFilter: const ColorFilter.mode(
+                    //           Colors.white,
+                    //           BlendMode.srcIn,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
