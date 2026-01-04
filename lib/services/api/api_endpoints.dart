@@ -75,6 +75,7 @@ class ApiEndpoints {
   static const String productLineList = '/product/line-list';
   static String productCategoryList(String name) => '/product/category-list/$name';
   static String productList(int catId) => '/product/list/$catId';
+  static String productDetail(String sku) => '/product/detail/$sku';
 
   // Helper method to build full URL
   static String buildUrl(String endpoint) => '$apiBaseUrl$endpoint';

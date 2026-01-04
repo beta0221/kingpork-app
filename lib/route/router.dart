@@ -76,8 +76,21 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case productDetailsScreenRoute:
       return MaterialPageRoute(
         builder: (context) {
-          bool isProductAvailable = settings.arguments as bool? ?? true;
-          return ProductDetailsScreen(isProductAvailable: isProductAvailable);
+          // 支援兩種參數格式：String 或 Map
+          String sku = '1562'; // 預設值
+
+          if (settings.arguments != null) {
+            if (settings.arguments is String) {
+              // 直接傳遞 String
+              sku = settings.arguments as String;
+            } else if (settings.arguments is Map) {
+              // 從 Map 中提取 sku
+              final args = settings.arguments as Map;
+              sku = args['sku']?.toString() ?? '1562';
+            }
+          }
+
+          return ProductDetailsScreen(sku: sku);
         },
       );
     case productReviewsScreenRoute:

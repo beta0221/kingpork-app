@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:tklab_ec_v2/models/product_detail_model.dart';
 import 'package:tklab_ec_v2/models/product_line_model.dart';
 import 'package:tklab_ec_v2/services/api/api_client.dart';
 import 'package:tklab_ec_v2/services/api/api_endpoints.dart';
@@ -143,6 +144,44 @@ class ProductService {
       // FlavorConfig 模式（正式環境）
       final response = await _apiClient!.get(ApiEndpoints.productList(catId));
       return ProductListResponse.fromJson(response);
+    }
+  }
+
+  /// 取得產品詳情
+  ///
+  /// [sku] 產品 SKU
+  ///
+  /// 範例:
+  /// ```dart
+  /// // 使用 FlavorConfig 環境（預設）
+  /// final productService = ProductService();
+  /// final response = await productService.getProductDetail('1562');
+  ///
+  /// // 使用 localhost
+  /// final localService = ProductService(useLocalhost: true);
+  /// final response = await localService.getProductDetail('1562');
+  ///
+  /// if (response.isSuccess) {
+  ///   print('產品名稱: ${response.productDetail.title}');
+  ///   print('價格: ${response.productDetail.price}');
+  ///   print('相關產品數量: ${response.relatedProducts.length}');
+  /// } else {
+  ///   print('錯誤: ${response.message}');
+  /// }
+  /// ```
+  Future<ProductDetailResponse> getProductDetail(String sku) async {
+    if (useLocalhost) {
+      // Localhost 模式
+      try {
+        final response = await _dio!.get('/product/detail/$sku');
+        return ProductDetailResponse.fromJson(response.data);
+      } on DioException catch (e) {
+        throw Exception('API 請求失敗: ${e.message}');
+      }
+    } else {
+      // FlavorConfig 模式（正式環境）
+      final response = await _apiClient!.get(ApiEndpoints.productDetail(sku));
+      return ProductDetailResponse.fromJson(response);
     }
   }
 
