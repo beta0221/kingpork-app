@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tklab_ec_v2/constants.dart';
-import 'package:tklab_ec_v2/route/route_constants.dart';
 
 class AddedToCartMessageScreen extends StatelessWidget {
   const AddedToCartMessageScreen({super.key});

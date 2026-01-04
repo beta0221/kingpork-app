@@ -6,6 +6,7 @@ import 'package:tklab_ec_v2/viewmodels/cart_view_model.dart';
 
 import '../../../constants.dart';
 import 'components/cart_item_card.dart';
+import 'components/cart_features_section.dart';
 import 'components/coupon_code.dart';
 
 class CartScreen extends StatefulWidget {
@@ -119,6 +120,14 @@ class _CartScreenState extends State<CartScreen> {
                       childCount: items.length,
                     ),
                   ),
+
+                // 功能特色區塊
+                const SliverPadding(
+                  padding: EdgeInsets.symmetric(vertical: defaultPadding),
+                  sliver: SliverToBoxAdapter(
+                    child: CartFeaturesSection(),
+                  ),
+                ),
 
                 // 優惠券
                 const SliverToBoxAdapter(
