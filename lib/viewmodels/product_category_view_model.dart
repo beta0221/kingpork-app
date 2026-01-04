@@ -31,7 +31,7 @@ class ProductCategoryViewModel extends BaseViewModel {
   bool get isLoadingProducts => _isLoadingProducts;
 
   ProductCategoryViewModel({ProductService? productService})
-      : _productService = productService ?? ProductService(useLocalhost: true);
+      : _productService = productService ?? ProductService(useLocalhost: false);
 
   /// 初始化產品分類資料
   ///

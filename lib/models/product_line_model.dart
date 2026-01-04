@@ -22,8 +22,8 @@ class ProductLine {
     };
   }
 
-  String devUrl() {
-    return 'http://localhost:8083$url';
+  String getWebUrl() {
+    return 'https://www.stage.daf-shoes.com:8083$url';
   }
 }
 

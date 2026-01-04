@@ -23,7 +23,7 @@ class ProductDetailsViewModel extends BaseViewModel {
   bool get hasImages => _productDetail?.hasImages ?? false;
 
   ProductDetailsViewModel({ProductService? productService})
-      : _productService = productService ?? ProductService(useLocalhost: true);
+      : _productService = productService ?? ProductService(useLocalhost: false);
 
   /// 初始化產品詳情資料
   ///

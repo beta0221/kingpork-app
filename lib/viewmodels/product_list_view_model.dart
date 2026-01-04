@@ -13,7 +13,7 @@ class ProductListViewModel extends BaseViewModel {
   bool get hasData => _productLines.isNotEmpty;
 
   ProductListViewModel({ProductService? productService})
-      : _productService = productService ?? ProductService(useLocalhost: true);
+      : _productService = productService ?? ProductService(useLocalhost: false);
 
   /// 初始化產品線列表
   Future<void> initialize() async {

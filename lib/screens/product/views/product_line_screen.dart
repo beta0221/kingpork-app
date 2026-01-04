@@ -54,7 +54,7 @@ class _ProductLineScreenState extends State<ProductLineScreen> {
     });
 
     // 使用 controller 重新加载新 URL（更高效，不需要重新创建 widget）
-    final newUrl = viewModel.productLines[index].devUrl();
+    final newUrl = viewModel.productLines[index].getWebUrl();
     _webViewController?.loadRequest(Uri.parse(newUrl));
   }
 
@@ -124,7 +124,7 @@ class _ProductLineScreenState extends State<ProductLineScreen> {
         // WebView 内容区域
         Expanded(
           child: TkWebView(
-            url: viewModel.productLines[_selectedProductLineIndex].devUrl(),
+            url: viewModel.productLines[_selectedProductLineIndex].getWebUrl(),
             showLoading: true,
             loadingMessage: '载入中...',
             enableJavaScript: true,
