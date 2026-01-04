@@ -9,6 +9,7 @@ class ProductDetail {
   final double rating;
   final int numOfReviews;
   final List<String> images;
+  final List<Sku> skuList;
 
   ProductDetail({
     required this.id,
@@ -20,6 +21,7 @@ class ProductDetail {
     required this.rating,
     required this.numOfReviews,
     required this.images,
+    required this.skuList
   });
 
   factory ProductDetail.fromJson(Map<String, dynamic> json) {
@@ -33,6 +35,9 @@ class ProductDetail {
       rating: _parseDouble(json['rating']),
       numOfReviews: json['numOfReviews'] as int? ?? 0,
       images: (json['images'] as List?)?.map((e) => e.toString()).toList() ?? [],
+      skuList: (json['skuList'] as List?)
+              ?.map((item) => Sku.fromJson(item as Map<String, dynamic>))
+              .toList() ?? [],
     );
   }
 
@@ -78,6 +83,7 @@ class ProductDetail {
       'rating': rating,
       'numOfReviews': numOfReviews,
       'images': images,
+      'skuList': skuList
     };
   }
 
@@ -153,6 +159,24 @@ class RelatedProduct {
 
   /// 有效價格（有折扣時返回折扣價，否則返回原價）
   double get effectivePrice => hasDiscount ? priceAfterDiscount! : price;
+}
+
+class Sku {
+  final String id;
+  final String name;
+
+  Sku({
+    required this.id,
+    required this.name
+  });
+
+factory Sku.fromJson(Map<String, dynamic> json) {
+    return Sku(
+      id: json['id'] as String,
+      name: json['name'] as String
+    );
+  }
+
 }
 
 /// 產品詳情回應
