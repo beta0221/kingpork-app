@@ -67,8 +67,15 @@ class MyApp extends StatelessWidget {
 
       // 在非正式環境顯示環境標識
       builder: (context, child) {
+        // 全域點擊收起鍵盤
+        Widget wrappedChild = GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          behavior: HitTestBehavior.translucent,
+          child: child!,
+        );
+
         if (flavorConfig.isProd) {
-          return child!;
+          return wrappedChild;
         }
 
         // 開發/測試環境顯示環境標識
@@ -76,7 +83,7 @@ class MyApp extends StatelessWidget {
           message: flavorConfig.displayName,
           location: BannerLocation.topEnd,
           color: _getBannerColor(flavorConfig.flavor),
-          child: child!,
+          child: wrappedChild,
         );
       },
     );
