@@ -72,7 +72,9 @@ class _VoucherSelectionBottomSheetState
       builder: (context, scrollController) {
         return Consumer<OrderConfirmationViewModel>(
           builder: (context, viewModel, child) {
-            return Column(
+            return GestureDetector(
+              onTap: () => FocusScope.of(context).unfocus(),
+              child: Column(
               children: [
                 // 標題列
                 Padding(
@@ -266,6 +268,7 @@ class _VoucherSelectionBottomSheetState
                             ),
                 ),
               ],
+            ),
             );
           },
         );

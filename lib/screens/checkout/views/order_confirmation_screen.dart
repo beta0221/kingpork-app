@@ -51,7 +51,9 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
           ),
         ],
       ),
-      body: Consumer<OrderConfirmationViewModel>(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Consumer<OrderConfirmationViewModel>(
         builder: (context, viewModel, child) {
           // 載入中狀態
           if (viewModel.isLoading && viewModel.state == ViewState.loading) {
@@ -142,6 +144,7 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
             ),
           );
         },
+      ),
       ),
       // 底部操作列
       bottomNavigationBar: const OrderConfirmationBottomBar(),

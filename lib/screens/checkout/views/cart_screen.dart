@@ -29,7 +29,9 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer<CartViewModel>(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Consumer<CartViewModel>(
         builder: (context, cartViewModel, child) {
           final items = cartViewModel.items;
 
@@ -191,6 +193,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
           );
         },
+      ),
       ),
     );
   }
