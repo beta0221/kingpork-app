@@ -466,6 +466,63 @@ class MemberAuthService {
     return DecryptMobileResponse.fromJson(response);
   }
 
+  /// 11. 更新個人資料
+  ///
+  /// 更新當前登入會員的個人資料
+  ///
+  /// 參數：
+  /// - [name]: 會員姓名（最多100字元，可選）
+  /// - [email]: Email 地址（可選）
+  /// - [birthday]: 生日（格式：YYYY-MM-DD，可選）
+  /// - [gender]: 性別（1=男, 2=女, 4=其他，可選）
+  /// - [avatar]: 頭像 URL（可選）
+  ///
+  /// 範例：
+  /// ```dart
+  /// final response = await memberAuthService.updateProfile(
+  ///   name: '王小明',
+  ///   email: 'xiaoming@example.com',
+  ///   birthday: '1990-01-15',
+  ///   gender: 1,
+  /// );
+  ///
+  /// if (response.isSuccess) {
+  ///   print('個人資料已更新');
+  ///   print('新姓名: ${response.member?.name}');
+  /// }
+  /// ```
+  ///
+  /// 特殊說明：
+  /// - 只有傳入的欄位會被更新
+  /// - 手機號碼無法透過此 API 修改
+  ///
+  /// 拋出異常：
+  /// - [UnauthorizedException]: 未登入（HTTP 401）
+  /// - [ValidationException]: 參數格式錯誤（HTTP 422）
+  Future<UpdateProfileResponse> updateProfile({
+    String? name,
+    String? email,
+    String? birthday,
+    int? gender,
+    String? avatar,
+  }) async {
+    final request = UpdateProfileRequest(
+      name: name,
+      email: email,
+      birthday: birthday,
+      gender: gender,
+      avatar: avatar,
+    );
+
+    final response = await _apiClient.post(
+      ApiEndpoints.memberUpdateProfile,
+      body: request.toJson(),
+      requiresAuth: true,
+    );
+
+    return UpdateProfileResponse.fromJson(response);
+  }
+
   /// 完整的忘記密碼流程輔助方法
   ///
   /// 這個方法整合了忘記密碼的三個步驟，簡化調用流程

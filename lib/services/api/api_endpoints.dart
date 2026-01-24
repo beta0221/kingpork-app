@@ -70,6 +70,7 @@ class ApiEndpoints {
   static const String memberPasswordVerifyResetCode = '/member/password/verify-reset-code';
   static const String memberPasswordReset = '/member/password/reset';
   static const String memberDebugDecryptMobile = '/member/debug/decrypt-mobile';
+  static const String memberUpdateProfile = '/member/update-profile';
 
   // Product Endpoints
   static const String productLineList = '/product/line-list';

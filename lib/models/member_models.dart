@@ -534,3 +534,65 @@ enum Gender {
     );
   }
 }
+
+/// 更新個人資料請求
+///
+/// 所有欄位皆為可選，只發送要更新的欄位
+class UpdateProfileRequest {
+  final String? name;
+  final String? email;
+  final String? birthday;
+  final int? gender;
+  final String? avatar;
+
+  UpdateProfileRequest({
+    this.name,
+    this.email,
+    this.birthday,
+    this.gender,
+    this.avatar,
+  });
+
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (name != null) {
+      json['name'] = name;
+    }
+    if (email != null) {
+      json['email'] = email;
+    }
+    if (birthday != null) {
+      json['birthday'] = birthday;
+    }
+    if (gender != null) {
+      json['gender'] = gender;
+    }
+    if (avatar != null) {
+      json['avatar'] = avatar;
+    }
+    return json;
+  }
+}
+
+/// 更新個人資料回應
+class UpdateProfileResponse {
+  final int s;
+  final String msg;
+  final Member? member;
+
+  UpdateProfileResponse({
+    required this.s,
+    required this.msg,
+    this.member,
+  });
+
+  factory UpdateProfileResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateProfileResponse(
+      s: json['s'] as int,
+      msg: json['msg'] as String,
+      member: json['data'] != null ? Member.fromJson(json['data'] as Map<String, dynamic>) : null,
+    );
+  }
+
+  bool get isSuccess => s == 1;
+}

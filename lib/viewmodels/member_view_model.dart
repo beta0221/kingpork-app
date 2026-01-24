@@ -264,6 +264,49 @@ class MemberViewModel extends BaseViewModel {
     await loadMemberProfile();
   }
 
+  /// Update member profile
+  ///
+  /// 更新會員個人資料，成功後會更新 _currentMember
+  ///
+  /// 參數：
+  /// - [name]: 會員姓名
+  /// - [email]: Email 地址
+  /// - [birthday]: 生日（格式：YYYY-MM-DD）
+  /// - [gender]: 性別（1=男, 2=女, 4=其他）
+  /// - [avatar]: 頭像 URL
+  ///
+  /// 返回：更新是否成功
+  Future<bool> updateProfile({
+    String? name,
+    String? email,
+    String? birthday,
+    int? gender,
+    String? avatar,
+  }) async {
+    setLoading();
+    try {
+      final response = await _memberAuthService.updateProfile(
+        name: name,
+        email: email,
+        birthday: birthday,
+        gender: gender,
+        avatar: avatar,
+      );
+
+      if (response.isSuccess && response.member != null) {
+        _currentMember = response.member;
+        setSuccess();
+        return true;
+      } else {
+        setError(response.msg);
+        return false;
+      }
+    } catch (e) {
+      setError('更新個人資料失敗: ${e.toString()}');
+      return false;
+    }
+  }
+
   @override
   void dispose() {
     _memberAuthService.dispose();
