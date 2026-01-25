@@ -20,7 +20,7 @@ class CartFeaturesSection extends StatelessWidget {
           _FeatureItem(
             icon: Icons.card_giftcard_outlined,
             title: '會員TK幣及生日禮',
-            description: '累積消費達門檻回饋TK幣，即可抵扣訂單金額。\n生日當月1日再送專屬生日TK幣。',
+            description: '當年度累積消費達門檻可獲得升級禮（TK幣/現金券/實體商品兌換券）\n金卡會員（含）以上，生日當月1日再送專屬生日TK幣。',
           ),
           const SizedBox(height: defaultPadding),
 

@@ -3,7 +3,8 @@ class CartItem {
   final int id;
   final int productId;
   final String productName;
-  final double price;
+  final double price;           // 特價（實際售價）
+  final double? originalPrice;  // 原價（可選，用於顯示折扣）
   final int quantity;
   final double subtotal;
   final String image;
@@ -16,6 +17,7 @@ class CartItem {
     required this.productId,
     required this.productName,
     required this.price,
+    this.originalPrice,
     required this.quantity,
     required this.subtotal,
     required this.image,
@@ -30,6 +32,9 @@ class CartItem {
       productId: json['product_id'] as int,
       productName: json['product_name'] as String,
       price: (json['price'] as num).toDouble(),
+      originalPrice: json['original_price'] != null
+          ? (json['original_price'] as num).toDouble()
+          : null,
       quantity: json['quantity'] as int,
       subtotal: (json['subtotal'] as num).toDouble(),
       image: json['image'] as String,
@@ -45,6 +50,7 @@ class CartItem {
       'product_id': productId,
       'product_name': productName,
       'price': price,
+      'original_price': originalPrice,
       'quantity': quantity,
       'subtotal': subtotal,
       'image': image,
@@ -60,6 +66,7 @@ class CartItem {
     int? productId,
     String? productName,
     double? price,
+    double? originalPrice,
     int? quantity,
     double? subtotal,
     String? image,
@@ -72,6 +79,7 @@ class CartItem {
       productId: productId ?? this.productId,
       productName: productName ?? this.productName,
       price: price ?? this.price,
+      originalPrice: originalPrice ?? this.originalPrice,
       quantity: quantity ?? this.quantity,
       subtotal: subtotal ?? this.subtotal,
       image: image ?? this.image,

@@ -138,6 +138,7 @@ class ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                       productId: product.id,
                       productName: product.title,
                       price: product.price,
+                      originalPrice: product.price * 1.3,  // 測試用：原價 = 特價 * 1.3（等 API 補上後改回 product.originalPrice）
                       quantity: _quantity,
                       image: product.primaryImage,
                       skuId: selectedSku.id,

@@ -102,6 +102,7 @@ class _CartScreenState extends State<CartScreen> {
                             productName: item.productName,
                             skuName: item.skuName,
                             price: item.price,
+                            originalPrice: item.originalPrice,
                             quantity: item.quantity,
                             isSelected: item.isSelected,
                             onSelectionChanged: () =>
@@ -121,6 +122,19 @@ class _CartScreenState extends State<CartScreen> {
                       childCount: items.length,
                     ),
                   ),
+
+                // 總重量顯示
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: defaultPadding),
+                    child: Text(
+                      "總重量（僅供計算海外運費之用）： 2.5Kg",  // TODO: 等 API 補上後改用實際資料
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: blackColor60,
+                      ),
+                    ),
+                  ),
+                ),
 
                 // 功能特色區塊標題
                 SliverToBoxAdapter(
@@ -150,10 +164,29 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
 
-                // 優惠券
-                const SliverToBoxAdapter(
-                  child: CouponCode(),
+                // 客服電話區塊
+                SliverToBoxAdapter(
+                  child: Text.rich(
+                      TextSpan(
+                        children: [
+                          const TextSpan(text: '需要更多協助嗎？聯繫客服'),
+                          TextSpan(
+                            text: '04-22549111',
+                            style: TextStyle(color: primaryColor),
+                          ),
+                        ],
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
                 ),
+
+                // 優惠券
+                // const SliverToBoxAdapter(
+                //   child: CouponCode(),
+                // ),
 
                 // 繼續按鈕
                 SliverPadding(

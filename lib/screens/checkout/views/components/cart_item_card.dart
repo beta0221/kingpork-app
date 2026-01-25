@@ -13,6 +13,7 @@ class CartItemCard extends StatelessWidget {
     required this.productName,
     this.skuName,
     required this.price,
+    this.originalPrice,
     required this.quantity,
     required this.isSelected,
     required this.onSelectionChanged,
@@ -24,7 +25,8 @@ class CartItemCard extends StatelessWidget {
   final String image;
   final String productName;
   final String? skuName;
-  final double price;
+  final double price;           // 特價（實際售價）
+  final double? originalPrice;  // 原價（可選，用於顯示折扣）
   final int quantity;
   final bool isSelected;
   final VoidCallback onSelectionChanged;
@@ -93,13 +95,29 @@ class CartItemCard extends StatelessWidget {
                 const SizedBox(height: defaultPadding / 4),
 
                 // 價格
-                Text(
-                  "NT\$${price.toInt()}",
-                  style: const TextStyle(
-                    color: primaryColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // 原價（有折扣時顯示，在上方）
+                    if (originalPrice != null && originalPrice! > price)
+                      Text(
+                        "NT\$${originalPrice!.toInt()}",
+                        style: const TextStyle(
+                          color: blackColor40,
+                          fontSize: 12,
+                          decoration: TextDecoration.lineThrough,
+                        ),
+                      ),
+                    // 特價
+                    Text(
+                      "NT\$${price.toInt()}",
+                      style: const TextStyle(
+                        color: primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
                 ),
 
                 const SizedBox(height: defaultPadding / 2),
