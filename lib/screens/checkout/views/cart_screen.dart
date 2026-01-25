@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tklab_ec_v2/route/screen_export.dart';
-import 'package:tklab_ec_v2/screens/order/views/components/order_summary_card.dart';
 import 'package:tklab_ec_v2/viewmodels/cart_view_model.dart';
 
 import '../../../constants.dart';
@@ -154,20 +153,6 @@ class _CartScreenState extends State<CartScreen> {
                 // 優惠券
                 const SliverToBoxAdapter(
                   child: CouponCode(),
-                ),
-
-                // 訂單摘要
-                SliverPadding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: defaultPadding * 1.5),
-                  sliver: SliverToBoxAdapter(
-                    child: OrderSummaryCard(
-                      subTotal: cartViewModel.selectedTotal,
-                      discount: 0,
-                      totalWithVat: cartViewModel.selectedTotal,
-                      vat: 0,
-                    ),
-                  ),
                 ),
 
                 // 繼續按鈕

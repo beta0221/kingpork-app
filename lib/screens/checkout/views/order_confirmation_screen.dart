@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import '/constants.dart';
 import '/viewmodels/order_confirmation_view_model.dart';
 import '/viewmodels/base_view_model.dart';
+import '/viewmodels/cart_view_model.dart';
+import '/screens/order/views/components/order_summary_card.dart';
 import 'components/recipient_info_section.dart';
 import 'components/delivery_method_section.dart';
 import 'components/payment_method_section.dart';
@@ -135,6 +137,22 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
 
                 // 本次購買商品列表
                 const OrderItemsSection(),
+                const SizedBox(height: 24),
+
+                // 訂單摘要
+                Consumer<CartViewModel>(
+                  builder: (context, cartViewModel, child) {
+                    return OrderSummaryCard(
+                      subTotal: cartViewModel.selectedTotal,
+                      shippingFee: 0,
+                      totalWithVat: viewModel.totalAmount,
+                      vat: 0,
+                      discount: viewModel.voucherDiscount + viewModel.tkCoinDiscount > 0
+                          ? viewModel.voucherDiscount + viewModel.tkCoinDiscount
+                          : null,
+                    );
+                  },
+                ),
                 const SizedBox(height: 24),
 
                 // 推薦商品區塊
