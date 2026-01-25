@@ -53,6 +53,21 @@ class ProductService {
   /// }
   /// ```
   Future<ProductLineListResponse> getProductLineList() async {
+    final mockData = {
+      's': 1,
+      'msg': '',
+      'data': {
+        'productLineList': [
+          {'name': '優惠', 'url': '/product_line/on_sale'},
+          {'name': '保養', 'url': '/product_line/maintainance'},
+          {'name': '保健', 'url': '/product_line/health_care'},
+          {'name': '彩妝', 'url': '/product_line/make_up'},
+          {'name': '面膜', 'url': '/product_line/facial_mask'},
+        ]
+      }
+    };
+    return ProductLineListResponse.fromJson(mockData);
+
     if (useLocalhost) {
       // Localhost 模式
       try {
