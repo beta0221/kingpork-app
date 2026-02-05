@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:tklab_ec_v2/components/list_tile/divider_list_tile.dart';
 import 'package:tklab_ec_v2/constants.dart';
 import 'package:tklab_ec_v2/route/screen_export.dart';
+import 'package:tklab_ec_v2/screens/home/views/components/popular_products.dart';
 import 'package:tklab_ec_v2/viewmodels/member_view_model.dart';
 import 'package:tklab_ec_v2/viewmodels/tkcoin_view_model.dart';
 import 'package:tklab_ec_v2/viewmodels/coupon_view_model.dart';
@@ -269,7 +270,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               );
             },
-          )
+          ),
+          const SizedBox(height: defaultPadding),
+
+          // 熱門商品區塊
+          const PopularProducts(),
+
+          const SizedBox(height: defaultPadding),
         ],
       ),
     );
