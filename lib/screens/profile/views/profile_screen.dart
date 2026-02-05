@@ -141,37 +141,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
           //     Navigator.pushNamed(context, emptyPaymentScreenRoute);
           //   },
           // ),
-          ProfileMenuListTile(
-            text: "錢包",
-            svgSrc: "assets/icons/Wallet.svg",
-            press: () {
-              // Navigator.pushNamed(context, walletScreenRoute);
-            },
-          ),
-          const SizedBox(height: defaultPadding),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: defaultPadding, vertical: defaultPadding / 2),
-            child: Text(
-              "個人化設定",
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-          ),
-          DividerListTileWithTrilingText(
-            svgSrc: "assets/icons/Notification.svg",
-            title: "通知",
-            trilingText: "關閉",
-            press: () {
-              Navigator.pushNamed(context, enableNotificationScreenRoute);
-            },
-          ),
-          ProfileMenuListTile(
-            text: "偏好設定",
-            svgSrc: "assets/icons/Preferences.svg",
-            press: () {
-              Navigator.pushNamed(context, preferencesScreenRoute);
-            },
-          ),
+          // ProfileMenuListTile(
+          //   text: "錢包",
+          //   svgSrc: "assets/icons/Wallet.svg",
+          //   press: () {
+          //     // Navigator.pushNamed(context, walletScreenRoute);
+          //   },
+          // ),
+          // const SizedBox(height: defaultPadding),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(
+          //       horizontal: defaultPadding, vertical: defaultPadding / 2),
+          //   child: Text(
+          //     "個人化設定",
+          //     style: Theme.of(context).textTheme.titleSmall,
+          //   ),
+          // ),
+          // DividerListTileWithTrilingText(
+          //   svgSrc: "assets/icons/Notification.svg",
+          //   title: "通知",
+          //   trilingText: "關閉",
+          //   press: () {
+          //     Navigator.pushNamed(context, enableNotificationScreenRoute);
+          //   },
+          // ),
+          // ProfileMenuListTile(
+          //   text: "偏好設定",
+          //   svgSrc: "assets/icons/Preferences.svg",
+          //   press: () {
+          //     Navigator.pushNamed(context, preferencesScreenRoute);
+          //   },
+          // ),
           const SizedBox(height: defaultPadding),
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -207,13 +207,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               style: Theme.of(context).textTheme.titleSmall,
             ),
           ),
-          ProfileMenuListTile(
-            text: "取得幫助",
-            svgSrc: "assets/icons/Help.svg",
-            press: () {
-              Navigator.pushNamed(context, getHelpScreenRoute);
-            },
-          ),
+          // ProfileMenuListTile(
+          //   text: "取得幫助",
+          //   svgSrc: "assets/icons/Help.svg",
+          //   press: () {
+          //     Navigator.pushNamed(context, getHelpScreenRoute);
+          //   },
+          // ),
           ProfileMenuListTile(
             text: "常見問題",
             svgSrc: "assets/icons/FAQ.svg",
