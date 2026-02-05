@@ -15,6 +15,7 @@ class FlavorConfig {
   final String firebaseAppLink;
   final String matomoUrl;
   final int matomoSiteId;
+  final String chatListenUrl; // Long Polling 監聽端點
 
   static FlavorConfig? _instance;
 
@@ -27,6 +28,7 @@ class FlavorConfig {
     required this.firebaseAppLink,
     required this.matomoUrl,
     required this.matomoSiteId,
+    required this.chatListenUrl,
   });
 
   /// 取得當前 Flavor 配置實例
@@ -53,6 +55,7 @@ class FlavorConfig {
           firebaseAppLink: 'https://tklab.page.link',
           matomoUrl: 'https://www.stage.daf-shoes.com:8081/matomo/matomo.php',
           matomoSiteId: 1,
+          chatListenUrl: 'https://www.stage.daf-shoes.com:9090',
         );
         break;
 
@@ -66,6 +69,7 @@ class FlavorConfig {
           firebaseAppLink: 'https://tktest.page.link',
           matomoUrl: '', // UAT 環境無 Matomo
           matomoSiteId: 1,
+          chatListenUrl: 'https://test.tklab.com.tw:9090',
         );
         break;
 
@@ -79,6 +83,7 @@ class FlavorConfig {
           firebaseAppLink: 'https://tkapp.page.link',
           matomoUrl: 'https://ga.tklab.com.tw/matomo.php',
           matomoSiteId: 1,
+          chatListenUrl: 'https://www.tklab.com.tw:9090',
         );
         break;
     }
@@ -110,6 +115,9 @@ class FlavorConfig {
 
   /// 取得 APP API 服務 URL（相容舊版 API）
   String get appApiUrl => '$baseUrl/api';
+
+  /// 取得 Chat Listen 完整 URL
+  String get chatListenEndpoint => '$chatListenUrl/Listen';
 
   @override
   String toString() {

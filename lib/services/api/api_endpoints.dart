@@ -47,8 +47,9 @@ class ApiEndpoints {
   static String communityPostDelete(int postId) => '/community/post/$postId';
 
   // Chat Endpoints
+  static const String chatAskToken = '/chat/askToken'; // 獲取聊天專用 token
+  static const String chatSend = '/chat/send'; // 發送訊息
   static const String chatMessages = '/chat/messages';
-  static const String chatSend = '/chat/send';
   static const String chatRooms = '/chat/rooms';
   static String chatRoom(int roomId) => '/chat/room/$roomId';
   static String chatRoomMessages(int roomId) => '/chat/room/$roomId/messages';

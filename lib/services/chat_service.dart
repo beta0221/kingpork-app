@@ -2,43 +2,31 @@ import 'package:tklab_ec_v2/models/chat_models.dart';
 import 'package:tklab_ec_v2/services/api/api_client.dart';
 import 'package:tklab_ec_v2/services/api/api_endpoints.dart';
 
-/// Chat service for managing messages and chat rooms
+/// 聊天服務
+/// 負責發送訊息和管理聊天室
 class ChatService {
   final ApiClient _apiClient;
 
-  ChatService({ApiClient? apiClient})
-      : _apiClient = apiClient ?? ApiClient();
+  ChatService({ApiClient? apiClient}) : _apiClient = apiClient ?? ApiClient();
 
-  /// Get chat message history with pagination
+  /// 發送文字訊息
+  /// 調用 POST /api/chat/send
   ///
-  /// Example:
-  /// ```dart
-  /// final messages = await chatService.getMessages(page: 1);
-  /// ```
-  Future<List<ChatMessage>> getMessages({
-    int page = 1,
-    int perPage = 50,
-  }) async {
-    final response = await _apiClient.get(
-      '${ApiEndpoints.chatMessages}?page=$page&per_page=$perPage',
+  /// [txt] 用戶發出的訊息
+  /// 返回 [SendMessageResponse] 包含發送結果
+  Future<SendMessageResponse> sendMessage(String txt) async {
+    final response = await _apiClient.post(
+      ApiEndpoints.chatSend,
+      body: {'txt': txt},
       requiresAuth: true,
     );
 
-    final messagesList = response['messages'] as List;
-    return messagesList
-        .map((msg) => ChatMessage.fromJson(msg as Map<String, dynamic>))
-        .toList();
+    return SendMessageResponse.fromJson(response as Map<String, dynamic>);
   }
 
-  /// Send a text message
-  ///
-  /// Example:
-  /// ```dart
-  /// final message = await chatService.sendMessage(
-  ///   message: '你好！',
-  /// );
-  /// ```
-  Future<ChatMessage> sendMessage({
+  /// 發送訊息（舊版相容方法）
+  /// 返回發送的訊息物件
+  Future<ChatMessage> sendMessageLegacy({
     required String message,
     String? imageUrl,
   }) async {
@@ -53,41 +41,54 @@ class ChatService {
       requiresAuth: true,
     );
 
-    return ChatMessage.fromJson(response);
+    return ChatMessage.fromJson(response as Map<String, dynamic>);
   }
 
-  /// Send an image message
-  Future<ChatMessage> sendImageMessage(String imageUrl) async {
-    return await sendMessage(
-      message: '[圖片]',
-      imageUrl: imageUrl,
+  /// 獲取聊天訊息歷史（分頁）
+  Future<List<ChatMessage>> getMessages({
+    int page = 1,
+    int perPage = 50,
+  }) async {
+    final response = await _apiClient.get(
+      '${ApiEndpoints.chatMessages}?page=$page&per_page=$perPage',
+      requiresAuth: true,
     );
+
+    final messagesList = response['messages'] as List? ?? [];
+    return messagesList
+        .map((msg) => ChatMessage.fromJson(msg as Map<String, dynamic>))
+        .toList();
   }
 
-  /// Get list of chat rooms
+  /// 發送圖片訊息
+  Future<SendMessageResponse> sendImageMessage(String imageUrl) async {
+    return await sendMessage('[圖片] $imageUrl');
+  }
+
+  /// 獲取聊天室列表
   Future<List<ChatRoom>> getChatRooms() async {
     final response = await _apiClient.get(
       ApiEndpoints.chatRooms,
       requiresAuth: true,
     );
 
-    final roomsList = response['rooms'] as List;
+    final roomsList = response['rooms'] as List? ?? [];
     return roomsList
         .map((room) => ChatRoom.fromJson(room as Map<String, dynamic>))
         .toList();
   }
 
-  /// Get a specific chat room
+  /// 獲取特定聊天室
   Future<ChatRoom> getChatRoom(int roomId) async {
     final response = await _apiClient.get(
       ApiEndpoints.chatRoom(roomId),
       requiresAuth: true,
     );
 
-    return ChatRoom.fromJson(response);
+    return ChatRoom.fromJson(response as Map<String, dynamic>);
   }
 
-  /// Get messages for a specific chat room
+  /// 獲取特定聊天室的訊息
   Future<List<ChatMessage>> getRoomMessages({
     required int roomId,
     int page = 1,
@@ -98,13 +99,13 @@ class ChatService {
       requiresAuth: true,
     );
 
-    final messagesList = response['messages'] as List;
+    final messagesList = response['messages'] as List? ?? [];
     return messagesList
         .map((msg) => ChatMessage.fromJson(msg as Map<String, dynamic>))
         .toList();
   }
 
-  /// Mark message as read
+  /// 標記訊息為已讀
   Future<void> markAsRead(int messageId) async {
     await _apiClient.post(
       '/chat/message/$messageId/read',
@@ -112,7 +113,7 @@ class ChatService {
     );
   }
 
-  /// Delete a message
+  /// 刪除訊息
   Future<bool> deleteMessage(int messageId) async {
     try {
       await _apiClient.delete(
@@ -125,7 +126,7 @@ class ChatService {
     }
   }
 
-  /// Dispose resources
+  /// 釋放資源
   void dispose() {
     _apiClient.dispose();
   }

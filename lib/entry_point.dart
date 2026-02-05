@@ -25,31 +25,7 @@ class _EntryPointState extends State<EntryPoint> {
   int _currentIndex = 0;
 
   void _openCustomerService() {
-    Navigator.pushNamed(
-      context,
-      webViewScreenRoute,
-      arguments: {
-        'url': '/customer-service',
-        'title': '客服中心',
-        'showRefreshButton': false,
-        'actions': <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Center(
-              child: Text(
-                '服務時間\n平日09:30 ~ 20:30\n假日13:00 ~ 17:00',
-                style: TextStyle(
-                  fontSize: 10,
-                  color: Colors.grey[600],
-                  height: 1.3,
-                ),
-                textAlign: TextAlign.right,
-              ),
-            ),
-          ),
-        ],
-      },
-    );
+    Navigator.pushNamed(context, chatScreenRoute);
   }
 
   @override
