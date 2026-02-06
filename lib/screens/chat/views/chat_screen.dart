@@ -21,6 +21,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _messageController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   late final ChatViewModel _viewModel;
+  int _lastMessageCount = 0;
 
   @override
   void initState() {
@@ -295,6 +296,7 @@ class _ChatScreenState extends State<ChatScreen> {
     final messages = viewModel.messages;
 
     if (messages.isEmpty) {
+      _lastMessageCount = 0;
       return Center(
         child: Padding(
           padding: const EdgeInsets.all(defaultPadding),
@@ -320,8 +322,11 @@ class _ChatScreenState extends State<ChatScreen> {
       );
     }
 
-    // 當訊息更新時滾動到底部
-    WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
+    // 只在訊息數量增加時才滾動到底部
+    if (messages.length > _lastMessageCount) {
+      _lastMessageCount = messages.length;
+      WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToBottom());
+    }
 
     return ListView.builder(
       controller: _scrollController,

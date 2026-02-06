@@ -88,8 +88,12 @@ class ChatPollingService {
     while (_isListening) {
       try {
         await _poll();
+        // 添加延遲，避免 API 快速回應時過於頻繁的請求
+        if (_isListening) {
+          await Future.delayed(const Duration(seconds: 3));
+        }
       } catch (e) {
-        if (!_isListening) break; // 如果已停止監聽，跳出迴圈
+        if (!_isListening) break; // 如果已停止監聯，跳出迴圈
 
         _errorController.add(e.toString());
         _updateConnectionState(ChatConnectionState.reconnecting);
@@ -168,18 +172,40 @@ class ChatPollingService {
   }
 
   /// 解析單一訊息
-  /// 注意：實際欄位需根據後端回傳格式調整
+  /// 根據後端 /Listen API 回傳格式：
+  /// {
+  ///   "RoomNo": 0,
+  ///   "Owner": 10003,
+  ///   "Chater": 10003,
+  ///   "Type": "Message",
+  ///   "Text": "你好",
+  ///   "Ts": 1770340682000
+  /// }
   ChatMessage? _parseMessage(dynamic msgData) {
     if (msgData is! Map<String, dynamic>) return null;
 
-    // 根據 API 文件，Data 陣列的結構需確認
-    // 暫時使用靈活的解析方式
+    // 使用 Ts 作為唯一 ID（毫秒時間戳）
+    final ts = msgData['Ts'] as int? ?? DateTime.now().millisecondsSinceEpoch;
+
+    // 將毫秒時間戳轉換為 ISO8601 格式
+    final createdAt = DateTime.fromMillisecondsSinceEpoch(ts).toIso8601String();
+
+    // 取得訊息內容 - API 使用 "Text" 欄位
+    final message = msgData['Text'] as String? ?? '';
+
+    // 判斷是否為用戶發送的訊息
+    // Owner: 發送者 ID, Chater: 聊天室對象 ID
+    // 如果 Owner == Chater，代表是用戶自己發送的訊息
+    final owner = msgData['Owner'] as int?;
+    final chater = msgData['Chater'] as int?;
+    final isFromUser = owner != null && chater != null && owner == chater;
+
     return ChatMessage(
-      id: msgData['id'] as int? ?? DateTime.now().millisecondsSinceEpoch,
-      message: msgData['message'] as String? ?? msgData['txt'] as String? ?? msgData['content'] as String? ?? '',
+      id: ts,
+      message: message,
       imageUrl: msgData['image_url'] as String? ?? msgData['imageUrl'] as String?,
-      isFromUser: msgData['is_from_user'] as bool? ?? msgData['isFromUser'] as bool? ?? msgData['fromUser'] as bool? ?? false,
-      createdAt: msgData['created_at'] as String? ?? msgData['createdAt'] as String? ?? DateTime.now().toIso8601String(),
+      isFromUser: isFromUser,
+      createdAt: createdAt,
       status: MessageStatus.sent,
     );
   }

@@ -36,6 +36,11 @@ class ChatViewModel extends BaseViewModel {
 
   /// 初始化聊天 - 獲取 token 並啟動 Long Polling
   Future<void> initialize() async {
+    // 如果已經在監聽，不需要重新初始化
+    if (_pollingService.isListening) {
+      return;
+    }
+
     setLoading();
     try {
       // 1. 獲取聊天專用 token（顯示 loading）
@@ -57,6 +62,11 @@ class ChatViewModel extends BaseViewModel {
 
   /// 設定訊息監聽
   void _setupMessageListener() {
+    // 先取消舊的訂閱，避免累積多個 listener
+    _messageSubscription?.cancel();
+    _connectionStateSubscription?.cancel();
+    _errorSubscription?.cancel();
+
     // 監聽新訊息
     _messageSubscription = _pollingService.messageStream.listen((message) {
       _addMessage(message);
@@ -80,9 +90,25 @@ class ChatViewModel extends BaseViewModel {
 
   /// 新增訊息到列表（避免重複）
   void _addMessage(ChatMessage message) {
-    // 檢查是否已存在相同 ID 的訊息
-    final existingIndex = _messages.indexWhere((m) => m.id == message.id);
-    if (existingIndex == -1) {
+    // 檢查是否為重複訊息
+    // 1. 先用 id 精確比對
+    // 2. 再用內容 + 發送者 + 時間範圍比對（處理客戶端/服務器時間戳不一致）
+    final isDuplicate = _messages.any((m) {
+      // 精確 id 比對
+      if (m.id == message.id) return true;
+
+      // 內容比對：相同發送者 + 相同內容 + 時間接近（10秒內）
+      if (m.isFromUser == message.isFromUser && m.message == message.message) {
+        final timeDiff = (m.id - message.id).abs();
+        if (timeDiff < 10000) {
+          // 10 秒 = 10000 毫秒
+          return true;
+        }
+      }
+      return false;
+    });
+
+    if (!isDuplicate) {
       _messages.add(message);
       // 按時間排序
       _messages.sort((a, b) => a.createdAt.compareTo(b.createdAt));
