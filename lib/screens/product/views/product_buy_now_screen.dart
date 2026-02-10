@@ -119,8 +119,11 @@ class ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
           });
         }
 
-        // 計算總價
-        final totalPrice = _calculateTotalPrice(product.price);
+        // 計算總價（優先使用特價）
+        final unitPrice = (product.dealPrice > 0 && product.dealPrice < product.price)
+            ? product.dealPrice
+            : product.price;
+        final totalPrice = _calculateTotalPrice(unitPrice);
 
         // 渲染主要 UI
         return Scaffold(
@@ -137,8 +140,8 @@ class ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                 await context.read<CartViewModel>().addToCartWithSku(
                       productId: product.id,
                       productName: product.title,
-                      price: product.price,
-                      originalPrice: product.price * 1.3,  // 測試用：原價 = 特價 * 1.3（等 API 補上後改回 product.originalPrice）
+                      price: unitPrice,
+                      originalPrice: product.price,
                       quantity: _quantity,
                       image: product.primaryImage,
                       skuId: selectedSku.id,
@@ -220,7 +223,9 @@ class ProductBuyNowScreenState extends State<ProductBuyNowScreen> {
                             Expanded(
                               child: UnitPrice(
                                 price: product.price,
-                                priceAfterDiscount: null,
+                                priceAfterDiscount: product.dealPrice > 0 && product.dealPrice < product.price
+                                    ? product.dealPrice
+                                    : null,
                               ),
                             ),
                             ProductQuantity(

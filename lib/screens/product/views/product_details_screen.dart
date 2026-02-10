@@ -100,7 +100,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             return Scaffold(
               bottomNavigationBar: product.isAvailable
                   ? CartButton(
-                      price: product.price,
+                      price: product.dealPrice,
+                      originalPrice: product.price,
                       press: () {
                         customModalBottomSheet(
                           context,
@@ -147,6 +148,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       description: product.description,
                       rating: product.rating,
                       numOfReviews: product.numOfReviews,
+                      price: product.price,
+                      dealPrice: product.dealPrice,
                     ),
                     // 商品規格
                     ProductListTile(

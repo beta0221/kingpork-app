@@ -5,6 +5,7 @@ class ProductDetail {
   final String title;
   final String description;
   final double price;
+  final double dealPrice;
   final bool isAvailable;
   final double rating;
   final int numOfReviews;
@@ -17,6 +18,7 @@ class ProductDetail {
     required this.title,
     required this.description,
     required this.price,
+    this.dealPrice = 0.0,
     required this.isAvailable,
     required this.rating,
     required this.numOfReviews,
@@ -31,6 +33,7 @@ class ProductDetail {
       title: json['title'] as String? ?? '',
       description: json['description'] as String? ?? '',
       price: _parsePrice(json['price']),
+      dealPrice: _parsePrice(json['dealPrice']),
       isAvailable: json['isAvailable'] as bool? ?? true,
       rating: _parseDouble(json['rating']),
       numOfReviews: json['numOfReviews'] as int? ?? 0,
@@ -38,6 +41,23 @@ class ProductDetail {
       skuList: (json['skuList'] as List?)
               ?.map((item) => Sku.fromJson(item as Map<String, dynamic>))
               .toList() ?? [],
+    );
+  }
+
+  /// 從 API 回應的 data item 建立 ProductDetail
+  factory ProductDetail.fromApiData(Map<String, dynamic> json, List<Sku> skuList) {
+    return ProductDetail(
+      id: json['Pid'] as int,
+      brand: '',
+      title: json['PTitle'] as String? ?? '',
+      description: json['PDescription'] as String? ?? '',
+      price: _parsePrice(json['PPrice']),
+      dealPrice: _parsePrice(json['PDealPrice']),
+      isAvailable: (json['PStock'] as int? ?? 0) > 0,
+      rating: 0.0,
+      numOfReviews: 0,
+      images: (json['PFront_photo'] as List?)?.map((e) => e.toString()).toList() ?? [],
+      skuList: skuList,
     );
   }
 
@@ -79,6 +99,7 @@ class ProductDetail {
       'title': title,
       'description': description,
       'price': price,
+      'dealPrice': dealPrice,
       'isAvailable': isAvailable,
       'rating': rating,
       'numOfReviews': numOfReviews,
@@ -164,19 +185,49 @@ class RelatedProduct {
 class Sku {
   final String id;
   final String name;
+  final double price;
+  final double dealPrice;
+  final int stock;
+  final String partNo;
 
   Sku({
     required this.id,
-    required this.name
+    required this.name,
+    this.price = 0.0,
+    this.dealPrice = 0.0,
+    this.stock = 0,
+    this.partNo = '',
   });
 
-factory Sku.fromJson(Map<String, dynamic> json) {
+  factory Sku.fromJson(Map<String, dynamic> json) {
     return Sku(
       id: json['id'] as String,
-      name: json['name'] as String
+      name: json['name'] as String,
     );
   }
 
+  /// 從 API 回應的 data item 建立 Sku
+  factory Sku.fromApiData(Map<String, dynamic> json) {
+    return Sku(
+      id: (json['PSpecID']).toString(),
+      name: json['PSpecName'] as String? ?? '',
+      price: ProductDetail._parsePrice(json['PPrice']),
+      dealPrice: ProductDetail._parsePrice(json['PDealPrice']),
+      stock: json['PStock'] as int? ?? 0,
+      partNo: json['PPart'] as String? ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'price': price,
+      'dealPrice': dealPrice,
+      'stock': stock,
+      'partNo': partNo,
+    };
+  }
 }
 
 /// 產品詳情回應
@@ -194,15 +245,19 @@ class ProductDetailResponse {
   });
 
   factory ProductDetailResponse.fromJson(Map<String, dynamic> json) {
-    final data = json['data'] as Map<String, dynamic>;
+    final dataList = json['data'] as List;
+    final firstItem = dataList.first as Map<String, dynamic>;
+
+    // 從所有 items 建立 skuList
+    final skuList = dataList
+        .map((item) => Sku.fromApiData(item as Map<String, dynamic>))
+        .toList();
+
     return ProductDetailResponse(
       status: json['s'] as int,
-      message: json['msg'] as String,
-      productDetail: ProductDetail.fromJson(data['productDetail'] as Map<String, dynamic>),
-      relatedProducts: (data['relatedProducts'] as List?)
-              ?.map((item) => RelatedProduct.fromJson(item as Map<String, dynamic>))
-              .toList() ??
-          [],
+      message: json['msg'] as String? ?? '',
+      productDetail: ProductDetail.fromApiData(firstItem, skuList),
+      relatedProducts: [], // API 無提供相關產品
     );
   }
 

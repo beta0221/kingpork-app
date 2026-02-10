@@ -6,12 +6,14 @@ class CartButton extends StatelessWidget {
   const CartButton({
     super.key,
     required this.price,
+    this.originalPrice,
     this.title = "加入購物車",
     this.subTitle = "限時特價",
     required this.press,
   });
 
   final double price;
+  final double? originalPrice;
   final String title, subTitle;
   final VoidCallback press;
 
@@ -44,12 +46,24 @@ class CartButton extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "\$${price.toStringAsFixed(2)}",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleSmall!
-                                .copyWith(color: Colors.white),
+                          Text.rich(
+                            TextSpan(
+                              text: "\$${price.toStringAsFixed(2)}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(color: Colors.white),
+                              children: [
+                                if (originalPrice != null && originalPrice! > price)
+                                  TextSpan(
+                                    text: "  \$${originalPrice!.toStringAsFixed(2)}",
+                                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      color: Colors.white54,
+                                      decoration: TextDecoration.lineThrough,
+                                    ),
+                                  ),
+                              ],
+                            ),
                           ),
                           Text(
                             subTitle,

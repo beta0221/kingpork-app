@@ -27,7 +27,7 @@ class UnitPrice extends StatelessWidget {
             text: priceAfterDiscount == null
                 ? "\$${price.toStringAsFixed(2)}  "
                 : "\$${priceAfterDiscount!.toStringAsFixed(2)}  ",
-            style: Theme.of(context).textTheme.titleLarge,
+            style: TextStyle(color: primaryColor, fontWeight: FontWeight.w500),
             children: [
               if (priceAfterDiscount != null)
                 TextSpan(
