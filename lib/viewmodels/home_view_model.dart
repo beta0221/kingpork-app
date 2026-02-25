@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:tklab_ec_v2/models/api_category_model.dart';
 import 'package:tklab_ec_v2/models/banner_model.dart';
 import 'package:tklab_ec_v2/services/landing_service.dart';
@@ -53,7 +54,7 @@ class HomeViewModel extends BaseViewModel {
       _banners = await _landingService.getBanners();
     } catch (e) {
       // Log error but don't fail the whole initialization
-      print('載入 banners 失敗: $e');
+      debugPrint('載入 banners 失敗: $e');
       _banners = [];
     }
   }
@@ -64,7 +65,7 @@ class HomeViewModel extends BaseViewModel {
       _categories = await _landingService.getCategories();
     } catch (e) {
       // Log error but don't fail the whole initialization
-      print('載入 categories 失敗: $e');
+      debugPrint('載入 categories 失敗: $e');
       _categories = [];
     }
   }
