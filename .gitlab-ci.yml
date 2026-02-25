@@ -1,0 +1,42 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  FLUTTER_VERSION: "3.41.2"
+
+# 建置 Flutter Web
+build:web:
+  stage: build
+  tags:
+    - macos
+    - flutter
+  script:
+    - echo "Building Flutter Web..."
+    - flutter --version
+    - flutter pub get
+    - flutter build web --release --no-tree-shake-icons
+  artifacts:
+    paths:
+      - build/web/
+    expire_in: 1 hour
+  only:
+    - main
+    - develop
+
+# 部署到 Firebase Hosting
+deploy:firebase:
+  stage: deploy
+  tags:
+    - macos
+  dependencies:
+    - build:web
+  script:
+    - echo "Deploying to Firebase Hosting..."
+    - firebase --version
+    - firebase deploy --only hosting --token "$FIREBASE_TOKEN"
+  only:
+    - main
+  environment:
+    name: testing
+    url: https://tk-app-testing.web.app
