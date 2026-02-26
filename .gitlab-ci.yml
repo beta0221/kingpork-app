@@ -96,7 +96,7 @@ deploy:production:
     - build:production
   script:
     - echo "🚀 Deploying to Firebase Hosting (PRODUCTION)..."
-    - echo "⚠️  WARNING: Deploying to PRODUCTION!"
+    - 'echo "⚠️  WARNING: Deploying to PRODUCTION!"'
     - firebase --version
     - firebase use production
     - firebase deploy --only hosting --token "$FIREBASE_TOKEN"
