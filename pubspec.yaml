@@ -145,7 +145,6 @@ flutter:
     - assets/Illustration/
     - assets/flags/
     - assets/logo/
-    - assets/image/
     - assets/html/
 
   fonts:

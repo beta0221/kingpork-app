@@ -6,7 +6,6 @@ import 'package:tklab_ec_v2/viewmodels/cart_view_model.dart';
 import '../../../constants.dart';
 import 'components/cart_item_card.dart';
 import 'components/cart_features_section.dart';
-import 'components/coupon_code.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});

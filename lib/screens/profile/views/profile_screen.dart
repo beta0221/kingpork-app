@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:tklab_ec_v2/components/list_tile/divider_list_tile.dart';
 import 'package:tklab_ec_v2/constants.dart';
 import 'package:tklab_ec_v2/route/screen_export.dart';
 import 'package:tklab_ec_v2/screens/home/views/components/popular_products.dart';

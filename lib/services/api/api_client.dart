@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io' if (dart.library.html) 'dart:html' as html;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:dio/dio.dart';
 import 'package:cookie_jar/cookie_jar.dart';
