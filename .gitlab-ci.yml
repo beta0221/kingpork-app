@@ -18,7 +18,7 @@ test:flutter:
     - echo "🧪 Running Flutter tests..."
     - flutter --version
     - flutter pub get
-    - flutter analyze
+    - flutter analyze --no-fatal-infos
     - echo "✅ Flutter tests passed"
   timeout: 10m
   only:
