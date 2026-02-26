@@ -17,10 +17,10 @@ test:flutter:
   script:
     - echo "🧪 Running Flutter tests..."
     - flutter --version
-    - flutter doctor -v
     - flutter pub get
     - flutter analyze
     - echo "✅ Flutter tests passed"
+  timeout: 10m
   only:
     - main
     - develop
