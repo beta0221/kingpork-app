@@ -1,18 +1,81 @@
 stages:
+  - test
   - build
   - deploy
 
 variables:
   FLUTTER_VERSION: "3.41.2"
 
-# 建置 Flutter Web
-build:web:
+# ========================================
+# Test Stage - 所有分支都執行測試
+# ========================================
+test:flutter:
+  stage: test
+  tags:
+    - macos
+    - flutter
+  script:
+    - echo "🧪 Running Flutter tests..."
+    - flutter --version
+    - flutter doctor -v
+    - flutter pub get
+    - flutter analyze
+    - echo "✅ Flutter tests passed"
+  only:
+    - main
+    - develop
+    - /^feature\/.*$/
+
+# ========================================
+# Build & Deploy - STAGE Environment (develop branch)
+# ========================================
+build:stage:
   stage: build
   tags:
     - macos
     - flutter
   script:
-    - echo "Building Flutter Web..."
+    - echo "🔨 Building Flutter Web for STAGE..."
+    - flutter --version
+    - flutter pub get
+    - flutter build web --release --no-tree-shake-icons
+  artifacts:
+    paths:
+      - build/web/
+    expire_in: 1 hour
+  only:
+    - develop
+  environment:
+    name: stage
+
+deploy:stage:
+  stage: deploy
+  tags:
+    - macos
+  dependencies:
+    - build:stage
+  script:
+    - echo "🚀 Deploying to Firebase Hosting (STAGE)..."
+    - firebase --version
+    - firebase deploy --only hosting --token "$FIREBASE_TOKEN"
+    - echo "✅ STAGE deployment completed!"
+  only:
+    - develop
+  environment:
+    name: stage
+    url: https://tk-app-testing.web.app
+  when: manual
+
+# ========================================
+# Build & Deploy - PRODUCTION Environment (main branch)
+# ========================================
+build:production:
+  stage: build
+  tags:
+    - macos
+    - flutter
+  script:
+    - echo "🔨 Building Flutter Web for PRODUCTION..."
     - flutter --version
     - flutter pub get
     - flutter build web --release --no-tree-shake-icons
@@ -22,21 +85,26 @@ build:web:
     expire_in: 1 hour
   only:
     - main
-    - develop
+  environment:
+    name: production
 
-# 部署到 Firebase Hosting
-deploy:firebase:
+deploy:production:
   stage: deploy
   tags:
     - macos
   dependencies:
-    - build:web
+    - build:production
   script:
-    - echo "Deploying to Firebase Hosting..."
+    - echo "🚀 Deploying to Firebase Hosting (PRODUCTION)..."
+    - echo "⚠️  WARNING: Deploying to PRODUCTION!"
     - firebase --version
+    - firebase use production
     - firebase deploy --only hosting --token "$FIREBASE_TOKEN"
+    - echo "✅ PRODUCTION deployment completed!"
   only:
     - main
   environment:
-    name: testing
-    url: https://tk-app-testing.web.app
+    name: production
+    url: $PROD_URL
+  when: manual
+  allow_failure: false
