@@ -6,7 +6,7 @@ import 'package:tklab_ec_v2/viewmodels/base_view_model.dart';
 class CommunityViewModel extends BaseViewModel {
   final CommunityService _communityService;
 
-  List<CommunityPost> _posts = [];
+  final List<CommunityPost> _posts = [];
   int _currentPage = 1;
   bool _hasMorePages = true;
   bool _isLoadingMore = false;

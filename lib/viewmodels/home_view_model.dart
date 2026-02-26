@@ -78,7 +78,7 @@ class HomeViewModel extends BaseViewModel {
       _products = result.products;
       notifyListeners();
     } catch (e) {
-      print('載入產品失敗: $e');
+      debugPrint('載入產品失敗: $e');
       _products = [];
       notifyListeners();
     }
