@@ -49,13 +49,13 @@ class FlavorConfig {
         _instance = FlavorConfig._(
           flavor: Flavor.dev,
           name: 'DEV',
-          baseUrl: 'https://www.stage.daf-shoes.com:8081',
+          baseUrl: 'https://tk.movarkstyle.com',
           oneSignalAppId: '2780fb32-fc29-41be-9c0b-b43131b71b65', // DEV OneSignal App ID
-          wssUrl: 'wss://www.stage.daf-shoes.com:8081/wss',
+          wssUrl: 'wss://tk.movarkstyle.com/wss',
           firebaseAppLink: 'https://tklab.page.link',
-          matomoUrl: 'https://www.stage.daf-shoes.com:8081/matomo/matomo.php',
+          matomoUrl: 'https://tk.movarkstyle.com/matomo/matomo.php',
           matomoSiteId: 1,
-          chatListenUrl: 'https://www.stage.daf-shoes.com:9090',
+          chatListenUrl: 'https://tk.movarkstyle.com:9090',
         );
         break;
 
