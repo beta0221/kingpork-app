@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'dart:io';
+import 'dart:io' if (dart.library.html) 'dart:html' as html;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:dio/dio.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
@@ -26,21 +27,23 @@ class ApiClient {
 
   /// Initialize Dio with interceptors and cookie management
   Future<void> _initializeDio(Duration timeout) async {
-    // Setup cookie jar for session management
-    if (_cookieJar == null) {
-      try {
-        final appDocDir = await getApplicationDocumentsDirectory();
-        final cookiePath = '${appDocDir.path}/.cookies';
-        _cookieJar = PersistCookieJar(
-          storage: FileStorage(cookiePath),
-        );
-      } catch (e) {
-        // Fallback to default cookie jar if file storage fails
-        _cookieJar = CookieJar();
+    // Setup cookie jar for session management (skip on Web)
+    if (!kIsWeb) {
+      if (_cookieJar == null) {
+        try {
+          final appDocDir = await getApplicationDocumentsDirectory();
+          final cookiePath = '${appDocDir.path}/.cookies';
+          _cookieJar = PersistCookieJar(
+            storage: FileStorage(cookiePath),
+          );
+        } catch (e) {
+          // Fallback to default cookie jar if file storage fails
+          _cookieJar = CookieJar();
+        }
       }
-    }
 
-    _dio.interceptors.add(CookieManager(_cookieJar!));
+      _dio.interceptors.add(CookieManager(_cookieJar!));
+    }
 
     _dio.options = BaseOptions(
       connectTimeout: timeout,
@@ -158,7 +161,8 @@ class ApiClient {
           e.type == DioExceptionType.receiveTimeout ||
           e.type == DioExceptionType.sendTimeout) {
         throw TimeoutException('請求超時，請稍後再試');
-      } else if (e.error is SocketException) {
+      } else if (e.type == DioExceptionType.connectionError ||
+          _isSocketException(e.error)) {
         throw NetworkException();
       } else if (e.response != null) {
         return _handleResponse(e.response!);
@@ -168,6 +172,12 @@ class ApiClient {
     } catch (e) {
       throw ApiException('發生未知錯誤: $e');
     }
+  }
+
+  /// Check if error is a socket exception (platform-specific)
+  bool _isSocketException(dynamic error) {
+    if (kIsWeb) return false;
+    return error != null && error.runtimeType.toString() == 'SocketException';
   }
 
   /// Build request headers
