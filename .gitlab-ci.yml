@@ -97,14 +97,14 @@ deploy:production:
   script:
     - echo "🚀 Deploying to Firebase Hosting (PRODUCTION)..."
     - 'echo "⚠️  WARNING: Deploying to PRODUCTION!"'
+    - 'echo "ℹ️  Currently using default project (testing), create separate production project later"'
     - firebase --version
-    - firebase use production
     - firebase deploy --only hosting --token "$FIREBASE_TOKEN"
     - echo "✅ PRODUCTION deployment completed!"
   only:
     - main
   environment:
     name: production
-    url: $PROD_URL
+    url: https://tk-app-testing.web.app
   when: manual
   allow_failure: false
